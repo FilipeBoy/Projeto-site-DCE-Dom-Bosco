@@ -1,10 +1,6 @@
-
-<% String usuario=null;
-   //String caminho=" ";<%=//caminho
-    if(request.getAttribute("Nome")!=null){
-    usuario=request.getAttribute("Nome").toString();
-    //caminho="../../Projeto_DCE/VIEW/";
-}%>
+<%
+    String usuario=(String)session.getAttribute("Nome");
+%>
 <html><head>
         
         <meta charset="utf-8">
@@ -48,7 +44,7 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-left">
-                        <% if(usuario!=null){%>
+                        <% if( usuario!=null){%>
                         <li class="active">
                             <a href="Logoff.jsp">Sign out</a>
                         </li>

@@ -41,13 +41,9 @@ public final class DCE_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write('\n');
- String usuario=null;
-   //String caminho=" ";<%=//caminho
-    if(request.getAttribute("Nome")!=null){
-    usuario=request.getAttribute("Nome").toString();
-    //caminho="../../Projeto_DCE/VIEW/";
-}
+
+    String usuario=(String)session.getAttribute("Nome");
+
       out.write("\n");
       out.write("<html><head>\n");
       out.write("        \n");
@@ -93,7 +89,7 @@ public final class DCE_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    </ul>\n");
       out.write("                    <ul class=\"nav navbar-nav navbar-left\">\n");
       out.write("                        ");
- if(usuario!=null){
+ if( usuario!=null){
       out.write("\n");
       out.write("                        <li class=\"active\">\n");
       out.write("                            <a href=\"Logoff.jsp\">Sign out</a>\n");

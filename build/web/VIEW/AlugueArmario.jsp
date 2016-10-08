@@ -1,9 +1,6 @@
-<% String usuario=null;
-   //String caminho=" ";<%=//caminho
-    if(request.getAttribute("Nome")!=null){
-    usuario=request.getAttribute("Nome").toString();
-    //caminho="../../Projeto_DCE/VIEW/";
-}%>
+<%
+    String usuario=(String)session.getAttribute("Nome");
+%>
 <%@page import="DAO.ArmarioDAO"%> 
 <html><head>
         <meta charset="utf-8">

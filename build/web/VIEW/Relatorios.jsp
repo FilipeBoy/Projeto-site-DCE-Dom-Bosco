@@ -1,3 +1,6 @@
+<%
+    String usuario=(String)session.getAttribute("Nome");
+%>
 <html><head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,9 +21,9 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-                <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+               <div class="collapse navbar-collapse" id="navbar-ex-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active">
+                       <li class="active">
                             <a href="DCE.jsp">Home</a>
                         </li>
                         <li class="active">
@@ -40,13 +43,22 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-left">
+                        <% if(usuario!=null){%>
                         <li class="active">
-                            <a href="Login.jsp">Sign in</a>
+                            <a href="Logoff.jsp">Sign out</a>
                         </li>
+                        
+                        <li class="active">
+                            <a><%out.print(usuario);%></a>
+                         </li><%}else{%>
+                         <li class="active">
+                            <a href="Login.jsp">Sign in</a>
+                        </li>  <%}%>
                     </ul>
                 </div>
             </div>
-        </div><div class="section">
+        </div>
+        <div class="section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-1">

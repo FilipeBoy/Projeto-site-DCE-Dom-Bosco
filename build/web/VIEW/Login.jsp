@@ -1,3 +1,6 @@
+<%String menssagem=(String)session.getAttribute("Menssagem");
+
+%>
 <html><head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -57,6 +60,8 @@
                     <div class="col-md-12">
                         <h1 class="text-center">Já tem registro conosco?</h1>
                         <p class="text-center">Se você possui uma conta conosco, por favor, faça seu login</p>
+                        <%if(menssagem!=null){%>
+                        <a class="text-center"><%out.print(menssagem);}%></a>
                     </div>
                 </div>
             </div>

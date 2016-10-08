@@ -3,38 +3,43 @@
     Created on : 04/10/2016, 21:44:46
     Author     : filip
 --%>
+<%@page import="java.sql.Statement"%>
+
 <%@page import="java.sql.ResultSet"%>
 <%@page import="MODEL.ConexaoMySQL"%> 
 <%@page import="MODEL.Usuario"%>
 <%
-    String emailUsuario = request.getParameter("email");
-    String senhaUsurario = request.getParameter("password");
-    Usuario user= new Usuario();
+    String emailUsuario = new String(request.getParameter("email"));
+    String senhaUsurario = new String(request.getParameter("password"));
+    String menssagem = new String("Falha na autenticaÃ§Ã£o!");
     
-
+    
     ConexaoMySQL.getConexaoMySQL();
-     ResultSet rs = ConexaoMySQL.stmt.executeQuery("select Email,Password,Nome from DCE_Pessoa where email='"+emailUsuario+"';");
-            String login="";
-            String senha="";
-            String nome="";
+    Statement comando = ConexaoMySQL.connection.createStatement();
+     ResultSet rs = comando.executeQuery("select Email,Password,Nome from DCE_Usuario where Email='"+emailUsuario+"';");
+            String login= new String("");
+            String senha=new String("");
+            String nome=new String("");
            while (rs.next()) {
-                login= rs.getString("email");
+                login= rs.getString("Email");
                 senha= rs.getString("Password");
                 nome=rs.getString("Nome");
                 
             }
             if(login.equals(emailUsuario) && senha.equals(senhaUsurario)) 
                 {
-                            user.setNome(nome);
-                            request.setAttribute("Nome", nome);
-                            request.getRequestDispatcher("../VIEW/DCE.jsp").forward(request, response);
                             
+                            session.setAttribute("Nome", nome);
+                            
+                            request.getRequestDispatcher("DCE.jsp").forward(request, response);
+                            session.setAttribute("Menssagem", null);
                 }
                     else
                         {
-                            //out.print("não conectado");
-                            //request.setAttribute("Falha", "Erro de Autenticação");
-                            request.getRequestDispatcher("Projeto_DCE/Login.jsp").forward(request, response);
+                             session.setAttribute("Nome", null);
+                             session.setAttribute("Menssagem", menssagem);
+                            request.getRequestDispatcher("Login.jsp").forward(request, response);
+                            
                         }
     ConexaoMySQL.FecharConexao();
    
