@@ -1,0 +1,51 @@
+<%-- 
+    Document   : formulario
+    Created on : 11/08/2016, 13:39:54
+    Author     : filip
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Minha primeira pagina dinamica</title>
+    </head>
+    <body>
+        <%
+		String nome = request.getParameter("primeiroNome");
+		String sobrenome = request.getParameter("sobrenome");
+		String idade = request.getParameter("idade");
+                String estadocivil = request.getParameter("estadocivil");
+                String email = request.getParameter("email");
+                String telefone = request.getParameter("telefone");
+                String endereco = request.getParameter("endereco");
+                String cidade = request.getParameter("cidade");
+                
+		if(nome != null )
+		{		
+	%>
+        <h1>Bem vindo <%=nome%> <%=sobrenome%><br>Idade:<%=idade%><br>estado civil:<%=estadocivil%>
+        <br>email:<%=email%><br>Telefone:<%=telefone%><br>Endereço:<%=endereco%><br>Cidade:<%=cidade%></h1>
+		<% }
+		
+		else{
+			%>
+			<h1>FORMULARIO DE DADOS PESSOAIS</h1>
+			<form action="formulario.jsp" method="get">
+                            <label> Nome </label><input type="text" name="primeiroNome"/><br>
+			<label> Sobrenome </label><input type="text" name="sobrenome"/><br>
+                        <label> Idade </label><input type="text" name="idade"/><br>
+			<label> Estado civil </label><input type="text" name="estadocivil"/><br>
+                        <label> Email </label><input type="text" name="email"/><br>
+                        <label> Telefone </label><input type="text" name="telefone"/><br>
+                        <label> Endereco </label><input type="text" name="endereco"/><br>
+                        <label> Cidade </label><input type="text" name="cidade"/><br>
+			<input type="submit"/>
+			</form>
+		
+		
+			
+	 <% }%>
+    </body>
+</html>

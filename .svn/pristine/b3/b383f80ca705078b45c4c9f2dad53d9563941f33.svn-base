@@ -1,0 +1,155 @@
+<%-- 
+    Document   : Insercao_funcionarios
+    Created on : 23/08/2016, 21:26:54
+    Author     : filip
+--%>
+
+<%@page import="java.text.DecimalFormat"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="estilo.css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Tarefa 1</title>
+    </head>
+    <body>
+        <%!
+            public Float calculaInss(Float salarioBruto) {
+
+                Float valorInss = (float) 0.0;
+                if (salarioBruto <= 1556.94) {
+                    valorInss = (salarioBruto * (float) 0.08);
+                }
+                if (1556.95 <= salarioBruto && salarioBruto <= 2594.92) {
+                    valorInss = (salarioBruto * (float) 0.09);
+                }
+                if (salarioBruto > 2594.92) {
+                    valorInss = (salarioBruto * (float) 0.11);
+                }
+                return valorInss;
+            }
+        %>
+        <%!
+            public Float calculaIrpf(Float salarioBruto, Float valorInss, int dependentes) {
+                Float valorIrpf = (float) 0.0;
+                valorIrpf = salarioBruto - valorInss;
+                valorIrpf = valorIrpf - (dependentes * (float) 189.59);
+                if (valorIrpf < 1903.98) {
+                    valorIrpf = (float) 0;
+                }
+                if (valorIrpf >= 1903.99 && valorIrpf <= 2826.65) {
+                    valorIrpf = ((valorIrpf * (float) 0.075) - (float) 142.80);
+                }
+                if (valorIrpf >= 2826.66 && valorIrpf <= 3751.05) {
+                    valorIrpf = ((valorIrpf * (float) 0.15) - (float) 354.80);
+                }
+                if (valorIrpf >= 3751.05 && valorIrpf <= 4664.68) {
+                    valorIrpf = ((valorIrpf * (float) 0.225) - (float) 636.13);
+                }
+                if (valorIrpf > 4664.68) {
+                    valorIrpf = ((valorIrpf * (float) 0.275) - (float) 869.36);
+                }
+                return valorIrpf;
+            }
+        %>
+        <%!
+            public Float calculaValeTrans(Float salarioBruto) {
+                Float valeTrans = (float) 0;
+                Float valorPassagem = (float) 3.50;
+                int qtdPassagens = 44;
+                if ((valorPassagem * qtdPassagens) < (salarioBruto * 0.06)) {
+                    valeTrans = valorPassagem * qtdPassagens;
+                } else {
+                    valeTrans = salarioBruto * (float) 0.06;
+                }
+                return valeTrans;
+            }
+        %>
+        <%!
+            public Float calculaValeRefeicao(int cargaHoraria) {
+                Float valeRefeicao = (float) 0;
+                if ((cargaHoraria / 22) < 6) {
+                    valeRefeicao = (float) 0;
+                } else {
+                    valeRefeicao = (float) 20 * 22;
+                }
+                return valeRefeicao;
+            }
+        %>
+
+        <%
+            DecimalFormat df = new DecimalFormat("0.00");
+            int dependentes = 0;
+            Float salarioBruto = (float) 0;
+            int cargaHoraria = 0;
+            String nome = request.getParameter("nome");
+            String idade = request.getParameter("idade");
+            String cargo = request.getParameter("cargo");
+            String dependentes1 = "";
+            dependentes1 = request.getParameter("qtddependentes");
+            String salarioBruto1 = request.getParameter("salarioBruto");
+            String cargaHoraria1 = request.getParameter("cargaHoraria");
+            boolean validdependentes = dependentes1 != null && !dependentes1.equals("");
+            if (validdependentes) {
+                dependentes = Integer.valueOf(dependentes1).intValue();
+                salarioBruto = Float.valueOf(salarioBruto1).floatValue();
+                cargaHoraria = Integer.valueOf(cargaHoraria1).intValue();;
+            }
+
+            if (nome != null) {
+               
+        %>
+        <table border="2" width=65% height=50% ALIGN=center>
+            <tr WIDTH=200 height=20%>
+                <td colspan="2" ALIGN=MIDDLE >
+            <table width=100% height=50% ALIGN=center>
+                <tr>
+                    <td colspan="3" ALIGN=MIDDLE width=65% height=50%><h4>Folha de Pagamento</h4></td>
+                </tr>
+                <tr>
+                    <td>Nome:<%=nome%></td><td ALIGN=center>Idade:<%=idade%></td><td ALIGN=right>N° Dependentes:<%=dependentes%></td>
+                </tr>
+                <tr>
+                    <td>Cargo:<%=cargo%></td><td></td><td ALIGN=right>Carga horária:<%=cargaHoraria%></td>
+                </tr>
+            </table>
+                </td>
+            </tr>
+            <tr>
+                <TD ROWSPAN=4 valign=top >Salario Bruto:<%=salarioBruto%></TD>
+                <TD>INSS: <%=calculaInss(salarioBruto)%></TD></TR>
+            <TR> <TD>IRPF: <%=df.format(calculaIrpf(salarioBruto, calculaInss(salarioBruto), dependentes))%></TD></TR>
+            <TD>Vale Transporte: <%=calculaValeTrans(salarioBruto)%></TD></TR>
+        <TD>Vale Refeição: <%=calculaValeRefeicao(cargaHoraria)%></TD>
+            </tr>
+            <tr>
+                <td colspan="2">Liquido a receber: <%=salarioBruto - calculaInss(salarioBruto) - calculaIrpf(salarioBruto, calculaInss(salarioBruto), dependentes) - calculaValeTrans(salarioBruto) - calculaValeRefeicao(cargaHoraria)%></td>
+            </tr>
+            
+        </table>
+         <a href="InsercaoFuncionarios.jsp"><button class="btnvoltar" type="button" value="btnLogoff">Voltar</button></a>   
+        <a href="TelaPrincipal.jsp"><button class="btnLogff" type="button" value="btnLogoff">Logoff</button></a>
+        <%
+        } else {
+
+        %>
+        <div id="area">
+        
+        <form id="formulario" autocomplete="off" action="InsercaoFuncionarios.jsp" method="get">
+            <fieldset>
+                <legend>FORMULARIO DE DADOS PESSOAIS</legend><br><br>
+            <label> Nome </label><input class="campo_nome" type="text" name="nome"/><br><br>
+            <label> Idade </label><input class="campo_idade" type="text" name="idade"/><br><br>
+            <label> Cargo </label><input class="campo_cargo" type="text" name="cargo"/><br><br>
+            <label> N° Dependentes </label><input class="campo_dependentes" type="text" name="qtddependentes"/><br><br>
+            <label> Salario bruto </label><input class="campo_salario" type="text" name="salarioBruto"/><br><br>
+            <label> Carga horária </label><input class="campo_carga" type="text" name="cargaHoraria"/><br>
+             <input class="btnFopag" type="submit" value="Gerar FoPag" name="btnFopag"/>
+              <a href="TelaPrincipal.jsp"><button class="btnLogff" type="button" value="btnLogoff">Logoff</button></a>
+            </fieldset>
+        </form>
+        </div>
+        <% }%>
+    </body>
+</html>

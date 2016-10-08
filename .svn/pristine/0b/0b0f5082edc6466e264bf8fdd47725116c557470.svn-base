@@ -1,0 +1,59 @@
+<%-- 
+    Document   : Pessoa
+    Created on : 06/09/2016, 20:29:30
+    Author     : 14213081
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Cadastro cliente</title>
+    </head>
+    <body>
+          <form action="inserte.jsp" method="post">
+            <br>
+                <br><label>Tipo</label>
+                <input type="radio" name="Fisica">
+                <input type="radio" name="Juridica"><br>
+            
+                <br><label>Nome</label>
+                <input type="text" name="nome_pessoa"><br>
+
+                <br><label>Cpf</label>
+                <input type="text" name="cpf"><br>
+                
+                <br><label>Email</label>
+                <input type="text" name="email"><br>
+                
+                <br><label>Telefone</label>
+                <input type="tel" name="telefone" maxlength="8"><br>
+                
+                <br><label>Operadora</label>
+                <input type="text" name="operadora" maxlength="8"><br>
+                
+                <br><label>Logradouro</label>
+                <input type="text" name="logradouro"><br>
+                
+                <br><label>Complemento</label>
+                <input type="text" name="complemento"><br>
+                
+                <br><label>Nrº</label>
+                <input type="text" name="nr"><br>
+                
+                <br><label>CEP</label>
+                <input type="text" name="cep" maxlength="8"><br>
+                
+                <br><label>Bairro</label>
+                <input type="text" name="bairro"><br>
+                
+                <br><label>Cidade</label>
+                <input type="text" name="cidade"><br>
+                
+                <br><label>Estado</label>
+                <input type="text" name="estado"><br>
+                
+                <br><button type="submit">Inserir</button><br>
+    </body>
+</html>

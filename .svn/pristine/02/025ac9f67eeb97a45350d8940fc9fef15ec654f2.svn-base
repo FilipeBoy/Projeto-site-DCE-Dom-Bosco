@@ -1,0 +1,58 @@
+<%-- 
+    Document   : Tarefa1
+    Created on : 23/08/2016, 20:22:48
+    Author     : filip
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Tarefa 1</title>
+    </head>
+    <body>
+    <center>
+        <%
+            String usuario1 = "";
+            String senha1 = "";
+            String usuario = "admin";
+            String senha = "admin";
+
+            if (request.getParameter("Usuario") != null && request.getParameter("Senha") != null) {
+                usuario1 = request.getParameter("Usuario");
+                senha1 = request.getParameter("Senha");
+
+                if (usuario.equals(usuario1) && senha.equals(senha1)) {
+
+
+        %>
+        <div id="logado">
+            <h2>Bem vindo <%=usuario%>! </h2>
+
+            <a href="InsercaoFuncionarios.jsp"><button type="button" value="btnInsercaoFuncionarios">Inserção de funcionários</button></a> </br></br></br>
+            <a href="calculoTributos.jsp"><button type="button" value="btncalculoTributos">Cálculo de tributos</button></a> 
+        </div>
+        <% } else {
+
+                    out.println("Usuário ou senha errados, volte e tente novamente!");
+                }
+            }
+            if (request.getParameter("Usuario") == null) {
+        %>
+
+        <h2>BEM VINDO!</h2>
+        <form action="TelaPrincipal.jsp" method="get">
+            <div id="campos">
+                <h3><label> Usuario </label><input type="text" name="Usuario"/></h3>
+                <h3><label> Senha </label><input type="password" name="Senha"/></h3>
+                <input type = "submit" value = "Login"/>
+                <input type = "reset" value = "Cancelar"/>
+            </div> 
+        </form>
+    </center>
+    <% }
+
+    %>
+</body>
+</html>

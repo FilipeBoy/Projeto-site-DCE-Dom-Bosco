@@ -1,0 +1,71 @@
+
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%
+    
+    //Pessoa
+    String nome_pessoa = request.getParameter("nome_pessoa");
+    String cpf = request.getParameter("cpf");
+    String email = request.getParameter("email");
+    
+    
+    //contato
+    String telefone = request.getParameter("telefone");
+    String operadora = request.getParameter("operadora");
+    
+    
+    //endereço
+    String logradouro = request.getParameter("logradouro");
+    String complemento = request.getParameter("complemento");
+    String numero = request.getParameter("numero");
+    String bairro = request.getParameter("bairro");
+    String cep = request.getParameter("cep");
+    String cidade = request.getParameter("cidade");
+    String estado = request.getParameter("estado");
+    
+    //Animal
+    String nome_animal = request.getParameter("nome_animal");
+    String sexo = request.getParameter("sexo");
+    String raca = request.getParameter("raca");
+    String datanascimento = request.getParameter("nascimento");
+    String observacao = request.getParameter("observacao");
+    
+    Class.forName("com.mysql.jdbc.Driver");
+    
+    Connection conn = DriverManager.getConnection("jdbc:mysql://intracker.com.br:3306/fdb", "fdb", "fdb");//conecta com o banco
+    
+    Statement stmt = conn.createStatement(); // prepara para receber as informações
+    
+    String sqlStr;
+    int recordUpdated;
+    
+    
+    sqlStr = "insert into Vinicius_Pessoa values('"+nome_pessoa+", '"+cpf+"', '"+email+"')";//Pessoa
+    
+    sqlStr = "insert into Vinicius_Contato values('"+telefone+"' ,'"+operadora+"')";//Contato
+    
+    sqlStr = "insert into Vinicius_Endereco values('"+logradouro+"','"+complemento+"','"+numero+"', '"+bairro+"','"+cep+"','"+cidade+"','"+estado+"')";//Endereco
+                                       
+    
+    sqlStr = "insert into Vinicius_Animal values('"+nome_animal+"','"+raca+"', '"+datanascimento+"', '"+observacao+"' ,'"+sexo+"')";//Animal
+    
+    out.println(sqlStr);
+    
+    recordUpdated = stmt.executeUpdate(sqlStr);
+    
+   out.println("Registro inserido com sucesso!");
+%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <h1>Hello World!</h1>
+    </body>
+</html>

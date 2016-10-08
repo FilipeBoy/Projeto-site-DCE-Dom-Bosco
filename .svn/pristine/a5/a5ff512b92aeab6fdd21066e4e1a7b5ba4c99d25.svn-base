@@ -1,0 +1,65 @@
+<%-- 
+    Document   : calculadora
+    Created on : 19/08/2016, 12:25:09
+    Author     : filip
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Calculadora</title>
+    </head>
+    <%
+	
+	if((request.getParameter("num1") != null) && (request.getParameter("num2") != null)){
+		String n1 = request.getParameter("num1");
+		String n2 = request.getParameter("num2");
+		String op = request.getParameter("opcao");	
+			
+		float num1 = Float.valueOf(n1);
+		float num2 = Float.valueOf(n2);
+                
+		float resultado = 0;
+		
+		switch(op.charAt(0))
+		{
+			case '+' : 
+				resultado = num1+num2;
+				break;
+			case '-' : 
+				resultado = num1-num2;
+				break;
+			case '*' : 
+				resultado = num1*num2;
+				break;
+			case '/' : 
+				resultado = num1/num2;
+				break;
+		}
+		%>
+                 <h1><%=n1%><%=op%><%=n2%>=<%=resultado%></h1> 
+                <%
+            }
+	
+	%>
+        
+	<body>
+	<form action="calculadora.jsp" method="post">
+		Primeiro numero: <input type="text" name="num1">
+		<br/>
+		Segundo numero: <input type="text" name="num2">
+		<br/>
+		Operação: <select  name="opcao" >
+			<option value="+">+</option>
+			<option value="-">-</option>
+			<option value="*">*</option>
+			<option value="/">/</option>
+		</select>
+		<br/><br/>
+		<input type="submit" value="Resultado" />
+		<button type="reset" value="Reset">Limpar Campos</button> 
+	</form>
+    </body>
+</html>

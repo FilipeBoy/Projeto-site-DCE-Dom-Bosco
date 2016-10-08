@@ -1,0 +1,42 @@
+<%-- 
+    Document   : Insercao_funcionarios
+    Created on : 23/08/2016, 21:26:54
+    Author     : filip
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <h1>InsercaoFuncionarios</h1>
+        <%
+		String nome = request.getParameter("nome");
+		String idade = request.getParameter("idade");
+                String cargo = request.getParameter("cargo");
+                String salarioBruto = request.getParameter("salarioBruto");
+                String cargaHoraria = request.getParameter("cargaHoraria");
+                                
+                if(nome != null )
+		{		
+	%>
+        <h1>Bem vindo <%=nome%> <br>Idade:<%=idade%><br>Cargo:<%=cargo%><br>Salario Bruto:<%=salarioBruto%><br>Carga horária:<%=cargaHoraria%></h1>
+		<% }
+		
+		else{
+			%>
+			<h1>FORMULARIO DE DADOS PESSOAIS</h1>
+			<form action="formulario.jsp" method="get">
+                            <label> Nome </label><input type="text" name="nome"/><br>
+			<label> Idade </label><input type="text" name="idade"/><br>
+                        <label> Cargo </label><input type="text" name="cargo"/><br>
+			<label> Salario bruto </label><input type="text" name="salarioBruto"/><br>
+                        <label> Carga horária </label><input type="text" name="cargaHoraria"/><br>
+                        
+			<input type="submit"/>
+			</form>
+    </body>
+</html>

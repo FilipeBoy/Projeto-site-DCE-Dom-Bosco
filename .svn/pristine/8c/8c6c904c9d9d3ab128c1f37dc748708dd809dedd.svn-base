@@ -1,0 +1,52 @@
+<%-- 
+    Document   : Tarefa1
+    Created on : 23/08/2016, 20:22:48
+    Author     : filip
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Tarefa 1</title>
+    </head>
+    <body>
+        <center>
+        <%
+            String usuario1="";
+            String senha1="";
+            String usuario="admin";
+            String senha="admin";
+                            
+                               
+             if(request.getParameter("Usuario")!= null && request.getParameter("Senha")!= null){
+                 usuario1=request.getParameter("Usuario");
+                 senha1=request.getParameter("Senha");
+             }
+             if(usuario.equals(usuario1) && senha.equals(senha1)){
+                     
+            %>
+            
+            <h1>Bem vindo <%=usuario%>! </h1>
+            
+            <a href="InsercaoFuncionarios.jsp"><button type="reset" value="Reset">Inserção de funcionários</button> </a> 
+            <a href="calculoTributos.jsp"><button type="reset" value="Reset">Cálculo de tributos</button></a> 
+        <% }
+            
+		else{
+			%>
+        
+        <h1>BEM VINDO!</h1>
+	<form action="TelaPrincipal.jsp" method="get">
+        <label> Usuario </label><input type="text" name="Usuario"/><br>
+	<label> Senha </label><input type="password" name="Senha"/><br>
+        <input type = "submit" value = "Login"/>
+	<input type = "reset" value = "Cancelar"/>
+	</form>
+        </center>
+         <% }
+
+%>
+    </body>
+</html>

@@ -1,0 +1,106 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 25/08/2016, 17:17:11
+    Author     : filip
+*/
+#area
+{
+    position:relative;
+    left:37%;
+    top:29%;
+    width:320px;
+    height:270px;
+}
+#area #formulario
+{
+    position:absolute;
+    display:block;  
+}
+fieldset
+{
+    width:500px;
+    height:450px;
+}
+ 
+ 
+ 
+legend
+{
+    font-style:bold;
+    font-family: "Segoe UI";
+}
+#formulario label
+{
+    position:absolute;
+    left:19px;
+    margin-right:5px;
+}
+ 
+ 
+#formulario input.campo_nome
+{
+    position:absolute;
+    left:150px;
+    top:60px;
+    width:300px;
+}
+#formulario input.campo_idade
+{
+    position:absolute;
+    left:150px;
+    margin-top:2px;
+    width:300px;
+}
+#formulario input.campo_cargo
+{
+    position:absolute;
+    left:150px;
+    margin-top:2px;
+    width:300px;
+}
+#formulario input.campo_dependentes
+{
+    position:absolute;
+    left:150px;
+    margin-top:2px;
+    width:300px;
+}
+#formulario input.campo_salario
+{
+    position:absolute;
+    left:150px;
+    margin-top:2px;
+    width:300px;
+}
+#formulario input.campo_carga
+{
+    position:absolute;
+    left:150px;
+    margin-top:2px;
+    width:300px;
+}
+#formulario input.btnFopag
+{
+    position:absolute;
+    left:50px;
+    margin-top:50px;
+    width:200px;
+}
+#formulario Button.btnLogff
+{
+    position:absolute;
+    left:275px;
+    margin-top:50px;
+    width:200px;
+}
+#formulario Button.btnVoltar
+{
+    position:absolute;
+    left:275px;
+    margin-top:50px;
+    width:200px;
+}

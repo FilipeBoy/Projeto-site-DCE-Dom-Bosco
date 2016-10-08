@@ -1,0 +1,68 @@
+<%-- 
+    Document   : remoteAdress
+    Created on : 11/08/2016, 14:59:05
+    Author     : filip
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Minha primeira pagina dinamica</title>
+    </head>
+    <body>
+        <%
+		/*int a =0;
+		
+		for(int i=1;i<=5;i++){
+		
+			if(a%2==0){
+				out.println("<H"+i+">"+a+"</H"+i+">");
+				
+			}
+			a++;
+		}
+		
+		 for(int i=0;i<=100;i++){
+			out.println("<br>Numero "+i);
+			
+		} */
+		
+		/*for(int i=0;i<=300;i++){
+			if(i==50 || i==150 || i==300){
+				out.println("<img src='/upload/uploaded/download.jpg' alt='Smiley face' height='"+i+"' width='"+i+"'>");
+			}
+			
+		}
+		
+		for(int i=0;i<=10;i++){
+			out.println("<input type='text' name='campo"+i+"' value='nome"+i+"'>");
+			
+		}*/
+		
+               // response.sendRedirect("index.htm"); 
+                
+               // out.println("Your IP address is " + request.getRemoteAddr());
+
+              /* String texto="jose, idade=2, pedro, idade = 13";
+               String fantasma[];
+               fantasma=texto.split(",");
+               
+               for(int i=0;i<texto.length();i++){
+                   out.print(fantasma);
+               }*/
+		
+
+               
+	%>
+        <form action="index.jsp" method="post">
+            <select name="adicionar">
+                <option value="button">button</option>
+                <option value="radio">radio</option>
+                <option value="chackbox">chackbox</option>
+                <option value="textarea">textarea</option>
+            </select>
+        </form>
+    </body>
+</html>
