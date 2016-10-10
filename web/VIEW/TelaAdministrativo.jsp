@@ -1,6 +1,5 @@
 <%
-    String menssagem=(String)session.getAttribute("Menssagem");
-    String usuario = (String) session.getAttribute("Nome");
+    String usuario=(String)session.getAttribute("Nome");
 %>
 <html><head>
         <meta charset="utf-8">
@@ -11,7 +10,6 @@
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
     </head><body>
-
         <div class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
@@ -42,21 +40,21 @@
                         <li class="active">
                             <a href="TelaContato.jsp">Contato</a>
                         </li>
-                        <% if (usuario != null && usuario.equals("admin")) {%>
+                        <% if (usuario!=null && usuario.equals("admin")) {%>
                         <li class="active">
                             <a href="TelaRelatorios.jsp">Relatorios</a>
                         </li><%}%>
                     </ul>
                     <ul class="nav navbar-nav navbar-left">
-                        <% if (usuario != null) {%>
+                        <% if(usuario!=null){%>
                         <li class="active">
                             <a href="Logoff.jsp">Sign out</a>
                         </li>
-
+                        
                         <li class="active">
                             <a><%out.print(usuario);%></a>
-                        </li><%} else {%>
-                        <li class="active">
+                         </li><%}else{%>
+                         <li class="active">
                             <a href="TelaLogin.jsp">Sign in</a>
                         </li>  <%}%>
                     </ul>
@@ -66,17 +64,8 @@
         <div class="section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-2">
-                        <img src="/Projeto_DCE/IMAGES/nossos-cursos.jpg" class="img-responsive">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section">
-            <div class="container">
-                <div class="row">
                     <div class="col-md-12">
-                        <h1>Cadastro de cursos!</h1>
+                        <img src="/Projeto_DCE/IMAGES/Documentos-Importantes.png" class="img-responsive">
                     </div>
                 </div>
             </div>
@@ -84,23 +73,11 @@
         <div class="section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
-                         <%if(menssagem!=null){%>
-                        <a class="text-center"><%out.print(menssagem);}%></a>
-                        <form class="form-horizontal" role="form">
-                            <div class="form-group">
-                                <div class="col-sm-2">
-                                    <label for="inputEmail3" class="control-label"></label>
-                                </div>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputEmail3" placeholder="Palavra chave">
-                                </div>
-                            </div>
-                        </form>
+                    <div class="col-md-1">
+                        <img src="/Projeto_DCE/IMAGES/pdf.png" class="img-responsive">
                     </div>
-                    <div class="col-md-6">
-                        <button type="submit" class="btn btn-primary" name="BotaoComando" value="buscar">Buscar</button>
-
+                    <div class="col-md-11">
+                        <h3>Estatudo do DCE</h3>
                     </div>
                 </div>
             </div>
@@ -108,44 +85,47 @@
         <div class="section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12">
-                        <form role="form" action="/Projeto_DCE/CONTROLLER/ControllerCurso.jsp" method="post">
-                            <div class="form-group">
-                                <label class="control-label" for="nome">Nome</label>
-                                <input class="form-control" name="nome" placeholder="Nome do curso de graduação" type="text">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="horario">Horário</label>
-                                <input class="form-control" name="horario" type="text" placeholder="Ex: Noturno">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="cargaHoraria">Carga Horária</label>
-                                <input class="form-control" name="cargaHoraria" type="text" placeholder="EX(horas): 220">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="descricao">Descrição</label>
-                                <input class="form-control" name="descricao" type="text" placeholder="Objetivo do curso">
-                            </div>
-                            <div class="section">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <button type="submit" class="btn btn-primary" name="BotaoComando" value="salvar">Salvar</button>
-                                        </div>
-                                        <% if (usuario != null && usuario.equals("admin")) {%>
-                                        <div class="col-md-3">
-                                            <button type="reset" class="btn btn-primary">Novo</button>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <button class="btn btn-primary" name="BotaoComando" value="editar">Editar</button>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <button class="btn btn-primary" name="BotaoComando" value="excluir">Excluir</button>
-                                        </div><%}%>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                    <div class="col-md-1">
+                        <img src="/Projeto_DCE/IMAGES/pdf.png" class="img-responsive">
+                    </div>
+                    <div class="col-md-11">
+                        <h3>Ata 2016/1</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1">
+                        <img src="/Projeto_DCE/IMAGES/pdf.png" class="img-responsive">
+                    </div>
+                    <div class="col-md-11">
+                        <h3>Convocação Assembléia 15/11/2016</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1">
+                        <img src="/Projeto_DCE/IMAGES/word.png" class="img-responsive">
+                    </div>
+                    <div class="col-md-11">
+                        <h3>Edital das Eleições 2016</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1">
+                        <img src="/Projeto_DCE/IMAGES/word.png" class="img-responsive">
+                    </div>
+                    <div class="col-md-11">
+                        <h3>Ofício 00001 DCE</h3>
                     </div>
                 </div>
             </div>
@@ -189,6 +169,6 @@
                 </div>
             </div>
         </footer>
+    
 
-
-    </body></html>
+</body></html>

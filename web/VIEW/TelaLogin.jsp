@@ -1,6 +1,5 @@
-<%
-    String menssagem=(String)session.getAttribute("Menssagem");
-    String usuario = (String) session.getAttribute("Nome");
+<%String menssagem=(String)session.getAttribute("Menssagem");
+String usuario=(String)session.getAttribute("Nome");
 %>
 <html><head>
         <meta charset="utf-8">
@@ -10,8 +9,8 @@
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+                
     </head><body>
-
         <div class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
@@ -24,8 +23,8 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-ex-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active">
-                            <a href="DCE.jsp">Home</a>
+                       <li class="active">
+                            <a href="TelaDCE.jsp">Home</a>
                         </li>
                         <li class="active">
                             <a href="TelaSobre DCE.jsp">Sobre DCE<br></a>
@@ -42,23 +41,15 @@
                         <li class="active">
                             <a href="TelaContato.jsp">Contato</a>
                         </li>
-                        <% if (usuario != null && usuario.equals("admin")) {%>
+                        <% if (usuario!=null && usuario.equals("admin")) {%>
                         <li class="active">
                             <a href="TelaRelatorios.jsp">Relatorios</a>
                         </li><%}%>
                     </ul>
                     <ul class="nav navbar-nav navbar-left">
-                        <% if (usuario != null) {%>
-                        <li class="active">
-                            <a href="Logoff.jsp">Sign out</a>
-                        </li>
-
-                        <li class="active">
-                            <a><%out.print(usuario);%></a>
-                        </li><%} else {%>
                         <li class="active">
                             <a href="TelaLogin.jsp">Sign in</a>
-                        </li>  <%}%>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -66,86 +57,65 @@
         <div class="section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-2">
-                        <img src="/Projeto_DCE/IMAGES/nossos-cursos.jpg" class="img-responsive">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section">
-            <div class="container">
-                <div class="row">
                     <div class="col-md-12">
-                        <h1>Cadastro de cursos!</h1>
+                        <h1 class="text-center">Já tem registro conosco?</h1>
+                        <p class="text-center">Se você possui uma conta conosco, por favor, faça seu login</p>
+                        <%if(menssagem!=null){%>
+                        <a class="text-center"><%out.print(menssagem);}%></a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="section">
+        <div class="section text-center">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                         <%if(menssagem!=null){%>
-                        <a class="text-center"><%out.print(menssagem);}%></a>
-                        <form class="form-horizontal" role="form">
+                <div class="row text-center">
+                    <div class="col-md-12 text-left">
+                        <form class="form-horizontal" role="form" action="AutenticaUsuario.jsp" method="post" onsubmit="return Validade()">
                             <div class="form-group">
                                 <div class="col-sm-2">
-                                    <label for="inputEmail3" class="control-label"></label>
+                                    <label for="email" class="control-label">Email</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputEmail3" placeholder="Palavra chave">
+                                    <input type="email" class="form-control" name="email" placeholder="Email">
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="col-md-6">
-                        <button type="submit" class="btn btn-primary" name="BotaoComando" value="buscar">Buscar</button>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <form role="form" action="/Projeto_DCE/CONTROLLER/ControllerCurso.jsp" method="post">
                             <div class="form-group">
-                                <label class="control-label" for="nome">Nome</label>
-                                <input class="form-control" name="nome" placeholder="Nome do curso de graduação" type="text">
+                                <div class="col-sm-2">
+                                    <label for="password" class="control-label">Password</label>
+                                </div>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" name="password" placeholder="Password">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="horario">Horário</label>
-                                <input class="form-control" name="horario" type="text" placeholder="Ex: Noturno">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="cargaHoraria">Carga Horária</label>
-                                <input class="form-control" name="cargaHoraria" type="text" placeholder="EX(horas): 220">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="descricao">Descrição</label>
-                                <input class="form-control" name="descricao" type="text" placeholder="Objetivo do curso">
-                            </div>
-                            <div class="section">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <button type="submit" class="btn btn-primary" name="BotaoComando" value="salvar">Salvar</button>
-                                        </div>
-                                        <% if (usuario != null && usuario.equals("admin")) {%>
-                                        <div class="col-md-3">
-                                            <button type="reset" class="btn btn-primary">Novo</button>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <button class="btn btn-primary" name="BotaoComando" value="editar">Editar</button>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <button class="btn btn-primary" name="BotaoComando" value="excluir">Excluir</button>
-                                        </div><%}%>
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox">Remember me</label>
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10 col-md-1">
+                                    <button type="submit" class="btn btn-primary">Sign in</button>
+                                </div>
+                            </div>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="text-center">Novo por aqui?</h1>
+                        <p class="text-center">O cadastro é fácil e gratuíto!</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <a class="btn btn-primary" href="CadastroUsuario.jsp">Cadastrar</a>
                     </div>
                 </div>
             </div>
@@ -189,6 +159,6 @@
                 </div>
             </div>
         </footer>
+    
 
-
-    </body></html>
+</body></html>

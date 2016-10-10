@@ -1,7 +1,8 @@
 <%
-    String menssagem=(String)session.getAttribute("Menssagem");
     String usuario = (String) session.getAttribute("Nome");
+    String menssagem=(String)session.getAttribute("Menssagem");
 %>
+<%@page import="DAO.ArmarioDAO"%> 
 <html><head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +12,6 @@
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
     </head><body>
-
         <div class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
@@ -42,7 +42,7 @@
                         <li class="active">
                             <a href="TelaContato.jsp">Contato</a>
                         </li>
-                        <% if (usuario != null && usuario.equals("admin")) {%>
+                        <% if (usuario!=null && usuario.equals("admin")) {%>
                         <li class="active">
                             <a href="TelaRelatorios.jsp">Relatorios</a>
                         </li><%}%>
@@ -63,76 +63,69 @@
                 </div>
             </div>
         </div>
-        <div class="section">
+        <div class="section text-center">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-2">
-                        <img src="/Projeto_DCE/IMAGES/nossos-cursos.jpg" class="img-responsive">
+                    <div class="col-md-9 text-center">
+                        <img src="/Projeto_DCE/IMAGES/reserva.png" class="img-responsive"/>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1>Cadastro de cursos!</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </div><div class="section"><div class="container"><div class="row"><div class="col-md-12"><h1>Acompanhe ou faça sua reserva de armário!</h1></div></div></div></div>
         <div class="section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                         <%if(menssagem!=null){%>
-                        <a class="text-center"><%out.print(menssagem);}%></a>
                         <form class="form-horizontal" role="form">
                             <div class="form-group">
                                 <div class="col-sm-2">
                                     <label for="inputEmail3" class="control-label"></label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputEmail3" placeholder="Palavra chave">
+                                    <input type="text" class="form-control" id="inputEmail3" placeholder="Digite sua matrícula">
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="col-md-6">
-                        <button type="submit" class="btn btn-primary" name="BotaoComando" value="buscar">Buscar</button>
-
+                        <a class="btn btn-primary">Buscar<br></a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="section">
+        </div><div class="section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12">
-                        <form role="form" action="/Projeto_DCE/CONTROLLER/ControllerCurso.jsp" method="post">
+                    <div class="col-md-9">
+                        <%if(menssagem!=null){%>
+                        <a class="text-center"><%out.print(menssagem);}%></a>
+                        <form role="form" action="/Projeto_DCE/CONTROLLER/InsertArmario.jsp" method="post">
                             <div class="form-group">
-                                <label class="control-label" for="nome">Nome</label>
-                                <input class="form-control" name="nome" placeholder="Nome do curso de graduação" type="text">
+                                <label class="control-label" for="NroRegistro">Número de Registro</label>
+                                <input class="form-control" name="NroRegistro" type="text">
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="horario">Horário</label>
-                                <input class="form-control" name="horario" type="text" placeholder="Ex: Noturno">
+                                <label class="control-label" for="MatriculaUsuario">Matrícula</label>
+                                <input class="form-control" name="MatriculaUsuario" placeholder="00000000" type="text">
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="cargaHoraria">Carga Horária</label>
-                                <input class="form-control" name="cargaHoraria" type="text" placeholder="EX(horas): 220">
+                                <label class="control-label" for="NomeUsuario">Nome</label>
+                                <input class="form-control" name="NomeUsuario" placeholder="Nome Completo" type="text">
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="descricao">Descrição</label>
-                                <input class="form-control" name="descricao" type="text" placeholder="Objetivo do curso">
+                                <label class="control-label" for="DataInicio">Data Início</label>
+                                <input class="form-control" name="DataInicio" placeholder="__/__/__" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="DataFim">Data Fim</label>
+                                <input class="form-control" name="DataFim" type="text" placeholder="__/__/__">
                             </div>
                             <div class="section">
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <button type="submit" class="btn btn-primary" name="BotaoComando" value="salvar">Salvar</button>
+                                            <button type="submit" class="btn btn-primary" name="salvar">Enviar</button>
                                         </div>
-                                        <% if (usuario != null && usuario.equals("admin")) {%>
+                                       <% if (usuario != null && usuario.equals("admin")) {%>
                                         <div class="col-md-3">
                                             <button type="reset" class="btn btn-primary">Novo</button>
                                         </div>

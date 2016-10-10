@@ -1,6 +1,6 @@
 <%
     String menssagem=(String)session.getAttribute("Menssagem");
-    String usuario = (String) session.getAttribute("Nome");
+    String usuario=(String)session.getAttribute("Nome");
 %>
 <html><head>
         <meta charset="utf-8">
@@ -11,7 +11,7 @@
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
     </head><body>
-
+        
         <div class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
@@ -42,32 +42,31 @@
                         <li class="active">
                             <a href="TelaContato.jsp">Contato</a>
                         </li>
-                        <% if (usuario != null && usuario.equals("admin")) {%>
+                        <% if (usuario!=null && usuario.equals("admin")) {%>
                         <li class="active">
                             <a href="TelaRelatorios.jsp">Relatorios</a>
                         </li><%}%>
                     </ul>
                     <ul class="nav navbar-nav navbar-left">
-                        <% if (usuario != null) {%>
+                        <% if(usuario!=null){%>
                         <li class="active">
                             <a href="Logoff.jsp">Sign out</a>
                         </li>
-
+                        
                         <li class="active">
                             <a><%out.print(usuario);%></a>
-                        </li><%} else {%>
-                        <li class="active">
+                         </li><%}else{%>
+                         <li class="active">
                             <a href="TelaLogin.jsp">Sign in</a>
                         </li>  <%}%>
                     </ul>
                 </div>
             </div>
-        </div>
-        <div class="section">
+        </div><div class="section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-2">
-                        <img src="/Projeto_DCE/IMAGES/nossos-cursos.jpg" class="img-responsive">
+                    <div class="col-md-12">
+                        <img src="/Projeto_DCE/IMAGES/Sugestesereclamaes.jpg" class="img-responsive">
                     </div>
                 </div>
             </div>
@@ -76,7 +75,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Cadastro de cursos!</h1>
+                        <h1>
+                            </h1><h1>Acompanhe ou deixe a sugestão ou reclamação!</h1>
+                        
                     </div>
                 </div>
             </div>
@@ -99,8 +100,7 @@
                         </form>
                     </div>
                     <div class="col-md-6">
-                        <button type="submit" class="btn btn-primary" name="BotaoComando" value="buscar">Buscar</button>
-
+                        <a class="btn btn-primary">Buscar<br></a>
                     </div>
                 </div>
             </div>
@@ -108,29 +108,33 @@
         <div class="section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12">
-                        <form role="form" action="/Projeto_DCE/CONTROLLER/ControllerCurso.jsp" method="post">
+                    <div class="col-md-9">
+                        <form role="form" action="/Projeto_DCE/CONTROLLER/InsertSugestao.jsp" method="post">
                             <div class="form-group">
-                                <label class="control-label" for="nome">Nome</label>
-                                <input class="form-control" name="nome" placeholder="Nome do curso de graduação" type="text">
+                                <label class="control-label" for="numeroRegistro">Número de Registro</label>
+                                <input class="form-control" name="numeroRegistro" type="text">
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="horario">Horário</label>
-                                <input class="form-control" name="horario" type="text" placeholder="Ex: Noturno">
+                                <label class="control-label" for="data">Data</label>
+                                <input class="form-control" name="data" placeholder="__/__/__" type="text">
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="cargaHoraria">Carga Horária</label>
-                                <input class="form-control" name="cargaHoraria" type="text" placeholder="EX(horas): 220">
+                                <label class="control-label" for="status">Status</label>
+                                <input class="form-control" name="status" placeholder="Enviado" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="assunto">Assunto</label>
+                                <input class="form-control" name="assunto" type="text" placeholder="Escreva o assunto">
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="descricao">Descrição</label>
-                                <input class="form-control" name="descricao" type="text" placeholder="Objetivo do curso">
+                                <input class="form-control" name="descricao" type="text" placeholder="Escreva sua sugestão ou reclamação aqui">
                             </div>
                             <div class="section">
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <button type="submit" class="btn btn-primary" name="BotaoComando" value="salvar">Salvar</button>
+                                            <button type="submit" class="btn btn-primary">Enviar</button>
                                         </div>
                                         <% if (usuario != null && usuario.equals("admin")) {%>
                                         <div class="col-md-3">
@@ -150,6 +154,7 @@
                 </div>
             </div>
         </div>
+        
         <footer class="section section-primary">
             <div class="container">
                 <div class="row">
@@ -189,6 +194,6 @@
                 </div>
             </div>
         </footer>
+    
 
-
-    </body></html>
+</body></html>

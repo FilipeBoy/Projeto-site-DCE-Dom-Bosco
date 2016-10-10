@@ -15,7 +15,15 @@ package MODEL;
       private String Email;
       private String Password;
      
-   
+   public Usuario(){};
+    
+    public Usuario(Integer Matricula,String Nome,String Nome_Curso,String Email,String Password){
+        this.Matricula=Matricula;
+        this.Nome=Nome;
+        this.Nome_Curso=Nome_Curso;
+        this.Email=Email;
+        this.Password=Password;
+}
           
     public Integer getMatricula() {
         return Matricula;

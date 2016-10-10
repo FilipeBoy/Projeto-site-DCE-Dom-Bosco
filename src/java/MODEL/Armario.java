@@ -15,6 +15,16 @@ public class Armario {
     private String NomeUsuario;
     private String DataInicio;
     private String DataFim;
+    
+     public Armario (){};
+    
+    public Armario (int MatriculaUsuario,String NomeUsuario,String DataInicio,String DataFim){
+        this.MatriculaUsuario=MatriculaUsuario;
+        this.NomeUsuario=NomeUsuario;
+        this.DataInicio=DataInicio;
+        this.DataFim=DataFim;
+                
+}
 
     public int getNroRegistro() {
         return NroRegistro;

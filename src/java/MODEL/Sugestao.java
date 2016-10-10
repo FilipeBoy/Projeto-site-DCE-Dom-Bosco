@@ -16,6 +16,15 @@ public class Sugestao {
     private String Assunto;
     private String Descricao;
 
+     public Sugestao(){};
+    
+    public Sugestao(String Status,String data,String Assunto,String Descricao){
+        this.Status=Status;
+        this.data=data;
+        this.Assunto=Assunto;
+        this.Status=Descricao;
+}
+    
     public int getID_Sugestao() {
         return ID_Sugestao;
     }

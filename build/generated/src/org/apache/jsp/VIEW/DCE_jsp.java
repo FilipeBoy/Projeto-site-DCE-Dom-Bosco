@@ -72,20 +72,28 @@ public final class DCE_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            <a href=\"DCE.jsp\">Home</a>\n");
       out.write("                        </li>\n");
       out.write("                        <li class=\"active\">\n");
-      out.write("                            <a href=\"SobreDCE.jsp\">Sobre DCE<br></a>\n");
+      out.write("                            <a href=\"TelaSobreDCE.jsp\">Sobre DCE<br></a>\n");
       out.write("                        </li>\n");
       out.write("                        <li class=\"active\">\n");
-      out.write("                            <a href=\"Servicos.jsp\">ServiÃ§os</a>\n");
+      out.write("                            <a href=\"TelaServicos.jsp\">ServiÃ§os</a>\n");
       out.write("                        </li>\n");
       out.write("                        <li class=\"active\">\n");
-      out.write("                            <a href=\"Noticias.jsp\">NotÃ­cias</a>\n");
+      out.write("                            <a href=\"TelaNoticias.jsp\">NotÃ­cias</a>\n");
       out.write("                        </li>\n");
       out.write("                        <li class=\"active\">\n");
-      out.write("                            <a href=\"Administrativo.jsp\">Administrativo</a>\n");
+      out.write("                            <a href=\"TelaAdministrativo.jsp\">Administrativo</a>\n");
       out.write("                        </li>\n");
       out.write("                        <li class=\"active\">\n");
-      out.write("                            <a href=\"Contato.jsp\">Contato</a>\n");
+      out.write("                            <a href=\"TelaContato.jsp\">Contato</a>\n");
       out.write("                        </li>\n");
+      out.write("                        ");
+ if (usuario!=null && usuario.equals("admin")) {
+      out.write("\n");
+      out.write("                        <li class=\"active\">\n");
+      out.write("                            <a href=\"TelaRelatorios.jsp\">Relatorios</a>\n");
+      out.write("                        </li>");
+}
+      out.write("\n");
       out.write("                    </ul>\n");
       out.write("                    <ul class=\"nav navbar-nav navbar-left\">\n");
       out.write("                        ");
@@ -103,7 +111,7 @@ out.print(usuario);
 }else{
       out.write("\n");
       out.write("                         <li class=\"active\">\n");
-      out.write("                            <a href=\"Login.jsp\">Sign in</a>\n");
+      out.write("                            <a href=\"TelaLogin.jsp\">Sign in</a>\n");
       out.write("                        </li>  ");
 }
       out.write("\n");

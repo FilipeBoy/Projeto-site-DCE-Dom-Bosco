@@ -10,11 +10,21 @@ package MODEL;
  * @author filip
  */
 public class Curso {
+    
     private int ID_Curso;
     private String Nome_Curso;
     private String Horario;
     private String CargaHoraria;
     private String Descricao;
+    
+    public Curso(){};
+    
+    public Curso(String Nome_Curso,String Horario,String CargaHoraria,String Descricao){
+        this.Nome_Curso=Nome_Curso;
+        this.Horario=Horario;
+        this.CargaHoraria=CargaHoraria;
+        this.Descricao=Descricao;
+}
 
     public int getID_Curso() {
         return ID_Curso;

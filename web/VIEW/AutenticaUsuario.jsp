@@ -30,15 +30,15 @@
                 {
                             
                             session.setAttribute("Nome", nome);
-                            
-                            request.getRequestDispatcher("DCE.jsp").forward(request, response);
                             session.setAttribute("Menssagem", null);
+                            request.getRequestDispatcher("DCE.jsp").forward(request, response);
+                            
                 }
                     else
                         {
                              session.setAttribute("Nome", null);
                              session.setAttribute("Menssagem", menssagem);
-                            request.getRequestDispatcher("Login.jsp").forward(request, response);
+                            request.getRequestDispatcher("TelaLogin.jsp").forward(request, response);
                             
                         }
     ConexaoMySQL.FecharConexao();

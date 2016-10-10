@@ -1,5 +1,6 @@
 <%
-    String usuario=(String)session.getAttribute("Nome");
+    String menssagem=(String)session.getAttribute("Menssagem");
+    String usuario = (String) session.getAttribute("Nome");
 %>
 <html><head>
         <meta charset="utf-8">
@@ -27,32 +28,36 @@
                             <a href="DCE.jsp">Home</a>
                         </li>
                         <li class="active">
-                            <a href="Sobre DCE.jsp">Sobre DCE<br></a>
+                            <a href="TelaSobre DCE.jsp">Sobre DCE<br></a>
                         </li>
                         <li class="active">
-                            <a href="Servicos.jsp">Serviços</a>
+                            <a href="TelaServicos.jsp">Serviços</a>
                         </li>
                         <li class="active">
-                            <a href="Noticias.jsp">Notícias</a>
+                            <a href="TelaNoticias.jsp">Notícias</a>
                         </li>
                         <li class="active">
-                            <a href="Administrativo.jsp">Administrativo</a>
+                            <a href="TelaAdministrativo.jsp">Administrativo</a>
                         </li>
                         <li class="active">
-                            <a href="Contato.jsp">Contato</a>
+                            <a href="TelaContato.jsp">Contato</a>
                         </li>
+                        <% if (usuario != null && usuario.equals("admin")) {%>
+                        <li class="active">
+                            <a href="TelaRelatorios.jsp">Relatorios</a>
+                        </li><%}%>
                     </ul>
                     <ul class="nav navbar-nav navbar-left">
-                        <% if(usuario!=null){%>
+                        <% if (usuario != null) {%>
                         <li class="active">
                             <a href="Logoff.jsp">Sign out</a>
                         </li>
-                        
+
                         <li class="active">
                             <a><%out.print(usuario);%></a>
-                         </li><%}else{%>
-                         <li class="active">
-                            <a href="Login.jsp">Sign in</a>
+                        </li><%} else {%>
+                        <li class="active">
+                            <a href="TelaLogin.jsp">Sign in</a>
                         </li>  <%}%>
                     </ul>
                 </div>
@@ -80,6 +85,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
+                         <%if(menssagem!=null){%>
+                        <a class="text-center"><%out.print(menssagem);}%></a>
                         <form class="form-horizontal" role="form">
                             <div class="form-group">
                                 <div class="col-sm-2">
@@ -92,7 +99,8 @@
                         </form>
                     </div>
                     <div class="col-md-6">
-                        <a class="btn btn-primary">Buscar<br></a>
+                        <button type="submit" class="btn btn-primary" name="BotaoComando" value="buscar">Buscar</button>
+
                     </div>
                 </div>
             </div>
@@ -101,7 +109,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <form role="form" action="/Projeto_DCE/CONTROLLER/InsertCurso.jsp" method="post">
+                        <form role="form" action="/Projeto_DCE/CONTROLLER/ControllerCurso.jsp" method="post">
                             <div class="form-group">
                                 <label class="control-label" for="nome">Nome</label>
                                 <input class="form-control" name="nome" placeholder="Nome do curso de graduação" type="text">
@@ -122,17 +130,18 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <button type="submit" class="btn btn-primary">Salvar</button>
+                                            <button type="submit" class="btn btn-primary" name="BotaoComando" value="salvar">Salvar</button>
+                                        </div>
+                                        <% if (usuario != null && usuario.equals("admin")) {%>
+                                        <div class="col-md-3">
+                                            <button type="reset" class="btn btn-primary">Novo</button>
                                         </div>
                                         <div class="col-md-3">
-                                            <button class="btn btn-primary">Novo</button>
+                                            <button class="btn btn-primary" name="BotaoComando" value="editar">Editar</button>
                                         </div>
                                         <div class="col-md-3">
-                                            <button class="btn btn-primary">Editar</button>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <button class="btn btn-primary">Excluir</button
-                                        </div>
+                                            <button class="btn btn-primary" name="BotaoComando" value="excluir">Excluir</button>
+                                        </div><%}%>
                                     </div>
                                 </div>
                             </div>
@@ -141,46 +150,45 @@
                 </div>
             </div>
         </div>
-    </div>
-    <footer class="section section-primary">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <h1>Contato</h1>
-                    <p>Email: domboscodce@gmail.com&nbsp;
-                        <br>
-                        <br>Facebook: https://www.facebook.com/domboscodce&nbsp;
-                        <br>
-                        <br>Fone: (51) 3361-6700&nbsp;</p>
-                </div>
-                <div class="col-sm-6">
-                    <p class="text-info text-right">
-                        <br>
-                        <br>
-                    </p>
-                    <div class="row">
-                        <div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
-                            <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
-                            <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
-                            <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
-                            <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
-                        </div>
+        <footer class="section section-primary">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h1>Contato</h1>
+                        <p>Email: domboscodce@gmail.com&nbsp;
+                            <br>
+                            <br>Facebook: https://www.facebook.com/domboscodce&nbsp;
+                            <br>
+                            <br>Fone: (51) 3361-6700&nbsp;</p>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 hidden-xs text-right">
-                            <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
-                            <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
-                            <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
-                            <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+                    <div class="col-sm-6">
+                        <p class="text-info text-right">
+                            <br>
+                            <br>
+                        </p>
+                        <div class="row">
+                            <div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
+                                <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
+                                <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
+                                <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
+                                <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <img class="img-responsive" src="/Projeto_DCE/IMAGES/logo completa.png">
+                        <div class="row">
+                            <div class="col-md-6 hidden-xs text-right">
+                                <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
+                                <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
+                                <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
+                                <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+                            </div>
+                            <div class="col-md-6">
+                                <img class="img-responsive" src="/Projeto_DCE/IMAGES/logo completa.png">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
 
 
-</body></html>
+    </body></html>

@@ -28,20 +28,24 @@
                             <a href="DCE.jsp">Home</a>
                         </li>
                         <li class="active">
-                            <a href="SobreDCE.jsp">Sobre DCE<br></a>
+                            <a href="TelaSobreDCE.jsp">Sobre DCE<br></a>
                         </li>
                         <li class="active">
-                            <a href="Servicos.jsp">Serviços</a>
+                            <a href="TelaServicos.jsp">Serviços</a>
                         </li>
                         <li class="active">
-                            <a href="Noticias.jsp">Notícias</a>
+                            <a href="TelaNoticias.jsp">Notícias</a>
                         </li>
                         <li class="active">
-                            <a href="Administrativo.jsp">Administrativo</a>
+                            <a href="TelaAdministrativo.jsp">Administrativo</a>
                         </li>
                         <li class="active">
-                            <a href="Contato.jsp">Contato</a>
+                            <a href="TelaContato.jsp">Contato</a>
                         </li>
+                        <% if (usuario!=null && usuario.equals("admin")) {%>
+                        <li class="active">
+                            <a href="TelaRelatorios.jsp">Relatorios</a>
+                        </li><%}%>
                     </ul>
                     <ul class="nav navbar-nav navbar-left">
                         <% if( usuario!=null){%>
@@ -53,7 +57,7 @@
                             <a><%out.print(usuario);%></a>
                          </li><%}else{%>
                          <li class="active">
-                            <a href="Login.jsp">Sign in</a>
+                            <a href="TelaLogin.jsp">Sign in</a>
                         </li>  <%}%>
                     </ul>
                 </div>

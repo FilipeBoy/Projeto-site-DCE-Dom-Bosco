@@ -55,16 +55,16 @@ public class CursoDAO {
     }
     
     // PESQUISA SIMPLES
-    public Curso buscarPorMatricula(Curso curso) throws SQLException {
+    public Curso buscarPorNomeCurso(Curso curso) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT ID_Curso, Nome_Curso,Horario,CargaHoraria,Descricao ");
 		sql.append("FROM DCE_Curso ");
-		sql.append("WHERE ID_Curso = ? ");
+		sql.append("WHERE Nome_Curso = ? ");
 
 		ConexaoMySQL.getConexaoMySQL();
 
 		PreparedStatement comando = ConexaoMySQL.connection.prepareStatement(sql.toString());
-		comando.setInt(1, curso.getID_Curso());
+		comando.setString(1, curso.getNome_Curso());
 
 		ResultSet resultado = comando.executeQuery();
 

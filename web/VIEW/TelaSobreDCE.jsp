@@ -1,6 +1,5 @@
 <%
-    String menssagem=(String)session.getAttribute("Menssagem");
-    String usuario = (String) session.getAttribute("Nome");
+    String usuario=(String)session.getAttribute("Nome");
 %>
 <html><head>
         <meta charset="utf-8">
@@ -11,7 +10,6 @@
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
     </head><body>
-
         <div class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
@@ -42,21 +40,21 @@
                         <li class="active">
                             <a href="TelaContato.jsp">Contato</a>
                         </li>
-                        <% if (usuario != null && usuario.equals("admin")) {%>
+                        <% if (usuario!=null && usuario.equals("admin")) {%>
                         <li class="active">
                             <a href="TelaRelatorios.jsp">Relatorios</a>
                         </li><%}%>
                     </ul>
                     <ul class="nav navbar-nav navbar-left">
-                        <% if (usuario != null) {%>
+                        <% if(usuario!=null){%>
                         <li class="active">
                             <a href="Logoff.jsp">Sign out</a>
                         </li>
-
+                        
                         <li class="active">
                             <a><%out.print(usuario);%></a>
-                        </li><%} else {%>
-                        <li class="active">
+                         </li><%}else{%>
+                         <li class="active">
                             <a href="TelaLogin.jsp">Sign in</a>
                         </li>  <%}%>
                     </ul>
@@ -66,17 +64,26 @@
         <div class="section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-2">
-                        <img src="/Projeto_DCE/IMAGES/nossos-cursos.jpg" class="img-responsive">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section">
-            <div class="container">
-                <div class="row">
                     <div class="col-md-12">
-                        <h1>Cadastro de cursos!</h1>
+                        <h1>O QUE É UM DCE?</h1>
+                        <p>No final da década de 30 surge no Brasil a UNE (União Nacional dos Estudantes)
+                            e daí em diante o que podemos chamar de Movimento Estudantil organizado.
+                            A partir de então e ao longo de sua história, o Movimento Estudantil atua
+                            de forma marcante na luta pela modificação da realidade social como protagonista,
+                            juntamente com os movimentos populares, nas decisões do contexto econômico,
+                            político e social nacional.
+                            <br>
+                            <br>&nbsp; O DCE (Diretório Central dos Estudantes) é uma entidade entre as
+                            muitas previstas na organização institucional do Movimento Estudantil.
+                            A finalidade principal desta entidade é representar os estudantes dentro
+                            de um espaço, onde todos os participam, propondo, discutindo e deliberando
+                            sobre as diversas questões de caráter coletivo que vão de encontro aos
+                            interesses da classe estudantil.
+                            <br>
+                            <br>&nbsp; As questões que entram na pauta de todos os DCE variam de acordo
+                            com o que é deliberado pela gestão eleita em assembleia geral, juntamente
+                            com seus associados nas assembleias e conselhos previstos no estatuto das
+                            entidades. Contudo, essas disposições podem variar de DCE para DCE.</p>
                     </div>
                 </div>
             </div>
@@ -85,22 +92,27 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                         <%if(menssagem!=null){%>
-                        <a class="text-center"><%out.print(menssagem);}%></a>
-                        <form class="form-horizontal" role="form">
-                            <div class="form-group">
-                                <div class="col-sm-2">
-                                    <label for="inputEmail3" class="control-label"></label>
-                                </div>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputEmail3" placeholder="Palavra chave">
-                                </div>
-                            </div>
-                        </form>
+                        <img src="/Projeto_DCE/IMAGES/logo dce.png" class="img-responsive" style="opacity: 0.5;">
                     </div>
                     <div class="col-md-6">
-                        <button type="submit" class="btn btn-primary" name="BotaoComando" value="buscar">Buscar</button>
-
+                        <h1>QUEM ?</h1>
+                        <p>A Diretoria Central é composta pelos seguintes membros:&nbsp;
+                            <br>
+                            <br>PRESIDENTE: Paulo Vinício Santana - Ciências&nbsp;Contábeis.
+                            <br>
+                            <br>VICE-PRESIDENTE: Paola Morais - Administração.
+                            <br>
+                            <br>1° SECRETARIO: Thiarles Porta - Eng. Ambiental.
+                            <br>
+                            <br>2° SECRETARIO: Mariana Varela - Ciências Contábeis.
+                            <br>
+                            <br>1° TESOUREIRO : Marcos Belmonte - Ciências Contábeis.
+                            <br>
+                            <br>2° TESOUREIRO: Alexandre Leite - Direito.&nbsp;
+                            <br>
+                            <br>1° CONSELHEIRO: Mariana Silvello - Engenharia Ambiental e&nbsp;Sanitária.
+                            <br>
+                            <br>2° CONSELHEIRO - Jonathan Pereira - Sistemas de Informação.</p>
                     </div>
                 </div>
             </div>
@@ -109,43 +121,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <form role="form" action="/Projeto_DCE/CONTROLLER/ControllerCurso.jsp" method="post">
-                            <div class="form-group">
-                                <label class="control-label" for="nome">Nome</label>
-                                <input class="form-control" name="nome" placeholder="Nome do curso de graduação" type="text">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="horario">Horário</label>
-                                <input class="form-control" name="horario" type="text" placeholder="Ex: Noturno">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="cargaHoraria">Carga Horária</label>
-                                <input class="form-control" name="cargaHoraria" type="text" placeholder="EX(horas): 220">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="descricao">Descrição</label>
-                                <input class="form-control" name="descricao" type="text" placeholder="Objetivo do curso">
-                            </div>
-                            <div class="section">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <button type="submit" class="btn btn-primary" name="BotaoComando" value="salvar">Salvar</button>
-                                        </div>
-                                        <% if (usuario != null && usuario.equals("admin")) {%>
-                                        <div class="col-md-3">
-                                            <button type="reset" class="btn btn-primary">Novo</button>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <button class="btn btn-primary" name="BotaoComando" value="editar">Editar</button>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <button class="btn btn-primary" name="BotaoComando" value="excluir">Excluir</button>
-                                        </div><%}%>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                        <h1>QUANDO?</h1>
+                        <p>Segunda a Sexta-feira das Entrada 18h30 ás 19h10, Intervalo 20h30 ás 21h10
+                            Sábado 09h40 ás 10h00.&nbsp;</p>
                     </div>
                 </div>
             </div>
@@ -189,6 +167,6 @@
                 </div>
             </div>
         </footer>
+    
 
-
-    </body></html>
+</body></html>

@@ -1,5 +1,4 @@
 <%
-    String menssagem=(String)session.getAttribute("Menssagem");
     String usuario = (String) session.getAttribute("Nome");
 %>
 <html><head>
@@ -11,7 +10,6 @@
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
     </head><body>
-
         <div class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
@@ -66,8 +64,8 @@
         <div class="section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-2">
-                        <img src="/Projeto_DCE/IMAGES/nossos-cursos.jpg" class="img-responsive">
+                    <div class="col-md-3">
+                        <img src="/Projeto_DCE/IMAGES/fale conosco.png" class="img-responsive">
                     </div>
                 </div>
             </div>
@@ -76,7 +74,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Cadastro de cursos!</h1>
+                        <p>Email: domboscodce@gmail.com&nbsp;
+                            <br>
+                            <br>Facebook: https://www.facebook.com/domboscodce&nbsp;
+                            <br>
+                            <br>Fone: (51) 3361-6700&nbsp;</p>
                     </div>
                 </div>
             </div>
@@ -84,65 +86,54 @@
         <div class="section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
-                         <%if(menssagem!=null){%>
-                        <a class="text-center"><%out.print(menssagem);}%></a>
-                        <form class="form-horizontal" role="form">
+                    <div class="col-md-12">
+                        <h1>Formulário de contato</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form class="form-horizontal" role="form" action="javamail.jsp" method="post">
                             <div class="form-group">
                                 <div class="col-sm-2">
-                                    <label for="inputEmail3" class="control-label"></label>
+                                    <label for="nome" class="control-label">Nome</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputEmail3" placeholder="Palavra chave">
+                                    <input type="text" class="form-control" name="nome" placeholder="Nome Completo">
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="col-md-6">
-                        <button type="submit" class="btn btn-primary" name="BotaoComando" value="buscar">Buscar</button>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <form role="form" action="/Projeto_DCE/CONTROLLER/ControllerCurso.jsp" method="post">
                             <div class="form-group">
-                                <label class="control-label" for="nome">Nome</label>
-                                <input class="form-control" name="nome" placeholder="Nome do curso de graduação" type="text">
+                                <div class="col-sm-2">
+                                    <label for="email" class="control-label">Email</label>
+                                </div>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" name="email" placeholder="Email">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="horario">Horário</label>
-                                <input class="form-control" name="horario" type="text" placeholder="Ex: Noturno">
+                                <div class="col-sm-2">
+                                    <label for="Assunto" class="control-label">Assunto</label>
+                                </div>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="Assunto" placeholder="Assunto">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="cargaHoraria">Carga Horária</label>
-                                <input class="form-control" name="cargaHoraria" type="text" placeholder="EX(horas): 220">
+                                <div class="col-sm-2">
+                                    <label for="texto" class="control-label">Texto
+                                        <br>
+                                    </label>
+                                </div>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="texto" placeholder="Texto">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="descricao">Descrição</label>
-                                <input class="form-control" name="descricao" type="text" placeholder="Objetivo do curso">
-                            </div>
-                            <div class="section">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <button type="submit" class="btn btn-primary" name="BotaoComando" value="salvar">Salvar</button>
-                                        </div>
-                                        <% if (usuario != null && usuario.equals("admin")) {%>
-                                        <div class="col-md-3">
-                                            <button type="reset" class="btn btn-primary">Novo</button>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <button class="btn btn-primary" name="BotaoComando" value="editar">Editar</button>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <button class="btn btn-primary" name="BotaoComando" value="excluir">Excluir</button>
-                                        </div><%}%>
-                                    </div>
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-primary">Enviar</button>
                                 </div>
                             </div>
                         </form>
@@ -188,7 +179,4 @@
                     </div>
                 </div>
             </div>
-        </footer>
-
-
-    </body></html>
+        </footer></body></html>
