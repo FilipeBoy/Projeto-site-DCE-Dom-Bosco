@@ -26,6 +26,7 @@
                 nome=rs.getString("Nome");
                 
             }
+           if(login!="" && senha!=""){
             if(login.equals(emailUsuario) && senha.equals(senhaUsurario)) 
                 {
                             
@@ -41,7 +42,12 @@
                             request.getRequestDispatcher("TelaLogin.jsp").forward(request, response);
                             
                         }
-    ConexaoMySQL.FecharConexao();
+    ConexaoMySQL.FecharConexao();}
+           else{
+                session.setAttribute("Nome", null);
+                 session.setAttribute("Menssagem", "usuario ou senha não infomados");
+               request.getRequestDispatcher("TelaLogin.jsp").forward(request, response);
+           }
    
 %>
 
