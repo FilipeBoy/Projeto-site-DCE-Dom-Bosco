@@ -38,13 +38,14 @@ public class ArmarioDAO {
     
     public void editar(Armario Arm) throws SQLException {
         StringBuilder sql = new StringBuilder();
-        sql.append("UPDATE DCE_Armario SET MatriculaUsuario = ?, NomeUsuario = ?, DataInicio = ?, DataFim = ? WHERE NroRegistro = ? ");
+        sql.append("UPDATE DCE_Armario SET MatriculaUsuario = ?, DataInicio = ?, DataFim = ?, NomeUsuario = ? WHERE NroRegistro = ?");
         ConexaoMySQL.getConexaoMySQL();
         PreparedStatement comando = ConexaoMySQL.connection.prepareStatement(sql.toString());
         comando.setInt(1, Arm.getMatriculaUsuario());
-	comando.setString(2, Arm.getNomeUsuario());
-	comando.setString(3, Arm.getDataInicio());
-	comando.setString(4, Arm.getDataFim());
+	comando.setString(2, Arm.getDataInicio());
+	comando.setString(3, Arm.getDataFim());
+        comando.setString(4, Arm.getNomeUsuario());
+        comando.setInt(5, Arm.getNroRegistro());
 	
 	comando.executeUpdate();
     }
@@ -62,6 +63,23 @@ public class ArmarioDAO {
 
 		comando.executeUpdate();
     }
+    
+    //consulta dados
+    public ResultSet consultarDados(Armario Arm){  
+       StringBuilder sql = new StringBuilder(); 
+      ResultSet resultado = null;  
+           
+      try {  
+         sql.append("select * from DCE_Armario where MatriculaUsuario= ?"); 
+         ConexaoMySQL.getConexaoMySQL();
+         java.sql.PreparedStatement comando = ConexaoMySQL.connection.prepareStatement(sql.toString());
+         comando.setInt(1, Arm.getMatriculaUsuario());
+         resultado = comando.executeQuery();
+           
+      }catch (SQLException e){System.out.println("Erro na inserção:" + e.getMessage());}  
+        
+      return resultado;  
+   }  
     
     // PESQUISA SIMPLES
     public Armario buscarPorMatricula(Armario Arm) throws SQLException {

@@ -71,41 +71,26 @@
                     </div>
                 </div>
             </div>
-        </div><div class="section"><div class="container"><div class="row"><div class="col-md-12"><h1>Acompanhe ou faça sua reserva de armário!</h1></div></div></div></div>
+        </div>
         <div class="section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
-                        <form class="form-horizontal" role="form">
-                            <div class="form-group">
-                                <div class="col-sm-2">
-                                    <label for="inputEmail3" class="control-label"></label>
-                                </div>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputEmail3" placeholder="Digite sua matrícula">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-md-6">
-                        <a class="btn btn-primary">Buscar<br></a>
-                    </div>
-                </div>
-            </div>
-        </div><div class="section">
-            <div class="container">
-                <div class="row">
                     <div class="col-md-9">
-                        <%if(menssagem!=null){%>
-                        <a class="text-center"><%out.print(menssagem);}%></a>
-                        <form role="form" action="/Projeto_DCE/CONTROLLER/InsertArmario.jsp" method="post">
+                        <form role="form" action="ControllerArmario.jsp" method="post">
+                            <div class="form-group">
+                                    <label for="buscaMatricula" class="control-label"></label>
+                                    <input type="number" class="form-control" name="buscaMatricula" placeholder="Digite sua matrícula">
+                            </div>
+                            <div class="form-group">
+                                    <button type="submit" class="btn btn-primary" name="BotaoComando" value="buscar">Buscar</button>
+                            </div>
                             <div class="form-group">
                                 <label class="control-label" for="NroRegistro">Número de Registro</label>
-                                <input class="form-control" name="NroRegistro" type="text">
+                                <input class="form-control" name="NroRegistro" type="number">
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="MatriculaUsuario">Matrícula</label>
-                                <input class="form-control" name="MatriculaUsuario" placeholder="00000000" type="text">
+                                <input class="form-control" name="MatriculaUsuario" placeholder="00000000" type="number">
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="NomeUsuario">Nome</label>
@@ -123,8 +108,9 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <button type="submit" class="btn btn-primary" name="salvar">Enviar</button>
+                                            <button type="submit" class="btn btn-primary" name="BotaoComando" value="salvar">Enviar</button>
                                         </div>
+                                        
                                        <% if (usuario != null && usuario.equals("admin")) {%>
                                         <div class="col-md-3">
                                             <button type="reset" class="btn btn-primary">Novo</button>

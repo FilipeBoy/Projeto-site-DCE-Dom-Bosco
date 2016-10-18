@@ -75,31 +75,37 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
-                         <%if(menssagem!=null){%>
-                        <a class="text-center"><%out.print(menssagem);}%></a>
-                        <form role="form">
-                            <div class="form-group">
-                                <label class="control-label" for="matricula">Matrícula</label>
-                                <input class="form-control" name="matricula" placeholder="Matrícula" type="text">
+                         <form role="form" action="ControllerPerdidos.jsp" method="post">
+                             <div class="form-group">
+                                    <label for="buscaID_Perdido" class="control-label"></label>
+                                    <input type="number" class="form-control" name="buscaID_Perdido" placeholder="Digite a ID do seu objeto">
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="objeto">Nome do objeto</label>
-                                <input class="form-control" name="objeto" placeholder="Nome do Objeto" type="text">
+                                    <button type="submit" class="btn btn-primary" name="BotaoComando" value="buscar">Buscar</button>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="Matricula_Usuario">Matrícula</label>
+                                <input class="form-control" name="Matricula_Usuario" placeholder="Matrícula" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="NomeObjeto">Nome do objeto</label>
+                                <input class="form-control" name="NomeObjeto" placeholder="Nome do Objeto" type="text">
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="LocalPerda">Local da Perda</label>
                                 <input class="form-control" name="LocalPerda" placeholder="Local da Perda do objeto" type="text">
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="descricao">Descrição</label>
-                                <input class="form-control" name="descricao" type="text" placeholder="Descrição do objeto">
+                                <label class="control-label" for="Descricao">Descrição</label>
+                                <input class="form-control" name="Descricao" type="text" placeholder="Descrição do objeto">
                             </div>
                             <div class="section">
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-md-3">
-                                            <button type="submit" class="btn btn-primary" name="salvar">Enviar</button>
+                                       <div class="col-md-3">
+                                            <button type="submit" class="btn btn-primary" name="BotaoComando" value="salvar">Enviar</button>
                                         </div>
+                                        
                                        <% if (usuario != null && usuario.equals("admin")) {%>
                                         <div class="col-md-3">
                                             <button type="reset" class="btn btn-primary">Novo</button>

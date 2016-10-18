@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package MODEL;
 
-/**
- *
- * @author filip
- */
+
 public class Perdido {
     private int ID_Perdido;
     private int Matricula_Usuario;
@@ -16,6 +9,27 @@ public class Perdido {
     private String LocalPerda;
     private String Descricao;
 
+    public Perdido (){}
+    
+    public Perdido (int Matricula_Usuario){
+        this.Matricula_Usuario=Matricula_Usuario;
+    }
+    
+    public Perdido (int Matricula_Usuario,String NomeObjeto,String LocalPerda,String Descricao){
+        this.Matricula_Usuario=Matricula_Usuario;
+        this.NomeObjeto=NomeObjeto;
+        this.LocalPerda=LocalPerda;
+        this.Descricao=Descricao;
+    }
+    
+    public Perdido (int ID_Perdido,int Matricula_Usuario,String NomeObjeto,String LocalPerda,String Descricao){
+        this.Matricula_Usuario=Matricula_Usuario;
+        this.NomeObjeto=NomeObjeto;
+        this.LocalPerda=LocalPerda;
+        this.Descricao=Descricao;
+        this.ID_Perdido=ID_Perdido;
+    }
+    
     public int getID_Perdido() {
         return ID_Perdido;
     }

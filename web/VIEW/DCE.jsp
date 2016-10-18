@@ -1,8 +1,8 @@
 <%
-    String usuario=(String)session.getAttribute("Nome");
+    String usuario = (String) session.getAttribute("Nome");
 %>
 <html><head>
-        
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>DCE Dom Bosco</title>
@@ -10,7 +10,7 @@
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="/Projeto_DCE/CONTROLLER/DCE.css" rel="stylesheet" type="text/css">
-        
+
     </head><body>
         <div class="navbar navbar-default">
             <div class="container">
@@ -24,7 +24,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-ex-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                       <li class="active">
+                        <li class="active">
                             <a href="DCE.jsp">Home</a>
                         </li>
                         <li class="active">
@@ -42,21 +42,21 @@
                         <li class="active">
                             <a href="TelaContato.jsp">Contato</a>
                         </li>
-                        <% if (usuario!=null && usuario.equals("admin")) {%>
+                        <% if (usuario != null && usuario.equals("admin")) {%>
                         <li class="active">
                             <a href="TelaRelatorios.jsp">Relatorios</a>
                         </li><%}%>
                     </ul>
                     <ul class="nav navbar-nav navbar-left">
-                        <% if( usuario!=null){%>
+                        <% if (usuario != null) {%>
                         <li class="active">
                             <a href="Logoff.jsp">Sign out</a>
                         </li>
-                        
+
                         <li class="active">
                             <a><%out.print(usuario);%></a>
-                         </li><%}else{%>
-                         <li class="active">
+                        </li><%} else {%>
+                        <li class="active">
                             <a href="TelaLogin.jsp">Sign in</a>
                         </li>  <%}%>
                     </ul>
@@ -167,6 +167,6 @@
                 </div>
             </div>
         </footer>
-    
 
-</body></html>
+
+    </body></html>

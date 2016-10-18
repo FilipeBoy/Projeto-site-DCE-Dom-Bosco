@@ -71,34 +71,18 @@
                 </div>
             </div>
         </div>
-        <div class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <form class="form-horizontal" role="form">
-                            <div class="form-group">
-                                <div class="col-sm-2">
-                                    <label for="inputEmail3" class="control-label"></label>
-                                </div>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputEmail3" placeholder="Palavra chave">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-md-6">
-                        <a class="btn btn-primary">Buscar<br></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section">
+         <div class="section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                         <%if(menssagem!=null){%>
-                        <a class="text-center"><%out.print(menssagem);}%></a>
-                        <form role="form" action="/Projeto_DCE/CONTROLLER/InsertArtigo.jsp" method="post">
+                        <form role="form" action="ControllerNoticia.jsp" method="post">
+                            <div class="form-group">
+                                    <label for="buscaID_Noticia" class="control-label"></label>
+                                    <input type="number" class="form-control" name="buscaID_Noticia" placeholder="Digite a ID da Noticia">
+                            </div>
+                            <div class="form-group">
+                                    <button type="submit" class="btn btn-primary" name="BotaoComando" value="buscar">Buscar</button>
+                            </div>
                             <div class="form-group">
                                 <label class="control-label" for="Autor">Autor</label>
                                 <input class="form-control" name="Autor" placeholder="Nome do autor" type="text">
@@ -119,16 +103,16 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <button type="submit" class="btn btn-primary">Salvar</button>
+                                            <button type="submit" class="btn btn-primary" name="BotaoComando" value="salvar">Enviar</button>
                                         </div>
                                         <div class="col-md-3">
-                                            <button class="btn btn-primary">Novo</button>
+                                            <button type="reset" class="btn btn-primary">Novo</button>
                                         </div>
                                         <div class="col-md-3">
-                                            <button class="btn btn-primary">Editar</button>
+                                            <button class="btn btn-primary" name="BotaoComando" value="editar">Editar</button>
                                         </div>
                                         <div class="col-md-3">
-                                            <button class="btn btn-primary">Excluir</button>
+                                            <button class="btn btn-primary" name="BotaoComando" value="excluir">Excluir</button>
                                         </div>
                                     </div>
                                 </div>

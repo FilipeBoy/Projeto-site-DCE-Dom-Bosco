@@ -1,7 +1,8 @@
 <%
-    String menssagem=(String)session.getAttribute("Menssagem");
     String usuario = (String) session.getAttribute("Nome");
+    String menssagem=(String)session.getAttribute("Menssagem");
 %>
+
 <html><head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +12,6 @@
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
     </head><body>
-
         <div class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
@@ -42,7 +42,7 @@
                         <li class="active">
                             <a href="TelaContato.jsp">Contato</a>
                         </li>
-                        <% if (usuario != null && usuario.equals("admin")) {%>
+                        <% if (usuario!=null && usuario.equals("admin")) {%>
                         <li class="active">
                             <a href="TelaRelatorios.jsp">Relatorios</a>
                         </li><%}%>
@@ -66,69 +66,39 @@
         <div class="section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-2">
-                        <img src="/Projeto_DCE/IMAGES/nossos-cursos.jpg" class="img-responsive">
+                    <div class="col-md-12">
+                        <%if(menssagem!=null){%>
+                        <h1 class="section text-center"><%out.print(menssagem);}%></h1>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="section">
+         <div class="section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Cadastro de cursos!</h1>
+                        <!--<p class="text-center">O cadastro é fácil e gratuíto!</p>-->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <!--<a class="btn btn-primary" href="CadastroUsuario.jsp">Cadastrar</a>-->
                     </div>
                 </div>
             </div>
         </div>
-        <div class="section">
+                    <div class="section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <form role="form" action="ControllerCurso.jsp" method="post">
-                            <div class="form-group">
-                                    <label for="buscaID_Curso" class="control-label"></label>
-                                    <input type="number" class="form-control" name="buscaID_Curso" placeholder="Digite a ID do curso">
-                            </div>
-                            <div class="form-group">
-                                    <button type="submit" class="btn btn-primary" name="BotaoComando" value="buscar">Buscar</button>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="nome">Nome</label>
-                                <input class="form-control" name="nome" placeholder="Nome do curso de graduação" type="text">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="horario">Horário</label>
-                                <input class="form-control" name="horario" type="text" placeholder="Ex: Noturno">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="cargaHoraria">Carga Horária</label>
-                                <input class="form-control" name="cargaHoraria" type="text" placeholder="EX(horas): 220">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="descricao">Descrição</label>
-                                <input class="form-control" name="descricao" type="text" placeholder="Objetivo do curso">
-                            </div>
-                            <div class="section">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <button type="submit" class="btn btn-primary" name="BotaoComando" value="salvar">Salvar</button>
-                                        </div>
-                                        <% if (usuario != null && usuario.equals("admin")) {%>
-                                        <div class="col-md-3">
-                                            <button type="reset" class="btn btn-primary">Novo</button>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <button class="btn btn-primary" name="BotaoComando" value="editar">Editar</button>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <button class="btn btn-primary" name="BotaoComando" value="excluir">Excluir</button>
-                                        </div><%}%>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                        <br><br><br><br>
+                        <!--<p class="text-center">O cadastro é fácil e gratuíto!</p>-->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <br><br><br><br>
+                        <!--<a class="btn btn-primary" href="CadastroUsuario.jsp">Cadastrar</a>-->
                     </div>
                 </div>
             </div>
@@ -172,6 +142,6 @@
                 </div>
             </div>
         </footer>
+    
 
-
-    </body></html>
+</body></html>

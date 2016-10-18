@@ -36,6 +36,7 @@ public class CursoDAO {
 	comando.setString(2, curso.getHorario());
 	comando.setString(3, curso.getCargaHoraria());
 	comando.setString(4, curso.getDescricao());
+        comando.setInt(5, curso.getID_Curso());
 	
 	comando.executeUpdate();
     }

@@ -184,9 +184,54 @@
                         <a class="btn btn-primary" href="TelaLogin.jsp">Ler mais</a>
                          <%}%>
                     </div>
-                </div>
             </div>
         </div>
+       </div>
+          <% if(usuario!=null && usuario.equals("admin")){%>          
+          <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1>Cadastro de Cursos</h1>
+                        <p>Aqui você pode cadastrar, editar e excluir os cursos.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h1>Cadastro de Noticias</h1>
+                        <p>Aqui você pode cadastrar, editar e excluir as noticias do site.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                         <a class="btn btn-primary" href="CadastroCursos.jsp">Formulário</a>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-primary" href="CadastroNoticias.jsp">Formulário</a>
+                    </div>
+            </div>
+        </div>
+       </div>
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1>Controle de Usuarios</h1>
+                        <p>Aqui você pode cadastrar, editar e excluir os Usuarios.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h1>Disponivel</h1>
+                        <p>Disponivel.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                         <a class="btn btn-primary" href="CadastroUsuario.jsp">Formulário</a>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-primary" href="CadastroNoticias.jsp">Formulário</a>
+                    </div>
+            </div>
+        </div>
+        <%}%>
         <footer class="section section-primary">
             <div class="container">
                 <div class="row">

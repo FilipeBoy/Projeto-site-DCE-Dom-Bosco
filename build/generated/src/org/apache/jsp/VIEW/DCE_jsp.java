@@ -42,11 +42,11 @@ public final class DCE_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
 
-    String usuario=(String)session.getAttribute("Nome");
+    String usuario = (String) session.getAttribute("Nome");
 
       out.write("\n");
       out.write("<html><head>\n");
-      out.write("        \n");
+      out.write("\n");
       out.write("        <meta charset=\"utf-8\">\n");
       out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n");
       out.write("        <title>DCE Dom Bosco</title>\n");
@@ -54,7 +54,7 @@ public final class DCE_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <script type=\"text/javascript\" src=\"http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js\"></script>\n");
       out.write("        <link href=\"http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css\" rel=\"stylesheet\" type=\"text/css\">\n");
       out.write("        <link href=\"/Projeto_DCE/CONTROLLER/DCE.css\" rel=\"stylesheet\" type=\"text/css\">\n");
-      out.write("        \n");
+      out.write("\n");
       out.write("    </head><body>\n");
       out.write("        <div class=\"navbar navbar-default\">\n");
       out.write("            <div class=\"container\">\n");
@@ -68,7 +68,7 @@ public final class DCE_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                </div>\n");
       out.write("                <div class=\"collapse navbar-collapse\" id=\"navbar-ex-collapse\">\n");
       out.write("                    <ul class=\"nav navbar-nav navbar-right\">\n");
-      out.write("                       <li class=\"active\">\n");
+      out.write("                        <li class=\"active\">\n");
       out.write("                            <a href=\"DCE.jsp\">Home</a>\n");
       out.write("                        </li>\n");
       out.write("                        <li class=\"active\">\n");
@@ -87,7 +87,7 @@ public final class DCE_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            <a href=\"TelaContato.jsp\">Contato</a>\n");
       out.write("                        </li>\n");
       out.write("                        ");
- if (usuario!=null && usuario.equals("admin")) {
+ if (usuario != null && usuario.equals("admin")) {
       out.write("\n");
       out.write("                        <li class=\"active\">\n");
       out.write("                            <a href=\"TelaRelatorios.jsp\">Relatorios</a>\n");
@@ -97,20 +97,20 @@ public final class DCE_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    </ul>\n");
       out.write("                    <ul class=\"nav navbar-nav navbar-left\">\n");
       out.write("                        ");
- if( usuario!=null){
+ if (usuario != null) {
       out.write("\n");
       out.write("                        <li class=\"active\">\n");
       out.write("                            <a href=\"Logoff.jsp\">Sign out</a>\n");
       out.write("                        </li>\n");
-      out.write("                        \n");
+      out.write("\n");
       out.write("                        <li class=\"active\">\n");
       out.write("                            <a>");
 out.print(usuario);
       out.write("</a>\n");
-      out.write("                         </li>");
-}else{
+      out.write("                        </li>");
+} else {
       out.write("\n");
-      out.write("                         <li class=\"active\">\n");
+      out.write("                        <li class=\"active\">\n");
       out.write("                            <a href=\"TelaLogin.jsp\">Sign in</a>\n");
       out.write("                        </li>  ");
 }
@@ -223,9 +223,9 @@ out.print(usuario);
       out.write("                </div>\n");
       out.write("            </div>\n");
       out.write("        </footer>\n");
-      out.write("    \n");
       out.write("\n");
-      out.write("</body></html>");
+      out.write("\n");
+      out.write("    </body></html>");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

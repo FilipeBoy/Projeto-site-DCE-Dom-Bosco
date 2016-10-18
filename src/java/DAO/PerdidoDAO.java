@@ -36,6 +36,7 @@ public class PerdidoDAO {
 	comando.setString(2, perdido.getNomeObjeto());
 	comando.setString(3, perdido.getLocalPerda());
 	comando.setString(4, perdido.getDescricao());
+        comando.setInt(5, perdido.getID_Perdido());
 	
 	comando.executeUpdate();
     }

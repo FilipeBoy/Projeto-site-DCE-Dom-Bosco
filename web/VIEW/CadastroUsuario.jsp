@@ -67,13 +67,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                         <%if(menssagem!=null){%>
-                        <a class="text-center"><%out.print(menssagem);}%></a>
-                        <form role="form" action="/Projeto_DCE/CONTROLLER/InsertUsuario.jsp" method="post">
+                        <form role="form" action="ControllerUsuario.jsp" method="post">
                             <div class="form-group">
                                 <label class="control-label" for="matricula">Matrícula</label>
                                 <input class="form-control" name="matricula" placeholder="00000000" type="text">
                             </div>
+                            <% if (usuario!=null && usuario.equals("admin")) {%>
+                            <div class="form-group">
+                                    <button type="submit" class="btn btn-primary" name="BotaoComando" value="buscar">Buscar</button>
+                            </div>
+                            <%}%>
                             <div class="form-group">
                                 <label class="control-label" for="nome">Nome</label>
                                 <input class="form-control" name="nome" placeholder="Primeiro Nome" type="text">
@@ -94,7 +97,7 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <button type="submit" class="btn btn-primary" name="salvar">Enviar</button>
+                                            <button type="submit" class="btn btn-primary"  name="BotaoComando" value="salvar">Enviar</button>
                                         </div>
                                         <% if (usuario!=null && usuario.equals("admin")) {%>
                                         <div class="col-md-3">

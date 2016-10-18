@@ -16,7 +16,11 @@ public class Armario {
     private String DataInicio;
     private String DataFim;
     
-     public Armario (){};
+     public Armario (){}
+     
+     public Armario (int MatriculaUsuario){
+        this.MatriculaUsuario=MatriculaUsuario;
+}
     
     public Armario (int MatriculaUsuario,String NomeUsuario,String DataInicio,String DataFim){
         this.MatriculaUsuario=MatriculaUsuario;
@@ -24,6 +28,13 @@ public class Armario {
         this.DataInicio=DataInicio;
         this.DataFim=DataFim;
                 
+}
+    public Armario (int NroRegistro,int MatriculaUsuario,String NomeUsuario,String DataInicio,String DataFim){
+        this.MatriculaUsuario=MatriculaUsuario;
+        this.NomeUsuario=NomeUsuario;
+        this.DataInicio=DataInicio;
+        this.DataFim=DataFim;
+        this.NroRegistro=NroRegistro;        
 }
 
     public int getNroRegistro() {

@@ -38,8 +38,9 @@ public class UsuarioDAO {
 	comando.setString(2, user.getNome());
 	comando.setString(3, user.getCurso());
 	comando.setString(4, user.getEmail());
-        comando.setString(4, user.getPassword());
-	
+        comando.setString(5, user.getPassword());
+	comando.setInt(6, user.getMatricula());
+        
 	comando.executeUpdate();
     }
     

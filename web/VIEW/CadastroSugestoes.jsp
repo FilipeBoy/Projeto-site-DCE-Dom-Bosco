@@ -85,34 +85,14 @@
         <div class="section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
-                         <%if(menssagem!=null){%>
-                        <a class="text-center"><%out.print(menssagem);}%></a>
-                        <form class="form-horizontal" role="form">
-                            <div class="form-group">
-                                <div class="col-sm-2">
-                                    <label for="inputEmail3" class="control-label"></label>
-                                </div>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputEmail3" placeholder="Palavra chave">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-md-6">
-                        <a class="btn btn-primary">Buscar<br></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section">
-            <div class="container">
-                <div class="row">
                     <div class="col-md-9">
-                        <form role="form" action="/Projeto_DCE/CONTROLLER/InsertSugestao.jsp" method="post">
+                        <form role="form" action="ControllerSugestao.jsp" method="post">
                             <div class="form-group">
-                                <label class="control-label" for="numeroRegistro">Número de Registro</label>
-                                <input class="form-control" name="numeroRegistro" type="text">
+                                    <label for="buscaID_Sugestao" class="control-label"></label>
+                                    <input type="number" class="form-control" name="buscaID_Sugestao" placeholder="Digite a ID da sugestao">
+                            </div>
+                            <div class="form-group">
+                                    <button type="submit" class="btn btn-primary" name="BotaoComando" value="buscar">Buscar</button>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="data">Data</label>
@@ -134,9 +114,10 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <button type="submit" class="btn btn-primary">Enviar</button>
+                                            <button type="submit" class="btn btn-primary" name="BotaoComando" value="salvar">Enviar</button>
                                         </div>
-                                        <% if (usuario != null && usuario.equals("admin")) {%>
+                                        
+                                       <% if (usuario != null && usuario.equals("admin")) {%>
                                         <div class="col-md-3">
                                             <button type="reset" class="btn btn-primary">Novo</button>
                                         </div>

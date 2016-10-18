@@ -10,19 +10,31 @@ package MODEL;
  * @author filip
  */
 public class Noticia {
-    private int ID_Artigo;
+    private int ID_Noticia;
     private String Autor;
     private String Data;
     private String Titulo;
     private String Texto;
 
      public Noticia(){};
+     
+     public Noticia(String Titulo){
+     this.Titulo=Titulo;
+     };
     
     public Noticia(String Autor,String Data,String Titulo,String Texto){
         this.Autor=Autor;
         this.Data=Data;
         this.Titulo=Titulo;
         this.Texto=Texto;
+}
+    
+    public Noticia(int ID_Noticia,String Autor,String Data,String Titulo,String Texto){
+        this.Autor=Autor;
+        this.Data=Data;
+        this.Titulo=Titulo;
+        this.Texto=Texto;
+        this.ID_Noticia=ID_Noticia;
 }
     
     public String getAutor() {
@@ -57,11 +69,11 @@ public class Noticia {
         this.Texto = texto;
     }
 
-    public int getID_Artigo() {
-        return ID_Artigo;
+    public int getID_Noticia() {
+        return ID_Noticia;
     }
 
-    public void setID_Artigo(int ID_Artigo) {
-        this.ID_Artigo = ID_Artigo;
+    public void setID_Noticia(int ID_Noticia) {
+        this.ID_Noticia = ID_Noticia;
     }
 }

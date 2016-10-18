@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/filip/Documents/NetBeansProjects/Projeto_DCE/src/java/MODEL/Noticia.java</file>
-            <file>file:/C:/Users/filip/Documents/NetBeansProjects/Projeto_DCE/src/java/MODEL/Usuario.java</file>
-            <file>file:/C:/Users/filip/Documents/NetBeansProjects/Projeto_DCE/web/CONTROLLER/ControllerCurso.jsp</file>
-            <file>file:/C:/Users/filip/Documents/NetBeansProjects/Projeto_DCE/web/VIEW/CadastroUsuario.jsp</file>
-            <file>file:/C:/Users/filip/Documents/NetBeansProjects/Projeto_DCE/web/CONTROLLER/ControllerUsuario.jsp</file>
-            <file>file:/C:/Users/filip/Documents/NetBeansProjects/Projeto_DCE/src/java/MODEL/Curso.java</file>
+            <file>file:/C:/Users/filip/Documents/NetBeansProjects/Projeto_DCE/web/VIEW/DCE.jsp</file>
+            <file>file:/C:/Users/filip/Documents/NetBeansProjects/Projeto_DCE/web/CONTROLLER/ControllerArmario.jsp</file>
+            <file>file:/C:/Users/filip/Documents/NetBeansProjects/Projeto_DCE/web/VIEW/AutenticaUsuario.jsp</file>
+            <file>file:/C:/Users/filip/Documents/NetBeansProjects/Projeto_DCE/web/VIEW/TelaLogin.jsp</file>
+            <file>file:/C:/Users/filip/Documents/NetBeansProjects/Projeto_DCE/src/java/DAO/ArmarioDAO.java</file>
         </group>
     </open-files>
 </project-private>

@@ -84,32 +84,15 @@
         <div class="section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
-                         <%if(menssagem!=null){%>
-                        <a class="text-center"><%out.print(menssagem);}%></a>
-                        <form class="form-horizontal" role="form">
-                            <div class="form-group">
-                                <div class="col-sm-2">
-                                    <label for="inputEmail3" class="control-label"></label>
-                                </div>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputEmail3" placeholder="Palavra chave">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-md-6">
-                        <button type="submit" class="btn btn-primary" name="BotaoComando" value="buscar">Buscar</button>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section">
-            <div class="container">
-                <div class="row">
                     <div class="col-md-12">
-                        <form role="form" action="/Projeto_DCE/CONTROLLER/ControllerCurso.jsp" method="post">
+                        <form role="form" action="ControllerCurso.jsp" method="post">
+                            <div class="form-group">
+                                    <label for="buscaID_Curso" class="control-label"></label>
+                                    <input type="number" class="form-control" name="buscaID_Curso" placeholder="Digite a ID do curso">
+                            </div>
+                            <div class="form-group">
+                                    <button type="submit" class="btn btn-primary" name="BotaoComando" value="buscar">Buscar</button>
+                            </div>
                             <div class="form-group">
                                 <label class="control-label" for="nome">Nome</label>
                                 <input class="form-control" name="nome" placeholder="Nome do curso de graduação" type="text">

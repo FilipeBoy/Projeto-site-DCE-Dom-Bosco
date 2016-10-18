@@ -30,13 +30,14 @@ public class SugestaoDAO {
     
     public void editar(Sugestao sugestao) throws SQLException {
         StringBuilder sql = new StringBuilder();
-        sql.append("UPDATE DCE_Sugestao SET Data = ?, Status = ?, Assunto = ?, Descricao = ? WHERE ID_Perdido = ? ");
+        sql.append("UPDATE DCE_Sugestao SET Data = ?, Status = ?, Assunto = ?, Descricao = ? WHERE ID_Sugestao = ? ");
         ConexaoMySQL.getConexaoMySQL();
         PreparedStatement comando = ConexaoMySQL.connection.prepareStatement(sql.toString());
         comando.setString(1, sugestao.getData());
 	comando.setString(2, sugestao.getStatus());
 	comando.setString(3, sugestao.getAssunto());
 	comando.setString(4, sugestao.getDescricao());
+        comando.setInt(5, sugestao.getID_Sugestao());
 	
 	comando.executeUpdate();
     }

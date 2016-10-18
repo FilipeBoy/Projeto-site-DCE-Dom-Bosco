@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package MODEL;
 
 
@@ -15,7 +11,10 @@ package MODEL;
       private String Email;
       private String Password;
      
-   public Usuario(){};
+   public Usuario(){}
+   public Usuario(int Matricula){
+       this.Matricula=Matricula;
+   }
     
     public Usuario(Integer Matricula,String Nome,String Nome_Curso,String Email,String Password){
         this.Matricula=Matricula;

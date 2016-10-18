@@ -61,7 +61,7 @@ String usuario=(String)session.getAttribute("Nome");
                         <h1 class="text-center">Já tem registro conosco?</h1>
                         <p class="text-center">Se você possui uma conta conosco, por favor, faça seu login</p>
                         <%if(menssagem!=null){%>
-                        <a class="text-center"><%out.print(menssagem);}%></a>
+                        <a class="section text-center"><%out.print(menssagem);}%></a>
                     </div>
                 </div>
             </div>
@@ -88,16 +88,11 @@ String usuario=(String)session.getAttribute("Nome");
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox">Remember me</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10 col-md-1">
                                     <button type="submit" class="btn btn-primary">Sign in</button>
+                                </div>
+                                <div class=" col-sm-10 col-md-1">
+                                    <button type="reset" class="btn btn-primary">Clear</button>
                                 </div>
                             </div>
                         </form>
