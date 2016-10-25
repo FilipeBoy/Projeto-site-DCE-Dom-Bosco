@@ -53,7 +53,7 @@ public final class DCE_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <script type=\"text/javascript\" src=\"http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js\"></script>\n");
       out.write("        <script type=\"text/javascript\" src=\"http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js\"></script>\n");
       out.write("        <link href=\"http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css\" rel=\"stylesheet\" type=\"text/css\">\n");
-      out.write("        <link href=\"/Projeto_DCE/CONTROLLER/DCE.css\" rel=\"stylesheet\" type=\"text/css\">\n");
+      out.write("        <link href=\"/Projeto_DCE/CSS/DCE.css\" rel=\"stylesheet\" type=\"text/css\">\n");
       out.write("\n");
       out.write("    </head><body>\n");
       out.write("        <div class=\"navbar navbar-default\">\n");
