@@ -31,15 +31,14 @@ public class UsuarioDAO {
     
     public void editar(Usuario user) throws SQLException {
         StringBuilder sql = new StringBuilder();
-        sql.append("UPDATE DCE_Usuario SET Matricula = ?, Nome = ?, Curso = ?, Email = ?, Password = ? WHERE Matricula = ? ");
+        sql.append("UPDATE DCE_Usuario SET Nome = ?, Curso = ?, Email = ?, Password = ? WHERE Matricula = ? ");
         ConexaoMySQL.getConexaoMySQL();
         PreparedStatement comando = ConexaoMySQL.connection.prepareStatement(sql.toString());
-        comando.setInt(1, user.getMatricula());
-	comando.setString(2, user.getNome());
-	comando.setString(3, user.getCurso());
-	comando.setString(4, user.getEmail());
-        comando.setString(5, user.getPassword());
-	comando.setInt(6, user.getMatricula());
+        comando.setString(1, user.getNome());
+	comando.setString(2, user.getCurso());
+	comando.setString(3, user.getEmail());
+        comando.setString(4, user.getPassword());
+	comando.setInt(5, user.getMatricula());
         
 	comando.executeUpdate();
     }
@@ -61,7 +60,7 @@ public class UsuarioDAO {
     // PESQUISA SIMPLES
     public Usuario buscarPorMatricula(Usuario user) throws SQLException {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT Matricula, Nome,Curso,Email,Password");
+		sql.append("SELECT Matricula, Nome,Curso,Email,Password ");
 		sql.append("FROM DCE_Usuario ");
 		sql.append("WHERE Matricula = ? ");
 

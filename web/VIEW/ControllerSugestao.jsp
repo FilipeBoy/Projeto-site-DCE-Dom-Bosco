@@ -7,6 +7,8 @@
     String assunto = request.getParameter("assunto");
     String descricao =request.getParameter("descricao");
     String botao= request.getParameter("BotaoComando");
+    session.setAttribute("Retorno", null);
+    session.setAttribute("Menssagem", null);
     
     if(botao.equals("salvar")){
         Sugestao sugestao= new Sugestao(data,status,assunto,descricao);
@@ -16,7 +18,7 @@
         request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
            
     }else if(botao.equals("excluir")){
-        int ID_Sugestao = Integer.parseInt(request.getParameter("buscaID_Sugestao"));
+        int ID_Sugestao = Integer.parseInt(request.getParameter("ID_Sugestao"));
         Sugestao sugestao= new Sugestao(ID_Sugestao,status,data,assunto,descricao);
         SugestaoDAO sugestaoDao= new SugestaoDAO();
         sugestaoDao.excluir(sugestao);
@@ -24,7 +26,7 @@
         request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
     }
     else if(botao.equals("editar")){
-        int ID_Sugestao = Integer.parseInt(request.getParameter("buscaID_Sugestao"));
+        int ID_Sugestao = Integer.parseInt(request.getParameter("ID_Sugestao"));
         Sugestao sugestao= new Sugestao(ID_Sugestao,status,data,assunto,descricao);
         SugestaoDAO sugestaoDao= new SugestaoDAO();
         sugestaoDao.editar(sugestao);
@@ -32,14 +34,24 @@
         request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
     }
     else if(botao.equals("buscar")){
-        int ID_Sugestao = Integer.parseInt(request.getParameter("buscaID_Sugestao"));
-        Sugestao sugestao= new Sugestao(ID_Sugestao,status,data,assunto,descricao);
+        int busca = Integer.parseInt(request.getParameter("busca"));
+        Sugestao sugestao= new Sugestao();
+        sugestao.setID_Sugestao(busca);
         SugestaoDAO sugestaoDao= new SugestaoDAO();
-                   
-        // ResultSet temp = armarioDao.consultarDados(armario);
-         //response.sendRedirect("CadastroArmario.jsp&NroRegistro="+ temp.getString("NroRegistro")+"&MatriculaUsuario="+temp.getString("MatriculaUsuario")+"&NomeUsuario="+temp.getString("NomeUsuario")
-        /// +"&DataInicio="+temp.getString("DataInicio")+"&DataFim="+temp.getString("DataFim"));  
-      }
+        sugestao=sugestaoDao.buscarID_Sugestao(sugestao);
+        if( sugestao!=null){
+        session.setAttribute("Retorno", "sim");
+        session.setAttribute("campo1", sugestao.getID_Sugestao());
+        session.setAttribute("campo2", sugestao.getData());
+        session.setAttribute("campo3", sugestao.getStatus());
+        session.setAttribute("campo4", sugestao.getAssunto());
+        session.setAttribute("campo5", sugestao.getDescricao()); 
+       request.getRequestDispatcher("CadastroSugestoes.jsp").forward(request, response); 
+        }else{
+           session.setAttribute("Menssagem", "registro nao encontrado");
+            request.getRequestDispatcher("CadastroSugestoes.jsp").forward(request, response); 
+        }           
+       }
             
     
    

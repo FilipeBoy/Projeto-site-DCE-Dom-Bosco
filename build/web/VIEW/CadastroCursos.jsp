@@ -1,6 +1,7 @@
 <%
     String menssagem=(String)session.getAttribute("Menssagem");
     String usuario = (String) session.getAttribute("Nome");
+    String retorno=(String)session.getAttribute("Retorno");
 %>
 <html><head>
         <meta charset="utf-8">
@@ -54,7 +55,7 @@
                         </li>
 
                         <li class="active">
-                            <a><%out.print(usuario);%></a>
+                            <a href="CadastroUsuario.jsp"><%out.print(usuario);%></a>
                         </li><%} else {%>
                         <li class="active">
                             <a href="TelaLogin.jsp">Sign in</a>
@@ -85,29 +86,30 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
+                        <a><% if (menssagem!= null) {out.print(menssagem);}%></a>
                         <form role="form" action="ControllerCurso.jsp" method="post">
                             <div class="form-group">
-                                    <label for="buscaID_Curso" class="control-label"></label>
-                                    <input type="number" class="form-control" name="buscaID_Curso" placeholder="Digite a ID do curso">
+                                    <label for="busca" class="control-label"></label>
+                                    <input type="text" class="form-control" name="busca" placeholder="Digite o nome do curso">
                             </div>
                             <div class="form-group">
                                     <button type="submit" class="btn btn-primary" name="BotaoComando" value="buscar">Buscar</button>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="nome">Nome</label>
-                                <input class="form-control" name="nome" placeholder="Nome do curso de graduação" type="text">
+                                <input class="form-control" name="nome" placeholder="Nome do curso de graduação" type="text" <% if (retorno != null) {%>value="<%out.print((String)session.getAttribute("campo1"));%>"<%}%>>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="horario">Horário</label>
-                                <input class="form-control" name="horario" type="text" placeholder="Ex: Noturno">
+                                <input class="form-control" name="horario" type="text" placeholder="Ex: Noturno" <% if (retorno != null) {%>value="<%out.print((String)session.getAttribute("campo2"));%>"<%}%>>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="cargaHoraria">Carga Horária</label>
-                                <input class="form-control" name="cargaHoraria" type="text" placeholder="EX(horas): 220">
+                                <input class="form-control" name="cargaHoraria" type="text" placeholder="EX(horas): 220" <% if (retorno != null) {%>value="<%out.print((String)session.getAttribute("campo3"));%>"<%}%>>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="descricao">Descrição</label>
-                                <input class="form-control" name="descricao" type="text" placeholder="Objetivo do curso">
+                                <input class="form-control" name="descricao" type="text" placeholder="Objetivo do curso" <% if (retorno != null) {%>value="<%out.print((String)session.getAttribute("campo4"));%>"<%}%>>
                             </div>
                             <div class="section">
                                 <div class="container">
@@ -172,6 +174,5 @@
                 </div>
             </div>
         </footer>
-
-
-    </body></html>
+</body></html>
+<%session.setAttribute("Retorno", null);%>

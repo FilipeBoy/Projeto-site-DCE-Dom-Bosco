@@ -1,3 +1,5 @@
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.util.List"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="MODEL.Armario"%> 
 <%@page import="DAO.ArmarioDAO"%> 
@@ -7,13 +9,15 @@
     String dataInicio = request.getParameter("DataInicio");
     String dataFim = request.getParameter("DataFim");
     String botao= request.getParameter("BotaoComando");
-   
-   if(botao.equals("salvar")){
+    session.setAttribute("Retorno", null);
+    session.setAttribute("Menssagem", null);
+    
+    if(botao.equals("salvar")){
         int matricula = Integer.parseInt(request.getParameter("MatriculaUsuario"));
         Armario armario = new Armario(matricula,nome,dataInicio, dataFim);
             ArmarioDAO armarioDao= new ArmarioDAO();
-            armarioDao.salvar(armario);
-            session.setAttribute("Menssagem", "Cadastrado com sucesso!");
+           armarioDao.salvar(armario);
+           session.setAttribute("Menssagem", "Cadastrado com sucesso!\n Seu numero de registro: ");
             request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
            
     }else if(botao.equals("excluir")){
@@ -35,15 +39,26 @@
             request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
     }
     else if(botao.equals("buscar")){
-        int matricula = Integer.parseInt(request.getParameter("buscaMatricula"));
-        Armario armario = new Armario(matricula);
+        //List<Armario> armarioLista;
+        int busca = Integer.parseInt(request.getParameter("busca"));
+        Armario armario = new Armario();
+        armario.setMatriculaUsuario(busca);
         ArmarioDAO armarioDao= new ArmarioDAO();
-                   
-         ResultSet temp = armarioDao.consultarDados(armario);
-         response.sendRedirect("CadastroArmario.jsp&NroRegistro="+ temp.getString("NroRegistro")+"&MatriculaUsuario="+temp.getString("MatriculaUsuario")+"&NomeUsuario="+temp.getString("NomeUsuario")
-         +"&DataInicio="+temp.getString("DataInicio")+"&DataFim="+temp.getString("DataFim"));  
-      }
-            
+        armario = armarioDao.buscarPorMatricula(armario);
+        if( armario!=null){
+        session.setAttribute("Retorno", "sim");
+        session.setAttribute("campo1", armario.getNroRegistro());
+        session.setAttribute("campo2", armario.getMatriculaUsuario());
+        session.setAttribute("campo3", armario.getNomeUsuario());
+        session.setAttribute("campo4", armario.getDataInicio());
+        session.setAttribute("campo5", armario.getDataFim()); 
+       request.getRequestDispatcher("CadastroArmario.jsp").forward(request, response); 
+        }else{
+           session.setAttribute("Menssagem", "registro nao encontrado");
+            request.getRequestDispatcher("CadastroArmario.jsp").forward(request, response); 
+        }
+         
+   }       
     
 %>
 

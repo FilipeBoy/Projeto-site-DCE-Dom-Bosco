@@ -1,6 +1,8 @@
 <%
     String menssagem=(String)session.getAttribute("Menssagem");
     String usuario=(String)session.getAttribute("Nome");
+    String retorno=(String)session.getAttribute("Retorno");
+    String botao= request.getParameter("BotaoComando");
 %>
 <html><head>
         <meta charset="utf-8">
@@ -53,7 +55,7 @@
                         </li>
                         
                         <li class="active">
-                            <a><%out.print(usuario);%></a>
+                            <a href="CadastroUsuario.jsp"><%out.print(usuario);%></a>
                          </li><%}else{%>
                          <li class="active">
                             <a href="TelaLogin.jsp">Sign in</a>
@@ -62,36 +64,38 @@
                 </div>
             </div>
         </div>
+         <% if(usuario==null){%>
         <div class="section"><div class="container"><div class="row"><div class="col-md-12"><img src="/Projeto_DCE/IMAGES/cadastre-se-agora.png" class="img-responsive"></div></div></div></div>
+        <%}else{%><div class="section"><div class="container"><div class="row"><div class="col-md-12"><h1>Informação sobre Conta</h1>></div></div></div></div><%}%>
         <div class="section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
+                        <a><% if (menssagem!= null) {out.print(menssagem);}%></a>
                         <form role="form" action="ControllerUsuario.jsp" method="post">
                             <div class="form-group">
                                 <label class="control-label" for="matricula">Matrícula</label>
-                                <input class="form-control" name="matricula" placeholder="00000000" type="text">
+                                <input class="form-control" name="matricula" placeholder="00000000" type="text" <% if(retorno != null) {%> value=<%out.print(Integer.parseInt(session.getAttribute("campo1").toString()));%><%}%>>
                             </div>
-                            <% if (usuario!=null && usuario.equals("admin")) {%>
-                            <div class="form-group">
+                                <% if(usuario!=null){%>
+                                    <div class="form-group">
                                     <button type="submit" class="btn btn-primary" name="BotaoComando" value="buscar">Buscar</button>
-                            </div>
-                            <%}%>
+                                </div><%}%>
                             <div class="form-group">
                                 <label class="control-label" for="nome">Nome</label>
-                                <input class="form-control" name="nome" placeholder="Primeiro Nome" type="text">
+                                <input class="form-control" name="nome" placeholder="Primeiro Nome" type="text" <% if (retorno != null) {%>value="<%out.print((String)session.getAttribute("campo2"));%>"<%}%>>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="curso">Curso</label>
-                                <input class="form-control" name="curso" placeholder="Curso" type="text">
+                                <input class="form-control" name="curso" placeholder="Curso" type="text" <% if (retorno != null) {%>value="<%out.print((String)session.getAttribute("campo3"));%>"<%}%>>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="email">Email</label>
-                                <input class="form-control" name="email" placeholder="Enter email" type="email">
+                                <input class="form-control" name="email" placeholder="Enter email" type="email" <% if (retorno != null) {%>value="<%out.print((String)session.getAttribute("campo4"));%>"<%}%>>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="senha">Password</label>
-                                <input class="form-control" name="senha" placeholder="Password" type="password">
+                                <input class="form-control" name="senha" placeholder="Password" type="password" <% if (retorno != null) {%>value="<%out.print((String)session.getAttribute("campo5"));%>"<%}%>>
                             </div>
                             <div class="section">
                                 <div class="container">
@@ -157,4 +161,6 @@
                     </div>
                 </div>
             </div>
-        </footer></body></html>
+        </footer>
+    </body></html>
+<%session.setAttribute("Retorno", null);%>

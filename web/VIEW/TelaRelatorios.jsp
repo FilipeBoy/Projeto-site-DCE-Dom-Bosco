@@ -53,7 +53,7 @@
                         </li>
                         
                         <li class="active">
-                            <a><%out.print(usuario);%></a>
+                            <a href="CadastroUsuario.jsp"><%out.print(usuario);%></a>
                          </li><%}else{%>
                          <li class="active">
                             <a href="TelaLogin.jsp">Sign in</a>
@@ -168,22 +168,22 @@
                         <a class="btn btn-primary">Imprimir</a>
                     </div>
                     <div class="col-md-4">
-                        <a class="btn btn-primary" href="CadastroUsuario">Editar Usuario</a>
+                        <a class="btn btn-primary" href="CadastroUsuario.jsp">Editar Usuario</a>
+                    </div><br><br>
+                    <div class="col-md-4">
+                        <a class="btn btn-primary " href="CadastroCursos.jsp">Editar Curso</a>
                     </div>
                     <div class="col-md-4">
-                        <a class="btn btn-primary " href="CadastroCursos">Editar Curso</a>
+                        <a class="btn btn-primary" href="CadastroNoticias.jsp">Editar Noticias</a>
+                    </div><br><br>
+                    <div class="col-md-4">
+                        <a class="btn btn-primary" href="CadastroArmario.jsp">Editar Armario</a>
                     </div>
                     <div class="col-md-4">
-                        <a class="btn btn-primary" href="CadastroNoticias">Editar Noticias</a>
-                    </div>
+                        <a class="btn btn-primary" href="CadastroPerdidos.jsp">Editar Perdidos</a>
+                    </div><br><br>
                     <div class="col-md-4">
-                        <a class="btn btn-primary" href="CadastroArmario">Editar Armario</a>
-                    </div>
-                    <div class="col-md-4">
-                        <a class="btn btn-primary" href="CadastroPerdidos">Editar Perdidos</a>
-                    </div>
-                    <div class="col-md-4">
-                        <a class="btn btn-primary" href="CadastroSugestoes">Editar Sugestoes</a>
+                        <a class="btn btn-primary" href="CadastroSugestoes.jsp">Editar Sugestoes</a>
                     </div>
                 </div>
             </div>

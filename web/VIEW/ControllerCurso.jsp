@@ -7,7 +7,8 @@
     String cargaHoraria = request.getParameter("cargaHoraria");
     String descricao = request.getParameter("descricao");
     String botao= request.getParameter("BotaoComando");
-    
+    session.setAttribute("Retorno", null);
+    session.setAttribute("Menssagem", null);
     
     if(botao.equals("salvar")){
         Curso curso= new Curso(nome,horario,cargaHoraria,descricao);
@@ -35,14 +36,25 @@
     
     }
     else if(botao.equals("buscar")){
-        int matricula = Integer.parseInt(request.getParameter("buscaMatricula"));
-        Curso curso= new Curso(nome,horario,cargaHoraria,descricao);
+        String busca = request.getParameter("busca");
+        Curso curso= new Curso();
+        curso.setNome_Curso(busca);
         CursoDAO cursoDao= new CursoDAO();
-                   
-         //ResultSet temp = armarioDao.consultarDados(armario);
-         //response.sendRedirect("CadastroArmario.jsp&NroRegistro="+ temp.getString("NroRegistro")+"&MatriculaUsuario="+temp.getString("MatriculaUsuario")+"&NomeUsuario="+temp.getString("NomeUsuario")
-         ///+"&DataInicio="+temp.getString("DataInicio")+"&DataFim="+temp.getString("DataFim"));  
-      }
+        curso=cursoDao.buscarPorNomeCurso(curso); 
+        if( curso!=null){
+        session.setAttribute("Retorno", "sim");
+        session.setAttribute("campo1", curso.getNome_Curso());
+        session.setAttribute("campo2", curso.getHorario());
+        session.setAttribute("campo3", curso.getCargaHoraria());
+        session.setAttribute("campo4", curso.getDescricao());
+         
+       request.getRequestDispatcher("CadastroCursos.jsp").forward(request, response); 
+        }else{
+           session.setAttribute("Menssagem", "registro nao encontrado");
+            request.getRequestDispatcher("CadastroCursos.jsp").forward(request, response); 
+        }           
+      
+    }
         
    
 %>

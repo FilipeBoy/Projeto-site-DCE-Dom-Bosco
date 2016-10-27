@@ -54,7 +54,7 @@
                         </li>
 
                         <li class="active">
-                            <a><%out.print(usuario);%></a>
+                            <a href="CadastroUsuario.jsp"><%out.print(usuario);%></a>
                         </li><%} else {%>
                         <li class="active">
                             <a href="TelaLogin.jsp">Sign in</a>
@@ -145,3 +145,4 @@
     
 
 </body></html>
+<%session.setAttribute("Menssagem", null);%>

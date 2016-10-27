@@ -56,16 +56,16 @@ public class PerdidoDAO {
     }
     
     // PESQUISA SIMPLES
-    public Perdido buscarPorMatricula(Perdido perdido) throws SQLException {
+    public Perdido buscarPorID_Perdido(Perdido perdido) throws SQLException {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT ID_Perdido, Matricula_Usuario,NomeObjeto,LocalPerda,Descricao ");
+		sql.append("SELECT ID_Perdido,Matricula_Usuario,NomeObjeto,LocalPerda,Descricao ");
 		sql.append("FROM DCE_Perdido ");
-		sql.append("WHERE ID_Perdido = ? ");
+		sql.append("WHERE Matricula_Usuario = ? ");
 
 		ConexaoMySQL.getConexaoMySQL();
 
 		PreparedStatement comando = ConexaoMySQL.connection.prepareStatement(sql.toString());
-		comando.setInt(1, perdido.getID_Perdido());
+		comando.setInt(1, perdido.getMatricula_Usuario());
 
 		ResultSet resultado = comando.executeQuery();
 
@@ -80,6 +80,7 @@ public class PerdidoDAO {
 			retorno.setNomeObjeto(resultado.getString("NomeObjeto"));
 			retorno.setLocalPerda(resultado.getString("LocalPerda"));
 			retorno.setDescricao(resultado.getString("Descricao"));
+                        
 		}
         return retorno;
 	}

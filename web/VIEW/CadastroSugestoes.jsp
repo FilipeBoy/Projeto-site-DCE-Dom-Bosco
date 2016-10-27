@@ -1,6 +1,7 @@
 <%
     String menssagem=(String)session.getAttribute("Menssagem");
     String usuario=(String)session.getAttribute("Nome");
+      String retorno=(String)session.getAttribute("Retorno");
 %>
 <html><head>
         <meta charset="utf-8">
@@ -54,7 +55,7 @@
                         </li>
                         
                         <li class="active">
-                            <a><%out.print(usuario);%></a>
+                            <a href="CadastroUsuario.jsp"><%out.print(usuario);%></a>
                          </li><%}else{%>
                          <li class="active">
                             <a href="TelaLogin.jsp">Sign in</a>
@@ -86,29 +87,34 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
+                        <a><% if (menssagem!= null) {out.print(menssagem);}%></a>
                         <form role="form" action="ControllerSugestao.jsp" method="post">
                             <div class="form-group">
-                                    <label for="buscaID_Sugestao" class="control-label"></label>
-                                    <input type="number" class="form-control" name="buscaID_Sugestao" placeholder="Digite a ID da sugestao">
+                                    <label for="busca" class="control-label"></label>
+                                    <input type="number" class="form-control" name="busca" placeholder="Digite a ID da sugestao">
                             </div>
                             <div class="form-group">
                                     <button type="submit" class="btn btn-primary" name="BotaoComando" value="buscar">Buscar</button>
                             </div>
                             <div class="form-group">
+                                <label class="control-label" for="ID_Sugestao">Número de Registro</label>
+                                <input class="form-control" name="ID_Sugestao" type="number" <% if(retorno != null) {%> value=<%out.print(Integer.parseInt(session.getAttribute("campo1").toString()));%><%}%>>
+                            </div>
+                            <div class="form-group">
                                 <label class="control-label" for="data">Data</label>
-                                <input class="form-control" name="data" placeholder="__/__/__" type="text">
+                                <input class="form-control" name="data" placeholder="__/__/__" type="text" <% if (retorno != null) {%>value="<%out.print((String)session.getAttribute("campo2"));%>"<%}%>>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="status">Status</label>
-                                <input class="form-control" name="status" placeholder="Enviado" type="text">
+                                <input class="form-control" name="status" placeholder="Enviado" type="text" <% if (retorno != null) {%>value="<%out.print((String)session.getAttribute("campo3"));%>"<%}%>>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="assunto">Assunto</label>
-                                <input class="form-control" name="assunto" type="text" placeholder="Escreva o assunto">
+                                <input class="form-control" name="assunto" type="text" placeholder="Escreva o assunto"<% if (retorno != null) {%>value="<%out.print((String)session.getAttribute("campo4"));%>"<%}%>>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="descricao">Descrição</label>
-                                <input class="form-control" name="descricao" type="text" placeholder="Escreva sua sugestão ou reclamação aqui">
+                                <input class="form-control" name="descricao" type="text" placeholder="Escreva sua sugestão ou reclamação aqui" <% if (retorno != null) {%>value="<%out.print((String)session.getAttribute("campo5"));%>"<%}%>>
                             </div>
                             <div class="section">
                                 <div class="container">
@@ -178,3 +184,4 @@
     
 
 </body></html>
+<%session.setAttribute("Retorno", null);%>

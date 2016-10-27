@@ -57,9 +57,9 @@ public class SugestaoDAO {
     }
     
     // PESQUISA SIMPLES
-    public Sugestao buscarPorMatricula(Sugestao sugestao) throws SQLException {
+    public Sugestao buscarID_Sugestao(Sugestao sugestao) throws SQLException {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT ID_Sugestao, Data,Status,Assunto,Descricao");
+		sql.append("SELECT ID_Sugestao, Data,Status,Assunto,Descricao ");
 		sql.append("FROM DCE_Sugestao ");
 		sql.append("WHERE ID_Sugestao = ? ");
 

@@ -34,6 +34,7 @@ public class ArmarioDAO {
         }catch (SQLException e) {
             System.out.println("Não foi possivel inserir!");
 	}
+        
     }
     
     public void editar(Armario Arm) throws SQLException {
@@ -64,23 +65,7 @@ public class ArmarioDAO {
 		comando.executeUpdate();
     }
     
-    //consulta dados
-    public ResultSet consultarDados(Armario Arm){  
-       StringBuilder sql = new StringBuilder(); 
-      ResultSet resultado = null;  
-           
-      try {  
-         sql.append("select * from DCE_Armario where MatriculaUsuario= ?"); 
-         ConexaoMySQL.getConexaoMySQL();
-         java.sql.PreparedStatement comando = ConexaoMySQL.connection.prepareStatement(sql.toString());
-         comando.setInt(1, Arm.getMatriculaUsuario());
-         resultado = comando.executeQuery();
-           
-      }catch (SQLException e){System.out.println("Erro na inserção:" + e.getMessage());}  
         
-      return resultado;  
-   }  
-    
     // PESQUISA SIMPLES
     public Armario buscarPorMatricula(Armario Arm) throws SQLException {
 		StringBuilder sql = new StringBuilder();

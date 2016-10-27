@@ -104,7 +104,7 @@ public final class DCE_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        </li>\n");
       out.write("\n");
       out.write("                        <li class=\"active\">\n");
-      out.write("                            <a>");
+      out.write("                            <a href=\"CadastroUsuario.jsp\">");
 out.print(usuario);
       out.write("</a>\n");
       out.write("                        </li>");

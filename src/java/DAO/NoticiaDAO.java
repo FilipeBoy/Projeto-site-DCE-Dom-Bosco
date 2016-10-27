@@ -57,7 +57,7 @@ public class NoticiaDAO {
     }
     
     // PESQUISA SIMPLES
-    public Noticia buscarPorMatricula(Noticia noticia) throws SQLException {
+    public Noticia buscarPorID_Noticia(Noticia noticia) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT ID_Noticia, Autor,Data,Titulo,Texto ");
 		sql.append("FROM DCE_Noticia ");

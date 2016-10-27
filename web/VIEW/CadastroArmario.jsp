@@ -1,6 +1,8 @@
 <%
     String usuario = (String) session.getAttribute("Nome");
     String menssagem=(String)session.getAttribute("Menssagem");
+    String retorno=(String)session.getAttribute("Retorno");
+   
 %>
 <%@page import="DAO.ArmarioDAO"%> 
 <html><head>
@@ -54,7 +56,7 @@
                         </li>
 
                         <li class="active">
-                            <a><%out.print(usuario);%></a>
+                            <a href="CadastroUsuario.jsp"><%out.print(usuario);%></a>
                         </li><%} else {%>
                         <li class="active">
                             <a href="TelaLogin.jsp">Sign in</a>
@@ -76,33 +78,34 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
+                        <a><% if (menssagem!= null) {out.print(menssagem);}%></a>
                         <form role="form" action="ControllerArmario.jsp" method="post">
                             <div class="form-group">
-                                    <label for="buscaMatricula" class="control-label"></label>
-                                    <input type="number" class="form-control" name="buscaMatricula" placeholder="Digite sua matrícula">
-                            </div>
+                                    <label for="busca" class="control-label"></label>
+                                    <input type="number" class="form-control" name="busca" placeholder="Digite o numero de matricula">
+                           </div>
                             <div class="form-group">
                                     <button type="submit" class="btn btn-primary" name="BotaoComando" value="buscar">Buscar</button>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="NroRegistro">Número de Registro</label>
-                                <input class="form-control" name="NroRegistro" type="number">
+                                <input class="form-control" name="NroRegistro" type="number" <% if(retorno != null) {%> value=<%out.print(Integer.parseInt(session.getAttribute("campo1").toString()));%><%}%>>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="MatriculaUsuario">Matrícula</label>
-                                <input class="form-control" name="MatriculaUsuario" placeholder="00000000" type="number">
+                                <input class="form-control" name="MatriculaUsuario" placeholder="000000" type="number" <% if(retorno != null) {%> value=<%out.print(session.getAttribute("campo2"));%><%}%> >
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="NomeUsuario">Nome</label>
-                                <input class="form-control" name="NomeUsuario" placeholder="Nome Completo" type="text">
+                                <input class="form-control" name="NomeUsuario" placeholder="Nome Completo" type="text" <% if (retorno != null) {%>value="<%out.print((String)session.getAttribute("campo3"));%>"<%}%>>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="DataInicio">Data Início</label>
-                                <input class="form-control" name="DataInicio" placeholder="__/__/__" type="text">
+                                <input class="form-control" name="DataInicio" placeholder="__/__/__" type="text" <% if (retorno != null) {%>value="<%out.print((String)session.getAttribute("campo4"));%>"<%}%>>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="DataFim">Data Fim</label>
-                                <input class="form-control" name="DataFim" type="text" placeholder="__/__/__">
+                                <input class="form-control" name="DataFim" type="text" placeholder="__/__/__" <% if (retorno != null) {%>value="<%out.print((String)session.getAttribute("campo5"));%>"<%}%>>
                             </div>
                             <div class="section">
                                 <div class="container">
@@ -168,6 +171,5 @@
                 </div>
             </div>
         </footer>
-
-
-    </body></html>
+</body></html>
+<%session.setAttribute("Retorno", null);%>
