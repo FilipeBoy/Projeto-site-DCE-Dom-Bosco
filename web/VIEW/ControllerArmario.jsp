@@ -10,14 +10,16 @@
     String dataFim = request.getParameter("DataFim");
     String botao= request.getParameter("BotaoComando");
     session.setAttribute("Retorno", null);
-    session.setAttribute("Menssagem", null);
+    session.setAttribute("Mensagem", null);
+    session.setAttribute("Mensagem2", null);
     
     if(botao.equals("salvar")){
         int matricula = Integer.parseInt(request.getParameter("MatriculaUsuario"));
         Armario armario = new Armario(matricula,nome,dataInicio, dataFim);
             ArmarioDAO armarioDao= new ArmarioDAO();
-           armarioDao.salvar(armario);
-           session.setAttribute("Menssagem", "Cadastrado com sucesso!\n Seu numero de registro: ");
+           armario=armarioDao.salvar(armario);
+           session.setAttribute("Mensagem", "Cadastrado com sucesso!");
+           session.setAttribute("Mensagem2", "Anote seu numero de registro: "+armario.getNroRegistro());
             request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
            
     }else if(botao.equals("excluir")){
@@ -26,7 +28,7 @@
         Armario armario = new Armario(NroRegistro,matricula,nome,dataInicio, dataFim);
         ArmarioDAO armarioDao= new ArmarioDAO();
             armarioDao.excluir(armario);
-            session.setAttribute("Menssagem", "Excluido com sucesso!");
+            session.setAttribute("Mensagem", "Excluido com sucesso!");
             request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
     }
     else if(botao.equals("editar")){
@@ -35,7 +37,7 @@
         Armario armario = new Armario(NroRegistro,matricula,nome,dataInicio, dataFim);
         ArmarioDAO armarioDao= new ArmarioDAO();
             armarioDao.editar(armario);
-            session.setAttribute("Menssagem", "Atualizado com sucesso!");
+            session.setAttribute("Mensagem", "Atualizado com sucesso!");
             request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
     }
     else if(botao.equals("buscar")){
@@ -44,7 +46,7 @@
         Armario armario = new Armario();
         armario.setMatriculaUsuario(busca);
         ArmarioDAO armarioDao= new ArmarioDAO();
-        armario = armarioDao.buscarPorMatricula(armario);
+        armario = armarioDao.buscarPorNroRegistro(armario);
         if( armario!=null){
         session.setAttribute("Retorno", "sim");
         session.setAttribute("campo1", armario.getNroRegistro());
@@ -54,7 +56,7 @@
         session.setAttribute("campo5", armario.getDataFim()); 
        request.getRequestDispatcher("CadastroArmario.jsp").forward(request, response); 
         }else{
-           session.setAttribute("Menssagem", "registro nao encontrado");
+           session.setAttribute("Mensagem", "registro nao encontrado");
             request.getRequestDispatcher("CadastroArmario.jsp").forward(request, response); 
         }
          

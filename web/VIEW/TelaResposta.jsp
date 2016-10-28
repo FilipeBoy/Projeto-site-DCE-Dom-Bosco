@@ -1,6 +1,7 @@
 <%
     String usuario = (String) session.getAttribute("Nome");
-    String menssagem=(String)session.getAttribute("Menssagem");
+    String mensagem=(String)session.getAttribute("Mensagem");
+    String mensagem2=(String)session.getAttribute("Mensagem2");
 %>
 
 <html><head>
@@ -67,8 +68,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <%if(menssagem!=null){%>
-                        <h1 class="section text-center"><%out.print(menssagem);}%></h1>
+                        <%if(mensagem!=null){%>
+                        <h1 class="section text-center"><%out.print(mensagem);}%></h1>
+                        <%if(mensagem2!=null){%>
+                        <h3 class="section text-center"><%out.print(mensagem2);}%></h3>
                     </div>
                 </div>
             </div>
@@ -145,4 +148,5 @@
     
 
 </body></html>
-<%session.setAttribute("Menssagem", null);%>
+<%session.setAttribute("Mensagem", null);%>
+<%session.setAttribute("Mensagem2", null);%>

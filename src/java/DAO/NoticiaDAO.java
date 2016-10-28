@@ -26,6 +26,7 @@ public class NoticiaDAO {
         }catch (SQLException e) {
             System.out.println("Não foi possivel inserir!");
 	}
+        ConexaoMySQL.FecharConexao();
     }
     
     public void editar(Noticia noticia) throws SQLException {
@@ -40,6 +41,7 @@ public class NoticiaDAO {
 	comando.setInt(5, noticia.getID_Noticia());
         
 	comando.executeUpdate();
+        ConexaoMySQL.FecharConexao();
     }
     
     public void excluir(Noticia noticia) throws SQLException {
@@ -54,6 +56,7 @@ public class NoticiaDAO {
 		comando.setInt(1, noticia.getID_Noticia());
 
 		comando.executeUpdate();
+                ConexaoMySQL.FecharConexao();
     }
     
     // PESQUISA SIMPLES
@@ -82,6 +85,7 @@ public class NoticiaDAO {
 			retorno.setTitulo(resultado.getString("Titulo"));
 			retorno.setTexto(resultado.getString("Texto"));
 		}
+                ConexaoMySQL.FecharConexao();
         return retorno;
 	}
     
@@ -108,7 +112,7 @@ public class NoticiaDAO {
 
 			lista.add(Art);
 		}
-
+                ConexaoMySQL.FecharConexao();
 		return lista;
 	}
 }

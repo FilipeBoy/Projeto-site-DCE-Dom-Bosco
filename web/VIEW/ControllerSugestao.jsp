@@ -8,13 +8,15 @@
     String descricao =request.getParameter("descricao");
     String botao= request.getParameter("BotaoComando");
     session.setAttribute("Retorno", null);
-    session.setAttribute("Menssagem", null);
+    session.setAttribute("Mensagem", null);
+    session.setAttribute("Mensagem2", null);
     
     if(botao.equals("salvar")){
         Sugestao sugestao= new Sugestao(data,status,assunto,descricao);
         SugestaoDAO sugestaoDao= new SugestaoDAO();
-        sugestaoDao.salvar(sugestao);
-        session.setAttribute("Menssagem", "Cadastrado com sucesso!");
+        sugestao=sugestaoDao.salvar(sugestao);
+        session.setAttribute("Mensagem", "Cadastrado com sucesso!");
+        session.setAttribute("Mensagem2", "Anote seu numero de registro: "+sugestao.getID_Sugestao());
         request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
            
     }else if(botao.equals("excluir")){
@@ -22,7 +24,7 @@
         Sugestao sugestao= new Sugestao(ID_Sugestao,status,data,assunto,descricao);
         SugestaoDAO sugestaoDao= new SugestaoDAO();
         sugestaoDao.excluir(sugestao);
-        session.setAttribute("Menssagem", "Excluido com sucesso!");
+        session.setAttribute("Mensagem", "Excluido com sucesso!");
         request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
     }
     else if(botao.equals("editar")){
@@ -30,7 +32,7 @@
         Sugestao sugestao= new Sugestao(ID_Sugestao,status,data,assunto,descricao);
         SugestaoDAO sugestaoDao= new SugestaoDAO();
         sugestaoDao.editar(sugestao);
-        session.setAttribute("Menssagem", "Atualizado com sucesso!");
+        session.setAttribute("Mensagem", "Atualizado com sucesso!");
         request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
     }
     else if(botao.equals("buscar")){
@@ -48,7 +50,7 @@
         session.setAttribute("campo5", sugestao.getDescricao()); 
        request.getRequestDispatcher("CadastroSugestoes.jsp").forward(request, response); 
         }else{
-           session.setAttribute("Menssagem", "registro nao encontrado");
+           session.setAttribute("Mensagem", "registro nao encontrado");
             request.getRequestDispatcher("CadastroSugestoes.jsp").forward(request, response); 
         }           
        }

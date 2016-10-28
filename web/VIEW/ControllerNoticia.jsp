@@ -8,13 +8,13 @@
     String texto = request.getParameter("Texto");
      String botao= request.getParameter("BotaoComando");
     session.setAttribute("Retorno", null);
-    session.setAttribute("Menssagem", null);
+    session.setAttribute("Mensagem", null);
      
     if(botao.equals("salvar")){
         Noticia noticia= new Noticia(autor,data,titulo,texto);
         NoticiaDAO noticiaDao= new NoticiaDAO();
         noticiaDao.salvar(noticia);
-        session.setAttribute("Menssagem", "Cadastrado com sucesso!");
+        session.setAttribute("Mensagem", "Cadastrado com sucesso!");
         request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
        
     }else if(botao.equals("excluir")){
@@ -22,7 +22,7 @@
         Noticia noticia= new Noticia(ID_Noticia,autor,data,titulo,texto);
         NoticiaDAO noticiaDao= new NoticiaDAO();
         noticiaDao.excluir(noticia);
-        session.setAttribute("Menssagem", "Excluido com sucesso!");
+        session.setAttribute("Mensagem", "Excluido com sucesso!");
         request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
     }
     else if(botao.equals("editar")){
@@ -30,7 +30,7 @@
         Noticia noticia= new Noticia(ID_Noticia,autor,data,titulo,texto);
         NoticiaDAO noticiaDao= new NoticiaDAO();
         noticiaDao.editar(noticia);
-        session.setAttribute("Menssagem", "Atualizado com sucesso!");
+        session.setAttribute("Mensagem", "Atualizado com sucesso!");
         request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
     }
     else if(botao.equals("buscar")){
@@ -47,7 +47,7 @@
         session.setAttribute("campo4", noticia.getTexto());
         request.getRequestDispatcher("CadastroNoticias.jsp").forward(request, response); 
         }else{
-           session.setAttribute("Menssagem", "registro nao encontrado");
+           session.setAttribute("Mensagem", "registro nao encontrado");
             request.getRequestDispatcher("CadastroNoticias.jsp").forward(request, response); 
         }           
       }

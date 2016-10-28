@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class ArmarioDAO {
     
-    public void salvar(Armario Arm) throws SQLException{
+    public Armario salvar(Armario Arm) throws SQLException{
         StringBuilder sql = new StringBuilder();
         sql.append("INSERT INTO DCE_Armario(MatriculaUsuario,NomeUsuario,DataInicio,DataFim) values(?, ?, ?, ?)");
         
@@ -34,7 +34,9 @@ public class ArmarioDAO {
         }catch (SQLException e) {
             System.out.println("Não foi possivel inserir!");
 	}
-        
+        ConexaoMySQL.FecharConexao();
+        Armario retorno = buscarPorMatriculaUsuario(Arm);
+        return retorno;
     }
     
     public void editar(Armario Arm) throws SQLException {
@@ -49,6 +51,7 @@ public class ArmarioDAO {
         comando.setInt(5, Arm.getNroRegistro());
 	
 	comando.executeUpdate();
+        ConexaoMySQL.FecharConexao();
     }
     
     public void excluir(Armario Arm) throws SQLException {
@@ -63,11 +66,9 @@ public class ArmarioDAO {
 		comando.setInt(1, Arm.getNroRegistro());
 
 		comando.executeUpdate();
+                ConexaoMySQL.FecharConexao();
     }
-    
-        
-    // PESQUISA SIMPLES
-    public Armario buscarPorMatricula(Armario Arm) throws SQLException {
+    public Armario buscarPorMatriculaUsuario(Armario Arm) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT NroRegistro, MatriculaUsuario, NomeUsuario, DataInicio,DataFim ");
 		sql.append("FROM DCE_Armario ");
@@ -87,11 +88,38 @@ public class ArmarioDAO {
 		while (resultado.next()) {
 			retorno = new Armario();
 			retorno.setNroRegistro(resultado.getInt("NroRegistro"));
+		}
+                ConexaoMySQL.FecharConexao();
+        return retorno;
+	}
+        
+    // PESQUISA SIMPLES
+    public Armario buscarPorNroRegistro(Armario Arm) throws SQLException {
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT NroRegistro, MatriculaUsuario, NomeUsuario, DataInicio,DataFim ");
+		sql.append("FROM DCE_Armario ");
+		sql.append("WHERE NroRegistro = ? ");
+
+		ConexaoMySQL.getConexaoMySQL();
+
+		PreparedStatement comando = ConexaoMySQL.connection.prepareStatement(sql.toString());
+		comando.setInt(1, Arm.getNroRegistro());
+
+		ResultSet resultado = comando.executeQuery();
+
+		Armario retorno = null;
+
+		// if porque sabemos que somente tem um que e o proximo, senao usaria
+		// while
+		while (resultado.next()) {
+			retorno = new Armario();
+			retorno.setNroRegistro(resultado.getInt("NroRegistro"));
 			retorno.setMatriculaUsuario(resultado.getInt("MatriculaUsuario"));
 			retorno.setNomeUsuario(resultado.getString("NomeUsuario"));
 			retorno.setDataInicio(resultado.getString("DataInicio"));
 			retorno.setDataFim(resultado.getString("DataFim"));
 		}
+                ConexaoMySQL.FecharConexao();
         return retorno;
 	}
     
@@ -118,7 +146,7 @@ public class ArmarioDAO {
 
 			lista.add(Arm);
 		}
-
+                ConexaoMySQL.FecharConexao();
 		return lista;
 	}
 }

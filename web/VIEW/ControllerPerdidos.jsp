@@ -9,14 +9,16 @@
     String Descricao = request.getParameter("Descricao");
     String botao= request.getParameter("BotaoComando");
     session.setAttribute("Retorno", null);
-    session.setAttribute("Menssagem", null);
+    session.setAttribute("Mensagem", null);
+    session.setAttribute("Mensagem2", null);
     
    if(botao.equals("salvar")){
         int Matricula_Usuario = Integer.parseInt(request.getParameter("Matricula_Usuario"));
         Perdido perdido = new Perdido(Matricula_Usuario,NomeObjeto,LocalPerda, Descricao);
             PerdidoDAO perdidoDao= new PerdidoDAO();
-            perdidoDao.salvar(perdido);
-            session.setAttribute("Menssagem", "Cadastrado com sucesso!");
+            perdido=perdidoDao.salvar(perdido);
+            session.setAttribute("Mensagem", "Cadastrado com sucesso!");
+            session.setAttribute("Mensagem2","Anote seu numero de registro: "+perdido.getID_Perdido());
             request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
            
     }else if(botao.equals("excluir")){
@@ -25,7 +27,7 @@
         Perdido perdido = new Perdido(ID_Perdido,Matricula_Usuario,NomeObjeto,LocalPerda, Descricao);
             PerdidoDAO perdidoDao= new PerdidoDAO();
             perdidoDao.excluir(perdido);
-            session.setAttribute("Menssagem", "Excluido com sucesso!");
+            session.setAttribute("Mensagem", "Excluido com sucesso!");
             request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
     }
     else if(botao.equals("editar")){
@@ -34,7 +36,7 @@
         Perdido perdido = new Perdido(ID_Perdido,Matricula_Usuario,NomeObjeto,LocalPerda, Descricao);
             PerdidoDAO perdidoDao= new PerdidoDAO();
             perdidoDao.editar(perdido);
-            session.setAttribute("Menssagem", "Atualizado com sucesso!");
+            session.setAttribute("Mensagem", "Atualizado com sucesso!");
             request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
     }
     else if(botao.equals("buscar")){
@@ -53,7 +55,7 @@
          
        request.getRequestDispatcher("CadastroPerdidos.jsp").forward(request, response); 
         }else{
-           session.setAttribute("Menssagem", "registro nao encontrado");
+           session.setAttribute("Mensagem", "registro nao encontrado");
             request.getRequestDispatcher("CadastroPerdidos.jsp").forward(request, response); 
         }
       }

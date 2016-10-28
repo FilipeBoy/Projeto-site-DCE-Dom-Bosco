@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PerdidoDAO {
-    public void salvar(Perdido perdido) throws SQLException{
+    public Perdido salvar(Perdido perdido) throws SQLException{
         StringBuilder sql = new StringBuilder();
         sql.append("INSERT INTO DCE_Perdido(Matricula_Usuario,NomeObjeto,LocalPerda,Descricao) values(?, ?, ?, ?)");
         
@@ -25,6 +25,9 @@ public class PerdidoDAO {
         }catch (SQLException e) {
             System.out.println("Não foi possivel inserir!");
 	}
+        ConexaoMySQL.FecharConexao();
+        Perdido retorno=buscarPorMatricula_Usuario(perdido);
+        return retorno;
     }
     
     public void editar(Perdido perdido) throws SQLException {
@@ -39,6 +42,7 @@ public class PerdidoDAO {
         comando.setInt(5, perdido.getID_Perdido());
 	
 	comando.executeUpdate();
+        ConexaoMySQL.FecharConexao();
     }
     
     public void excluir(Perdido perdido) throws SQLException {
@@ -53,10 +57,9 @@ public class PerdidoDAO {
 		comando.setInt(1, perdido.getID_Perdido());
 
 		comando.executeUpdate();
+                ConexaoMySQL.FecharConexao();
     }
-    
-    // PESQUISA SIMPLES
-    public Perdido buscarPorID_Perdido(Perdido perdido) throws SQLException {
+     public Perdido buscarPorMatricula_Usuario(Perdido perdido) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT ID_Perdido,Matricula_Usuario,NomeObjeto,LocalPerda,Descricao ");
 		sql.append("FROM DCE_Perdido ");
@@ -76,12 +79,39 @@ public class PerdidoDAO {
 		while (resultado.next()) {
 			retorno = new Perdido();
 			retorno.setID_Perdido(resultado.getInt("ID_Perdido"));
+		}
+                ConexaoMySQL.FecharConexao();
+        return retorno;
+	}
+    
+    // PESQUISA SIMPLES
+    public Perdido buscarPorID_Perdido(Perdido perdido) throws SQLException {
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT ID_Perdido,Matricula_Usuario,NomeObjeto,LocalPerda,Descricao ");
+		sql.append("FROM DCE_Perdido ");
+		sql.append("WHERE ID_Perdido = ? ");
+
+		ConexaoMySQL.getConexaoMySQL();
+
+		PreparedStatement comando = ConexaoMySQL.connection.prepareStatement(sql.toString());
+		comando.setInt(1, perdido.getID_Perdido());
+
+		ResultSet resultado = comando.executeQuery();
+
+		Perdido retorno = null;
+
+		// if porque sabemos que somente tem um que e o proximo, senao usaria
+		// while
+		while (resultado.next()) {
+			retorno = new Perdido();
+			retorno.setID_Perdido(resultado.getInt("ID_Perdido"));
 			retorno.setMatricula_Usuario(resultado.getInt("Matricula_Usuario"));
 			retorno.setNomeObjeto(resultado.getString("NomeObjeto"));
 			retorno.setLocalPerda(resultado.getString("LocalPerda"));
 			retorno.setDescricao(resultado.getString("Descricao"));
                         
 		}
+                ConexaoMySQL.FecharConexao();
         return retorno;
 	}
     
@@ -105,7 +135,7 @@ public class PerdidoDAO {
 
 			lista.add(perdido);
 		}
-
+                ConexaoMySQL.FecharConexao();
 		return lista;
 	}
     

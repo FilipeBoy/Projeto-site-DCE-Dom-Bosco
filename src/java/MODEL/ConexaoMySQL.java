@@ -3,11 +3,8 @@ package MODEL;
 
 //Classes necessárias para uso de Banco de dados // 
 import java.sql.Connection;
-
 import java.sql.DriverManager;
-
 import java.sql.SQLException;
-import java.sql.Statement;
 
 //Início da classe de conexão// 
 public class ConexaoMySQL {

@@ -9,27 +9,27 @@
     String senha = request.getParameter("senha");
     String botao= request.getParameter("BotaoComando");
     session.setAttribute("Retorno", null);
-    session.setAttribute("Menssagem", null);
+    session.setAttribute("Mensagem", null);
     
     if(botao.equals("salvar")){
         Usuario usuario= new Usuario(matricula,nome,Nomecurso,email,senha);
         UsuarioDAO usuarioDao= new UsuarioDAO();
         usuarioDao.salvar(usuario);
-        session.setAttribute("Menssagem", "Cadastrado com sucesso!");
+        session.setAttribute("Mensagem", "Cadastrado com sucesso!");
         request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
            
     }else if(botao.equals("excluir")){
         Usuario usuario= new Usuario(matricula,nome,Nomecurso,email,senha);
         UsuarioDAO usuarioDao= new UsuarioDAO();
         usuarioDao.excluir(usuario);
-        session.setAttribute("Menssagem", "Excluido com sucesso!");
+        session.setAttribute("Mensagem", "Excluido com sucesso!");
         request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
     }
     else if(botao.equals("editar")){
         Usuario usuario= new Usuario(matricula,nome,Nomecurso,email,senha);
         UsuarioDAO usuarioDao= new UsuarioDAO();
         usuarioDao.editar(usuario);
-        session.setAttribute("Menssagem", "Atualizado com sucesso!");
+        session.setAttribute("Mensagem", "Atualizado com sucesso!");
         request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
     }
     else if(botao.equals("buscar")){
@@ -46,7 +46,7 @@
         session.setAttribute("campo5", usuario.getPassword()); 
        request.getRequestDispatcher("CadastroUsuario.jsp").forward(request, response); 
         }else{
-           session.setAttribute("Menssagem", "registro nao encontrado");
+           session.setAttribute("Mensagem", "Registro nao encontrado");
             request.getRequestDispatcher("CadastroUsuario.jsp").forward(request, response); 
         }
       }

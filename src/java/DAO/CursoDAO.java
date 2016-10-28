@@ -25,6 +25,7 @@ public class CursoDAO {
         }catch (SQLException e) {
             System.out.println("Não foi possivel inserir!");
 	}
+        ConexaoMySQL.FecharConexao();
     }
     
     public void editar(Curso curso) throws SQLException {
@@ -39,6 +40,7 @@ public class CursoDAO {
         comando.setInt(5, curso.getID_Curso());
 	
 	comando.executeUpdate();
+        ConexaoMySQL.FecharConexao();
     }
     
     public void excluir(Curso curso) throws SQLException {
@@ -53,6 +55,7 @@ public class CursoDAO {
 		comando.setInt(1, curso.getID_Curso());
 
 		comando.executeUpdate();
+                ConexaoMySQL.FecharConexao();
     }
     
     // PESQUISA SIMPLES
@@ -81,8 +84,9 @@ public class CursoDAO {
 			retorno.setCargaHoraria(resultado.getString("CargaHoraria"));
 			retorno.setDescricao(resultado.getString("Descricao"));
 		}
+                ConexaoMySQL.FecharConexao();
         return retorno;
-	}
+        }
     
     // PESQUISA_LISTA
 	public List<Curso> listar() throws SQLException {
@@ -107,7 +111,7 @@ public class CursoDAO {
 
 			lista.add(curso);
 		}
-
+                ConexaoMySQL.FecharConexao();
 		return lista;
 	}
     

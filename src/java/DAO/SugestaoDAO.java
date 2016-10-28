@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SugestaoDAO {
-    public void salvar(Sugestao sugestao) throws SQLException{
+    public Sugestao salvar(Sugestao sugestao) throws SQLException{
         StringBuilder sql = new StringBuilder();
         sql.append("INSERT INTO DCE_Sugestao(Data,Status,Assunto,Descricao) values(?, ?, ?, ?)");
         
@@ -26,6 +26,9 @@ public class SugestaoDAO {
         }catch (SQLException e) {
             System.out.println("Não foi possivel inserir!");
 	}
+        ConexaoMySQL.FecharConexao();
+        Sugestao retorno=buscarDescricao(sugestao);
+        return retorno;
     }
     
     public void editar(Sugestao sugestao) throws SQLException {
@@ -40,6 +43,7 @@ public class SugestaoDAO {
         comando.setInt(5, sugestao.getID_Sugestao());
 	
 	comando.executeUpdate();
+        ConexaoMySQL.FecharConexao();
     }
     
     public void excluir(Sugestao sugestao) throws SQLException {
@@ -54,8 +58,33 @@ public class SugestaoDAO {
 		comando.setInt(1, sugestao.getID_Sugestao());
 
 		comando.executeUpdate();
+                ConexaoMySQL.FecharConexao();
     }
     
+    public Sugestao buscarDescricao(Sugestao sugestao) throws SQLException {
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT ID_Sugestao, Data,Status,Assunto,Descricao ");
+		sql.append("FROM DCE_Sugestao ");
+		sql.append("WHERE Descricao = ? ");
+
+		ConexaoMySQL.getConexaoMySQL();
+
+		PreparedStatement comando = ConexaoMySQL.connection.prepareStatement(sql.toString());
+		comando.setString(1, sugestao.getDescricao());
+
+		ResultSet resultado = comando.executeQuery();
+
+		Sugestao retorno = null;
+
+		// if porque sabemos que somente tem um que e o proximo, senao usaria
+		// while
+		while (resultado.next()) {
+			retorno = new Sugestao();
+			retorno.setID_Sugestao(resultado.getInt("ID_Sugestao"));
+		}
+                ConexaoMySQL.FecharConexao();
+        return retorno;
+	}
     // PESQUISA SIMPLES
     public Sugestao buscarID_Sugestao(Sugestao sugestao) throws SQLException {
 		StringBuilder sql = new StringBuilder();
@@ -82,6 +111,7 @@ public class SugestaoDAO {
 			retorno.setAssunto(resultado.getString("Assunto"));
 			retorno.setDescricao(resultado.getString("Descricao"));
 		}
+                ConexaoMySQL.FecharConexao();
         return retorno;
 	}
     
@@ -105,7 +135,7 @@ public class SugestaoDAO {
 
 			lista.add(sugestao);
 		}
-
+                ConexaoMySQL.FecharConexao();
 		return lista;
 	}
 }

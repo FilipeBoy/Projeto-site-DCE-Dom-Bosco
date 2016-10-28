@@ -1,5 +1,5 @@
 <%
-    String menssagem=(String)session.getAttribute("Menssagem");
+    String mensagem=(String)session.getAttribute("Mensagem");
     String usuario=(String)session.getAttribute("Nome");
     String retorno=(String)session.getAttribute("Retorno");
 %>
@@ -76,7 +76,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <a><% if (menssagem!= null) {out.print(menssagem);}%></a>
+                        <a><% if (mensagem!= null) {out.print(mensagem);}%></a>
                         <form role="form" action="ControllerNoticia.jsp" method="post">
                             <div class="form-group">
                                     <label for="busca" class="control-label"></label>
@@ -167,3 +167,4 @@
 
     </body></html>
 <%session.setAttribute("Retorno", null);%>
+<%session.setAttribute("Mensagem", null);%>

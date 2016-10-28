@@ -1,6 +1,6 @@
 <%
     String usuario = (String) session.getAttribute("Nome");
-    String menssagem=(String)session.getAttribute("Menssagem");
+    String mensagem=(String)session.getAttribute("Mensagem");
     String retorno=(String)session.getAttribute("Retorno");
    
 %>
@@ -78,18 +78,18 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
-                        <a><% if (menssagem!= null) {out.print(menssagem);}%></a>
+                        <a><% if (mensagem!= null) {out.print(mensagem);}%></a>
                         <form role="form" action="ControllerArmario.jsp" method="post">
                             <div class="form-group">
                                     <label for="busca" class="control-label"></label>
-                                    <input type="number" class="form-control" name="busca" placeholder="Digite o numero de matricula">
+                                    <input type="number" class="form-control" name="busca" placeholder="Digite o numero de registro">
                            </div>
                             <div class="form-group">
                                     <button type="submit" class="btn btn-primary" name="BotaoComando" value="buscar">Buscar</button>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="NroRegistro">Número de Registro</label>
-                                <input class="form-control" name="NroRegistro" type="number" <% if(retorno != null) {%> value=<%out.print(Integer.parseInt(session.getAttribute("campo1").toString()));%><%}%>>
+                                <input class="form-control" name="NroRegistro" type="number" placeholder="Nao � necessario preencher" <% if(retorno != null) {%> value=<%out.print(Integer.parseInt(session.getAttribute("campo1").toString()));%><%}%>>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="MatriculaUsuario">Matrícula</label>
@@ -173,3 +173,4 @@
         </footer>
 </body></html>
 <%session.setAttribute("Retorno", null);%>
+<%session.setAttribute("Mensagem", null);%>

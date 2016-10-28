@@ -27,6 +27,7 @@ public class UsuarioDAO {
         }catch (SQLException e) {
             System.out.println("Não foi possivel inserir!");
 	}
+        ConexaoMySQL.FecharConexao();
     }
     
     public void editar(Usuario user) throws SQLException {
@@ -41,6 +42,7 @@ public class UsuarioDAO {
 	comando.setInt(5, user.getMatricula());
         
 	comando.executeUpdate();
+        ConexaoMySQL.FecharConexao();
     }
     
     public void excluir(Usuario user) throws SQLException {
@@ -55,6 +57,7 @@ public class UsuarioDAO {
 		comando.setInt(1, user.getMatricula());
 
 		comando.executeUpdate();
+                ConexaoMySQL.FecharConexao();
     }
     
     // PESQUISA SIMPLES
@@ -83,6 +86,7 @@ public class UsuarioDAO {
 			retorno.setEmail(resultado.getString("Email"));
 			retorno.setPassword(resultado.getString("Password"));
 		}
+                ConexaoMySQL.FecharConexao();
         return retorno;
 	}
     
@@ -106,7 +110,7 @@ public class UsuarioDAO {
 
 			lista.add(user);
 		}
-
+                ConexaoMySQL.FecharConexao();
 		return lista;
 	}
 }

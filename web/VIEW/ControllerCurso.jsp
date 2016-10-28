@@ -8,13 +8,13 @@
     String descricao = request.getParameter("descricao");
     String botao= request.getParameter("BotaoComando");
     session.setAttribute("Retorno", null);
-    session.setAttribute("Menssagem", null);
+    session.setAttribute("Mensagem", null);
     
     if(botao.equals("salvar")){
         Curso curso= new Curso(nome,horario,cargaHoraria,descricao);
         CursoDAO cursoDao= new CursoDAO();
         cursoDao.salvar(curso);
-        session.setAttribute("Menssagem", "Cadastrado com sucesso!");
+        session.setAttribute("Mensagem", "Cadastrado com sucesso!");
         request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
       
     }else if(botao.equals("excluir")){
@@ -22,7 +22,7 @@
         Curso curso= new Curso(buscaID_Curso,nome,horario, cargaHoraria, descricao);
         CursoDAO cursoDao= new CursoDAO();
         cursoDao.excluir(curso);
-        session.setAttribute("Menssagem", "Excluido com sucesso!");
+        session.setAttribute("Mensagem", "Excluido com sucesso!");
         request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
     
     }
@@ -31,7 +31,7 @@
         Curso curso= new Curso(buscaID_Curso,nome,horario, cargaHoraria, descricao);
         CursoDAO cursoDao= new CursoDAO();
         cursoDao.editar(curso);
-        session.setAttribute("Menssagem", "Atualizado com sucesso!");
+        session.setAttribute("Mensagem", "Atualizado com sucesso!");
         request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
     
     }
@@ -50,7 +50,7 @@
          
        request.getRequestDispatcher("CadastroCursos.jsp").forward(request, response); 
         }else{
-           session.setAttribute("Menssagem", "registro nao encontrado");
+           session.setAttribute("Mensagem", "registro nao encontrado");
             request.getRequestDispatcher("CadastroCursos.jsp").forward(request, response); 
         }           
       
