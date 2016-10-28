@@ -15,6 +15,10 @@
         Usuario usuario= new Usuario(matricula,nome,Nomecurso,email,senha);
         UsuarioDAO usuarioDao= new UsuarioDAO();
         usuarioDao.salvar(usuario);
+        usuario=usuarioDao.buscarPorMatricula(usuario);
+        session.setAttribute("Nome", usuario.getNome());
+        session.setAttribute("Conta", usuario.getMatricula());
+        session.setAttribute("Mensagem", null);
         session.setAttribute("Mensagem", "Cadastrado com sucesso!");
         request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
            

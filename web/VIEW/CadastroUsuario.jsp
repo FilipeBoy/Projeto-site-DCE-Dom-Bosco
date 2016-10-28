@@ -1,8 +1,24 @@
+<%@page import="DAO.UsuarioDAO"%>
+<%@page import="MODEL.Usuario"%>
 <%
-    String mensagem=(String)session.getAttribute("Mensagem");
     String usuario=(String)session.getAttribute("Nome");
+      if(usuario!=null){
+        Usuario user= new Usuario();
+        user.setMatricula(Integer.parseInt(session.getAttribute("Conta").toString()));
+        UsuarioDAO usuarioDao= new UsuarioDAO();
+        user=usuarioDao.buscarPorMatricula(user);
+        
+        if( usuario!=null){
+        session.setAttribute("Retorno", "sim");
+        session.setAttribute("campo1", user.getMatricula());
+        session.setAttribute("campo2", user.getNome());
+        session.setAttribute("campo3", user.getCurso());
+        session.setAttribute("campo4", user.getEmail());
+        session.setAttribute("campo5", user.getPassword()); 
+        }
+    }
+    String mensagem=(String)session.getAttribute("Mensagem");
     String retorno=(String)session.getAttribute("Retorno");
-    
 %>
 <html><head>
         <meta charset="utf-8">
@@ -66,7 +82,7 @@
         </div>
          <% if(usuario==null){%>
         <div class="section"><div class="container"><div class="row"><div class="col-md-12"><img src="/Projeto_DCE/IMAGES/cadastre-se-agora.png" class="img-responsive"></div></div></div></div>
-        <%}else{%><div class="section"><div class="container"><div class="row"><div class="col-md-12"><h1>Informação sobre Conta</h1>></div></div></div></div><%}%>
+        <%}else{%><div class="section"><div class="container"><div class="row"><div class="col-md-12"><h1>Informação sobre Conta</h1></div></div></div></div><%}%>
         <div class="section">
             <div class="container">
                 <div class="row">
@@ -77,7 +93,7 @@
                                 <label class="control-label" for="matricula">Matrícula</label>
                                 <input class="form-control" name="matricula" placeholder="00000000" type="text" <% if(retorno != null) {%> value=<%out.print(Integer.parseInt(session.getAttribute("campo1").toString()));%><%}%>>
                             </div>
-                                <% if(usuario!=null){%>
+                                <% if(usuario!=null && usuario.equals("admin")){%>
                                     <div class="form-group">
                                     <button type="submit" class="btn btn-primary" name="BotaoComando" value="buscar">Buscar</button>
                                 </div><%}%>
@@ -103,12 +119,12 @@
                                         <div class="col-md-3">
                                             <button type="submit" class="btn btn-primary"  name="BotaoComando" value="salvar">Enviar</button>
                                         </div>
-                                        <% if (usuario!=null && usuario.equals("admin")) {%>
                                         <div class="col-md-3">
-                                            <button type="reset" class="btn btn-primary">Novo</button>
+                                            <button type="reset" class="btn btn-primary">Limpar</button>
                                         </div>
+                                        <% if(usuario!=null){%>
                                         <div class="col-md-3">
-                                            <button class="btn btn-primary" name="BotaoComando" value="editar">Editar</button>
+                                            <button class="btn btn-primary" name="BotaoComando" value="editar">Atualizar</button>
                                         </div>
                                         <div class="col-md-3">
                                             <button class="btn btn-primary" name="BotaoComando" value="excluir">Excluir</button>

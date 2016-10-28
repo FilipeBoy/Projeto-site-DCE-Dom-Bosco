@@ -20,17 +20,20 @@
     
         ConexaoMySQL.getConexaoMySQL();
         Statement comando = ConexaoMySQL.connection.createStatement();
-        ResultSet rs = comando.executeQuery("select Email,Password,Nome from DCE_Usuario where Email='"+emailUsuario+"';");
+        ResultSet rs = comando.executeQuery("select Email,Password,Nome,Matricula from DCE_Usuario where Email='"+emailUsuario+"';");
         String login= new String("");
         String senha=new String("");
         String nome=new String("");
+        int conta= new Integer(0);
         while (rs.next()) {
             login= rs.getString("Email");
             senha= rs.getString("Password");
             nome=rs.getString("Nome");
+            conta=rs.getInt("Matricula");
         }
         if(login.equals(emailUsuario) && senha.equals(senhaUsurario)){
             session.setAttribute("Nome", nome);
+            session.setAttribute("Conta", conta);
             session.setAttribute("Mensagem", null);
             request.getRequestDispatcher("DCE.jsp").forward(request, response);
         }
