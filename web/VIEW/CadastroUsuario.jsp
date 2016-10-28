@@ -116,9 +116,10 @@
                             <div class="section">
                                 <div class="container">
                                     <div class="row">
+                                        <% if (usuario==null || usuario.equals("admin")) {%>
                                         <div class="col-md-3">
                                             <button type="submit" class="btn btn-primary"  name="BotaoComando" value="salvar">Enviar</button>
-                                        </div>
+                                        </div><%}%>
                                         <div class="col-md-3">
                                             <button type="reset" class="btn btn-primary">Limpar</button>
                                         </div>

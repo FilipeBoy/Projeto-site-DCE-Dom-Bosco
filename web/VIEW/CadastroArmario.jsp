@@ -116,10 +116,10 @@
                                         
                                        <% if (usuario != null && usuario.equals("admin")) {%>
                                         <div class="col-md-3">
-                                            <button type="reset" class="btn btn-primary">Novo</button>
+                                            <button type="reset" class="btn btn-primary">Limpar</button>
                                         </div>
                                         <div class="col-md-3">
-                                            <button class="btn btn-primary" name="BotaoComando" value="editar">Editar</button>
+                                            <button class="btn btn-primary" name="BotaoComando" value="editar">Atualizar</button>
                                         </div>
                                         <div class="col-md-3">
                                             <button class="btn btn-primary" name="BotaoComando" value="excluir">Excluir</button>
