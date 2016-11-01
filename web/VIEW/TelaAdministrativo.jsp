@@ -78,6 +78,7 @@
                     </div>
                     <div class="col-md-11">
                         <h3>Estatudo do DCE</h3>
+                        <a href="/Projeto_DCE/Downloads/Estatuto_DCE.pdf">Download</a>
                     </div>
                 </div>
             </div>
@@ -90,6 +91,7 @@
                     </div>
                     <div class="col-md-11">
                         <h3>Ata 2016/1</h3>
+                        <a href="/Projeto_DCE/Downloads/ata.pdf">Download</a>
                     </div>
                 </div>
             </div>
@@ -102,6 +104,7 @@
                     </div>
                     <div class="col-md-11">
                         <h3>Convocação Assembléia 15/11/2016</h3>
+                        <a href="/Projeto_DCE/Downloads/editalConvocacaoDCE.pdf">Download</a>
                     </div>
                 </div>
             </div>
@@ -114,6 +117,7 @@
                     </div>
                     <div class="col-md-11">
                         <h3>Edital das Eleições 2016</h3>
+                        <a href="/Projeto_DCE/Downloads/ANEXOS DO EDITAL.doc">Download</a>
                     </div>
                 </div>
             </div>
@@ -122,10 +126,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-1">
-                        <img src="/Projeto_DCE/IMAGES/word.png" class="img-responsive">
+                        <img src="/Projeto_DCE/IMAGES/pdf.png" class="img-responsive">
                     </div>
                     <div class="col-md-11">
                         <h3>Ofício 00001 DCE</h3>
+                        <a href="/Projeto_DCE/Downloads/OficioDCE.pdf">Download</a>
                     </div>
                 </div>
             </div>

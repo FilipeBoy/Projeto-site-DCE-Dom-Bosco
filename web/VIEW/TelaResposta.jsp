@@ -2,7 +2,7 @@
     String usuario = (String) session.getAttribute("Nome");
     String mensagem=(String)session.getAttribute("Mensagem");
     String mensagem2=(String)session.getAttribute("Mensagem2");
-%>
+ %>
 
 <html><head>
         <meta charset="utf-8">

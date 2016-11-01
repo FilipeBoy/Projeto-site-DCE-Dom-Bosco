@@ -1,5 +1,22 @@
+<%@page import="DAO.NoticiaDAO"%>
+<%@page import="MODEL.Noticia"%>
 <%
     String usuario=(String)session.getAttribute("Nome");
+    //int busca = 1;
+        //Noticia noticia= new Noticia();
+       // noticia.setID_Noticia(busca);
+       // NoticiaDAO noticiaDao= new NoticiaDAO();
+       // noticia=noticiaDao.buscarPorID_Noticia(noticia);
+        String autor= "";
+        String data=  "";
+        String titulo=  "";
+        String texto=  "";
+       // if( noticia!=null){
+       //     autor= noticia.getAutor();
+       //     data=  noticia.getData();
+       //     titulo=  noticia.getTitulo();
+       //     texto=  noticia.getTexto();
+       // }
 %>
 <html><head>
         <meta charset="utf-8">
@@ -77,8 +94,10 @@
                         <img src="/Projeto_DCE/IMAGES/logo dce.png" class="img-responsive">
                     </div>
                     <div class="col-md-11">
-                        <h3>Eleição</h3>
-                        <p>Abre-se edital de eleição do DCE Uniplac - http://dceuniplac.net/img-pagina/pagina-documentos/dce-uniplac-edital-de-eleicao.pdf</p>
+                        <h3><%out.print(titulo);%></h3>
+                        <p>Data: <%out.print(data);%></p>
+                        <p>Autor: <%out.print(autor);%></p>
+                        <p><%out.print(texto);%></p>
                     </div>
                 </div>
             </div>

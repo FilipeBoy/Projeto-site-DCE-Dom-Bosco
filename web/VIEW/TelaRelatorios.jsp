@@ -1,6 +1,86 @@
+
+<%@page import="DAO.ArmarioDAO"%>
+<%@page import="DAO.SugestaoDAO"%>
+<%@page import="DAO.PerdidoDAO"%>
+<%@page import="DAO.CursoDAO"%>
+<%@page import="DAO.NoticiaDAO"%>
+<%@page import="DAO.UsuarioDAO"%>
+<%@page import="MODEL.Sugestao"%>
+<%@page import="MODEL.Perdido"%>
+<%@page import="MODEL.Curso"%>
+<%@page import="MODEL.Noticia"%>
+<%@page import="MODEL.Usuario"%>
+<%@page import="MODEL.Armario"%>
+<%@page import="java.util.List"%>
 <%
-    String usuario=(String)session.getAttribute("Nome");
+    String usuario = (String) session.getAttribute("Nome");
+    String opcao = request.getParameter("opcao");
+    String campo1 = null, campo2 = null, campo3 = null, campo4 = null, campo5 = null;
+    List<Armario> armarioLista = null;
+    List<Usuario> usuarioLista = null;
+    List<Noticia> noticiaLista = null;
+    List<Curso>   cursoLista = null;
+    List<Perdido> perdidoLista = null;
+    List<Sugestao> sugestaoLista = null;
+
+    if (opcao != null) {
+        if (opcao.equalsIgnoreCase("usuarios")) {
+            campo1 = "Matricula";
+            campo2 = "Nome";
+            campo3 = "Curso";
+            campo4 = "Email";
+            campo5 = "Senha";
+            UsuarioDAO usuarioDao = new UsuarioDAO();
+            usuarioLista = usuarioDao.listar();
+
+        } else if (opcao.equalsIgnoreCase("armarios")) {
+            campo1 = "Registro";
+            campo2 = "Matricula";
+            campo3 = "Nome";
+            campo4 = "Data Inicio";
+            campo5 = "DataFim";
+            ArmarioDAO armarioDao = new ArmarioDAO();
+            armarioLista = armarioDao.listar();
+
+        } else if (opcao.equalsIgnoreCase("noticias")) {
+            campo1 = "ID";
+            campo2 = "Autor";
+            campo3 = "Data";
+            campo4 = "Titulo";
+            campo5 = "Inicio";
+            NoticiaDAO noticiaDao = new NoticiaDAO();
+            noticiaLista = noticiaDao.listar();
+
+        } else if (opcao.equalsIgnoreCase("cursos")) {
+            campo1 = "ID";
+            campo2 = "Nome";
+            campo3 = "Horario";
+            campo4 = "Carga Horaria";
+            campo5 = "Inicio";
+            CursoDAO cursoDao = new CursoDAO();
+            cursoLista = cursoDao.listar();
+
+        } else if (opcao.equalsIgnoreCase("perdidos")) {
+            campo1 = "ID";
+            campo2 = "Matricula Usuario";
+            campo3 = "Nome do Objeto";
+            campo4 = "Local Perda";
+            campo5 = "Inicio";
+            PerdidoDAO perdidoDao = new PerdidoDAO();
+            perdidoLista = perdidoDao.listar();
+            
+        } else if (opcao.equalsIgnoreCase("sugestoes")) {
+            campo1 = "ID";
+            campo2 = "Data";
+            campo3 = "Status";
+            campo4 = "Assunto";
+            campo5 = "Inicio";
+            SugestaoDAO sugestaoDao = new SugestaoDAO();
+            sugestaoLista = sugestaoDao.listar();
+        }
+    }
 %>
+
 <html><head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +90,7 @@
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
     </head><body>
-        
+
         <div class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
@@ -21,13 +101,13 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-               <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+                <div class="collapse navbar-collapse" id="navbar-ex-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                       <li class="active">
+                        <li class="active">
                             <a href="DCE.jsp">Home</a>
                         </li>
                         <li class="active">
-                            <a href="TelaSobre DCE.jsp">Sobre DCE<br></a>
+                            <a href="TelaSobreDCE.jsp">Sobre DCE<br></a>
                         </li>
                         <li class="active">
                             <a href="TelaServicos.jsp">Serviços</a>
@@ -41,21 +121,21 @@
                         <li class="active">
                             <a href="TelaContato.jsp">Contato</a>
                         </li>
-                        <% if (usuario!=null && usuario.equals("admin")) {%>
+                        <% if (usuario != null && usuario.equals("admin")) {%>
                         <li class="active">
                             <a href="TelaRelatorios.jsp">Relatorios</a>
                         </li><%}%>
                     </ul>
                     <ul class="nav navbar-nav navbar-left">
-                        <% if(usuario!=null){%>
+                        <% if (usuario != null) {%>
                         <li class="active">
                             <a href="Logoff.jsp">Sign out</a>
                         </li>
-                        
+
                         <li class="active">
                             <a href="CadastroUsuario.jsp"><%out.print(usuario);%></a>
-                         </li><%}else{%>
-                         <li class="active">
+                        </li><%} else {%>
+                        <li class="active">
                             <a href="TelaLogin.jsp">Sign in</a>
                         </li>  <%}%>
                     </ul>
@@ -84,22 +164,22 @@
                             <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">O que deseja ver?<br><i class="fa fa-caret-down"></i></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a href="#">Relatorio de Usuarios</a>
+                                    <a href="TelaRelatorios.jsp?opcao=usuarios" >Relatorio de Usuarios</a>
                                 </li>
                                 <li>
-                                    <a href="#">Relatorio de Armarios</a>
+                                    <a href="TelaRelatorios.jsp?opcao=armarios">Relatorio de Armarios</a>
                                 </li>
                                 <li>
-                                    <a href="#">Relatorio de Artigos</a>
+                                    <a href="TelaRelatorios.jsp?opcao=noticias">Relatorio de Noticias</a>
                                 </li>
                                 <li>
-                                    <a href="#">Relatorio de Cursos</a>
+                                    <a href="TelaRelatorios.jsp?opcao=cursos">Relatorio de Cursos</a>
                                 </li>
                                 <li>
-                                    <a href="#">Relatorio de Perdidos</a>
+                                    <a href="TelaRelatorios.jsp?opcao=perdidos">Relatorio de Perdidos</a>
                                 </li>
                                 <li>
-                                    <a href="#">Relatorio de Sugestoes</a>
+                                    <a href="TelaRelatorios.jsp?opcao=sugestoes">Relatorio de Sugestoes</a>
                                 </li>
                             </ul>
                         </div>
@@ -107,6 +187,7 @@
                 </div>
             </div>
         </div>
+        <%if (opcao != null) {%>
         <div class="section">
             <div class="container">
                 <div class="row">
@@ -114,49 +195,76 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Campo 1</th>
-                                    <th>Campo 2</th>
-                                    <th>Campo 3</th>
-                                    <th>Campo 4</th>
+                                    <th><%out.print(campo1);%></th>
+                                    <th><%out.print(campo2);%></th>
+                                    <th><%out.print(campo3);%></th>
+                                    <th><%out.print(campo4);%></th>
+                                    <th><%out.print(campo5);%></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1111111</td>
-                                    <td>Mark</td>
-                                    <td>Engenharia Ambiental</td>
-                                    <td>Mark@mdo.com</td>
-                                    <td>123456</td>
-                                </tr>
-                                <tr>
-                                    <td>2222222</td>
-                                    <td>Admin</td>
-                                    <td>Sistemas de Informacao</td>
-                                    <td>admin@admin.com.br</td>
-                                    <td>admin</td>
-                                </tr>
-                                <tr>
-                                    <td>33333333</td>
-                                    <td>Larry</td>
-                                    <td>Contabilidade</td>
-                                    <td>Larry@twitter.com</td>
-                                    <td>asdf456</td>
-                                </tr>
+                               <% if (opcao.equalsIgnoreCase("usuarios")) {%>
+                                    <%for (Usuario user : usuarioLista) {%>
+                                        <tr>
+                                            <td><%=user.getMatricula()%></td>
+                                            <td><%=user.getNome()%></td>
+                                            <td><%=user.getCurso()%></td>
+                                            <td><%=user.getEmail()%></td>
+                                            <td><%=user.getPassword()%></td>
+                                        </tr>
+                                    <%}}%>
+                                <%if(opcao.equalsIgnoreCase("armarios")){%>
+                                    <%for (Armario arm : armarioLista) {%>   
+                                        <tr>
+                                            <td><%=arm.getNroRegistro()%></td>
+                                            <td><%=arm.getMatriculaUsuario()%></td>
+                                            <td><%=arm.getNomeUsuario()%></td>
+                                            <td><%=arm.getDataInicio()%></td>
+                                            <td><%=arm.getDataFim()%></td>
+                                        </tr>
+                                    <%}}%>
+                                    <%if(opcao.equalsIgnoreCase("noticias")){%>
+                                        <%for (Noticia noticia : noticiaLista) {%>   
+                                            <tr>
+                                                <td><%=noticia.getID_Noticia()%></td>
+                                                <td><%=noticia.getAutor()%></td>
+                                                <td><%=noticia.getData()%></td>
+                                                <td><%=noticia.getTitulo()%></td>
+                                                <td><%=noticia.getTexto().concat(" ")%></td>
+                                            </tr>
+                                    <%}}%>
+                                    <%if(opcao.equalsIgnoreCase("cursos")){%>
+                                        <%for (Curso curso : cursoLista) {%>   
+                                            <tr>
+                                                <td><%=curso.getID_Curso()%></td>
+                                                <td><%=curso.getNome_Curso()%></td>
+                                                <td><%=curso.getHorario()%></td>
+                                                <td><%=curso.getCargaHoraria()%></td>
+                                                <td><%=curso.getDescricao().concat(" ")%></td>
+                                            </tr>
+                                    <%}}%>
+                                    <%if(opcao.equalsIgnoreCase("perdidos")){%>
+                                        <%for (Perdido perdido : perdidoLista) {%>   
+                                            <tr>
+                                                <td><%=perdido.getID_Perdido()%></td>
+                                                <td><%=perdido.getMatricula_Usuario()%></td>
+                                                <td><%=perdido.getNomeObjeto()%></td>
+                                                <td><%=perdido.getLocalPerda()%></td>
+                                                <td><%=perdido.getDescricao().concat(" ")%></td>
+                                            </tr>
+                                    <%}}%>
+                                    <%if(opcao.equalsIgnoreCase("sugestoes")){%>
+                                        <%for (Sugestao sugestao : sugestaoLista) {%>   
+                                            <tr>
+                                                <td><%=sugestao.getID_Sugestao()%></td>
+                                                <td><%=sugestao.getData()%></td>
+                                                <td><%=sugestao.getStatus()%></td>
+                                                <td><%=sugestao.getAssunto()%></td>
+                                                <td><%=sugestao.getDescricao().concat(" ")%></td>
+                                            </tr>
+                                    <%}}%>
                             </tbody>
                         </table>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <ul class="pager">
-                            <li class="previous">
-                                <a href="#">←  Prev</a>
-                            </li>
-                            <li class="next">
-                                <a href="#">Next  →</a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -168,26 +276,19 @@
                         <a class="btn btn-primary">Imprimir</a>
                     </div>
                     <div class="col-md-4">
+                       <a class="btn btn-primary">Excluir</a>
+                    </div><br><br><br><br>
+                    <div class="col-md-8">
                         <a class="btn btn-primary" href="CadastroUsuario.jsp">Editar Usuario</a>
-                    </div><br><br>
-                    <div class="col-md-4">
                         <a class="btn btn-primary " href="CadastroCursos.jsp">Editar Curso</a>
-                    </div>
-                    <div class="col-md-4">
                         <a class="btn btn-primary" href="CadastroNoticias.jsp">Editar Noticias</a>
-                    </div><br><br>
-                    <div class="col-md-4">
                         <a class="btn btn-primary" href="CadastroArmario.jsp">Editar Armario</a>
-                    </div>
-                    <div class="col-md-4">
                         <a class="btn btn-primary" href="CadastroPerdidos.jsp">Editar Perdidos</a>
-                    </div><br><br>
-                    <div class="col-md-4">
                         <a class="btn btn-primary" href="CadastroSugestoes.jsp">Editar Sugestoes</a>
                     </div>
                 </div>
             </div>
-        </div>
+        </div><%}%>
         <footer class="section section-primary">
             <div class="container">
                 <div class="row">
@@ -227,6 +328,4 @@
                 </div>
             </div>
         </footer>
-    
-
 </body></html>

@@ -88,7 +88,7 @@
                 <div class="row">
                     <div class="col-md-6">
                        <% if(usuario!=null){%>
-                         <a class="btn btn-primary" >Baixar Formulário</a>
+                         <a class="btn btn-primary" href="/Projeto_DCE/Downloads/CartaoTri.pdf">Baixar Formulário</a>
                          <%}else{%>
                         <a class="btn btn-primary" href="TelaLogin.jsp">Ler mais</a>
                          <%}%>
@@ -148,7 +148,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <% if(usuario!=null){%>
-                         <a class="btn btn-primary" >Baixar Formulário</a>
+                         <a class="btn btn-primary" href="/Projeto_DCE/Downloads/CarteiraEstudante.pdf" >Baixar Formulário</a>
                          <%}else{%>
                         <a class="btn btn-primary" href="TelaLogin.jsp">Ler mais</a>
                          <%}%>

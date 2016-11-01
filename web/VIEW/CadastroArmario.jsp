@@ -30,7 +30,7 @@
                             <a href="DCE.jsp">Home</a>
                         </li>
                         <li class="active">
-                            <a href="TelaSobre DCE.jsp">Sobre DCE<br></a>
+                            <a href="TelaSobreDCE.jsp">Sobre DCE<br></a>
                         </li>
                         <li class="active">
                             <a href="TelaServicos.jsp">Serviços</a>

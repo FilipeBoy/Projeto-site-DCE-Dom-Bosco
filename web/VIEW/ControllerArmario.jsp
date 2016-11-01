@@ -41,7 +41,6 @@
             request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
     }
     else if(botao.equals("buscar")){
-        //List<Armario> armarioLista;
         int busca = Integer.parseInt(request.getParameter("busca"));
         Armario armario = new Armario();
         armario.setMatriculaUsuario(busca);
