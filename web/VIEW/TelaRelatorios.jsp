@@ -14,7 +14,10 @@
 <%@page import="java.util.List"%>
 <%
     String usuario = (String) session.getAttribute("Nome");
-    String opcao = request.getParameter("opcao");
+    String opcao =request.getParameter("opcao");
+    if((String) session.getAttribute("retorno")!=null){
+        opcao = (String) session.getAttribute("retorno");
+    }
     String campo1 = null, campo2 = null, campo3 = null, campo4 = null, campo5 = null;
     List<Armario> armarioLista = null;
     List<Usuario> usuarioLista = null;
@@ -23,8 +26,9 @@
     List<Perdido> perdidoLista = null;
     List<Sugestao> sugestaoLista = null;
 
+         
     if (opcao != null) {
-        if (opcao.equalsIgnoreCase("usuarios")) {
+        if (opcao.equalsIgnoreCase("Relatorio Usuarios")) {
             campo1 = "Matricula";
             campo2 = "Nome";
             campo3 = "Curso";
@@ -33,7 +37,7 @@
             UsuarioDAO usuarioDao = new UsuarioDAO();
             usuarioLista = usuarioDao.listar();
 
-        } else if (opcao.equalsIgnoreCase("armarios")) {
+        } else if (opcao.equalsIgnoreCase("Relatorio Armarios")) {
             campo1 = "Registro";
             campo2 = "Matricula";
             campo3 = "Nome";
@@ -42,7 +46,7 @@
             ArmarioDAO armarioDao = new ArmarioDAO();
             armarioLista = armarioDao.listar();
 
-        } else if (opcao.equalsIgnoreCase("noticias")) {
+        } else if (opcao.equalsIgnoreCase("Relatorio Noticias")) {
             campo1 = "ID";
             campo2 = "Autor";
             campo3 = "Data";
@@ -51,7 +55,7 @@
             NoticiaDAO noticiaDao = new NoticiaDAO();
             noticiaLista = noticiaDao.listar();
 
-        } else if (opcao.equalsIgnoreCase("cursos")) {
+        } else if (opcao.equalsIgnoreCase("Relatorio Cursos")) {
             campo1 = "ID";
             campo2 = "Nome";
             campo3 = "Horario";
@@ -60,7 +64,7 @@
             CursoDAO cursoDao = new CursoDAO();
             cursoLista = cursoDao.listar();
 
-        } else if (opcao.equalsIgnoreCase("perdidos")) {
+        } else if (opcao.equalsIgnoreCase("Relatorio Perdidos")) {
             campo1 = "ID";
             campo2 = "Matricula Usuario";
             campo3 = "Nome do Objeto";
@@ -69,7 +73,7 @@
             PerdidoDAO perdidoDao = new PerdidoDAO();
             perdidoLista = perdidoDao.listar();
             
-        } else if (opcao.equalsIgnoreCase("sugestoes")) {
+        } else if (opcao.equalsIgnoreCase("Relatorio Sugestoes")) {
             campo1 = "ID";
             campo2 = "Data";
             campo3 = "Status";
@@ -79,6 +83,37 @@
             sugestaoLista = sugestaoDao.listar();
         }
     }
+    
+/*
+    function valida() {
+var x=document.getElementsByTagName("input");
+var i=0;
+var c=new Array();
+a=0;
+for (i=0;i<=x.length-1;i++) {
+if (x[i].type=="checkbox" && x[i].id=="idT") {
+c[a] = x[i];
+a++;
+}
+}
+i=0;
+var checked = false;
+for (i=0;i<=c.length-1;i++) {
+if (c[i].checked==true) {
+checked = true;
+break;
+}
+}
+if (!checked) {
+alert("Escolha pelo menos um dos checkbox.");
+return false;
+}else if (confirm("Quer continuar?")) {
+return true;
+}else{
+return false;
+}
+}
+    */
 %>
 
 <html><head>
@@ -164,22 +199,22 @@
                             <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">O que deseja ver?<br><i class="fa fa-caret-down"></i></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a href="TelaRelatorios.jsp?opcao=usuarios" >Relatorio de Usuarios</a>
+                                    <a href="TelaRelatorios.jsp?opcao=Relatorio Usuarios" >Relatorio de Usuarios</a>
                                 </li>
                                 <li>
-                                    <a href="TelaRelatorios.jsp?opcao=armarios">Relatorio de Armarios</a>
+                                    <a href="TelaRelatorios.jsp?opcao=Relatorio Armarios">Relatorio de Armarios</a>
                                 </li>
                                 <li>
-                                    <a href="TelaRelatorios.jsp?opcao=noticias">Relatorio de Noticias</a>
+                                    <a href="TelaRelatorios.jsp?opcao=Relatorio Noticias">Relatorio de Noticias</a>
                                 </li>
                                 <li>
-                                    <a href="TelaRelatorios.jsp?opcao=cursos">Relatorio de Cursos</a>
+                                    <a href="TelaRelatorios.jsp?opcao=Relatorio Cursos">Relatorio de Cursos</a>
                                 </li>
                                 <li>
-                                    <a href="TelaRelatorios.jsp?opcao=perdidos">Relatorio de Perdidos</a>
+                                    <a href="TelaRelatorios.jsp?opcao=Relatorio Perdidos">Relatorio de Perdidos</a>
                                 </li>
                                 <li>
-                                    <a href="TelaRelatorios.jsp?opcao=sugestoes">Relatorio de Sugestoes</a>
+                                    <a href="TelaRelatorios.jsp?opcao=Relatorio Sugestoes">Relatorio de Sugestoes</a>
                                 </li>
                             </ul>
                         </div>
@@ -187,7 +222,9 @@
                 </div>
             </div>
         </div>
-        <%if (opcao != null) {%>
+       <%if (opcao != null) {%>
+       <div><h2 class="col-md-12"><%out.print(opcao);%></h2></div>
+         <form role="form" action="ControllerRelatorios.jsp" method="post">
         <div class="section">
             <div class="container">
                 <div class="row">
@@ -204,7 +241,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                               <% if (opcao.equalsIgnoreCase("usuarios")) {%>
+                               
+                               <% if (opcao.equalsIgnoreCase("Relatorio Usuarios")) {%>
                                     <%for (Usuario user : usuarioLista) {%>
                                         <tr>
                                             <td><%=user.getMatricula()%></td>
@@ -212,10 +250,10 @@
                                             <td><%=user.getCurso()%></td>
                                             <td><%=user.getEmail()%></td>
                                             <td><%=user.getPassword()%></td>
-                                            <td><input type="checkbox" value ='1'></td>
+                                           <td><input type="checkbox" value ='<%=user.getMatricula()%>' name="item"></td>
                                         </tr>
                                     <%}}%>
-                                <%if(opcao.equalsIgnoreCase("armarios")){%>
+                                <%if(opcao.equalsIgnoreCase("Relatorio Armarios")){%>
                                     <%for (Armario arm : armarioLista) {%>   
                                         <tr>
                                             <td><%=arm.getNroRegistro()%></td>
@@ -223,10 +261,10 @@
                                             <td><%=arm.getNomeUsuario()%></td>
                                             <td><%=arm.getDataInicio()%></td>
                                             <td><%=arm.getDataFim()%></td>
-                                            <td><input type="checkbox" value ='1'></td>
+                                            <td><input type="checkbox" value ='<%=arm.getNroRegistro()%>' name="item"></td>
                                         </tr>
                                     <%}}%>
-                                    <%if(opcao.equalsIgnoreCase("noticias")){%>
+                                    <%if(opcao.equalsIgnoreCase("Relatorio Noticias")){%>
                                         <%for (Noticia noticia : noticiaLista) {%>   
                                             <tr>
                                                 <td><%=noticia.getID_Noticia()%></td>
@@ -234,10 +272,10 @@
                                                 <td><%=noticia.getData()%></td>
                                                 <td><%=noticia.getTitulo()%></td>
                                                 <td><%=noticia.getTexto().concat(" ")%></td>
-                                                <td><input type="checkbox" value ='1'></td>
+                                                <td><input type="checkbox" value ='<%=noticia.getID_Noticia()%>' name="item"></td>
                                             </tr>
                                     <%}}%>
-                                    <%if(opcao.equalsIgnoreCase("cursos")){%>
+                                    <%if(opcao.equalsIgnoreCase("Relatorio Cursos")){%>
                                         <%for (Curso curso : cursoLista) {%>   
                                             <tr>
                                                 <td><%=curso.getID_Curso()%></td>
@@ -245,10 +283,10 @@
                                                 <td><%=curso.getHorario()%></td>
                                                 <td><%=curso.getCargaHoraria()%></td>
                                                 <td><%=curso.getDescricao().concat(" ")%></td>
-                                                <td><input type="checkbox" value ='1'></td>
+                                                <td><input type="checkbox" value ='<%=curso.getID_Curso()%>' name="item"></td>
                                             </tr>
                                     <%}}%>
-                                    <%if(opcao.equalsIgnoreCase("perdidos")){%>
+                                    <%if(opcao.equalsIgnoreCase("Relatorio Perdidos")){%>
                                         <%for (Perdido perdido : perdidoLista) {%>   
                                             <tr>
                                                 <td><%=perdido.getID_Perdido()%></td>
@@ -256,10 +294,10 @@
                                                 <td><%=perdido.getNomeObjeto()%></td>
                                                 <td><%=perdido.getLocalPerda()%></td>
                                                 <td><%=perdido.getDescricao().concat(" ")%></td>
-                                                <td><input type="checkbox" value ='1'></td>
+                                                <td><input type="checkbox" value ='<%=perdido.getID_Perdido()%>' name="item"></td>
                                             </tr>
                                     <%}}%>
-                                    <%if(opcao.equalsIgnoreCase("sugestoes")){%>
+                                    <%if(opcao.equalsIgnoreCase("Relatorio Sugestoes")){%>
                                         <%for (Sugestao sugestao : sugestaoLista) {%>   
                                             <tr>
                                                 <td><%=sugestao.getID_Sugestao()%></td>
@@ -267,24 +305,27 @@
                                                 <td><%=sugestao.getStatus()%></td>
                                                 <td><%=sugestao.getAssunto()%></td>
                                                 <td><%=sugestao.getDescricao().concat(" ")%></td>
-                                                <td><input type="checkbox" value ='1'></td>
+                                                <td><input type="checkbox" value ='<%=sugestao.getID_Sugestao()%>' name="item"></td>
                                             </tr>
                                     <%}}%>
+                               
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-        </div><%}%>
+        </div>
+        <div class="col-md-4">
+                <a class="btn btn-primary" onclick="window.print();">Imprimir</a>
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary" name="BotaoComando" value="<%=opcao%>">Excluir</button>
+            </div>
+        </form>
+             <%}%>
         <div class="section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
-                        <a class="btn btn-primary" onclick="window.print();">Imprimir</a>
-                    </div>
-                    <div class="col-md-4">
-                       <a class="btn btn-primary">Excluir</a>
-                    </div><br><br><br><br>
                     <div class="col-md-8">
                         <a class="btn btn-primary" href="CadastroUsuario.jsp">Editar Usuario</a>
                         <a class="btn btn-primary " href="CadastroCursos.jsp">Editar Curso</a>
@@ -336,3 +377,4 @@
             </div>
         </footer>
 </body></html>
+<%session.setAttribute("retorno",  null );%>
