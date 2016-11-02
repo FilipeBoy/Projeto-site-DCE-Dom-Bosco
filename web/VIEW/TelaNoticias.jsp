@@ -1,22 +1,12 @@
+<%@page import="java.util.List"%>
 <%@page import="DAO.NoticiaDAO"%>
 <%@page import="MODEL.Noticia"%>
 <%
     String usuario=(String)session.getAttribute("Nome");
-    //int busca = 1;
-        //Noticia noticia= new Noticia();
-       // noticia.setID_Noticia(busca);
-       // NoticiaDAO noticiaDao= new NoticiaDAO();
-       // noticia=noticiaDao.buscarPorID_Noticia(noticia);
-        String autor= "";
-        String data=  "";
-        String titulo=  "";
-        String texto=  "";
-       // if( noticia!=null){
-       //     autor= noticia.getAutor();
-       //     data=  noticia.getData();
-       //     titulo=  noticia.getTitulo();
-       //     texto=  noticia.getTexto();
-       // }
+    List<Noticia> noticiaLista = null;
+    NoticiaDAO noticiaDao = new NoticiaDAO();
+    noticiaLista = noticiaDao.listar();
+    
 %>
 <html><head>
         <meta charset="utf-8">
@@ -25,7 +15,8 @@
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+        <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css" >
+        
     </head><body>
         <div class="navbar navbar-default">
             <div class="container">
@@ -87,81 +78,22 @@
                 </div>
             </div>
         </div>
+         <%int cont=0;for (Noticia noticia : noticiaLista) {%>           
         <div class="section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-1">
-                        <img src="/Projeto_DCE/IMAGES/logo dce.png" class="img-responsive">
+                        <img src="/Projeto_DCE/IMAGES/logo dce.png" class="img-responsive logo"  style="margin-top: 25px;">
                     </div>
                     <div class="col-md-11">
-                        <h3><%out.print(titulo);%></h3>
-                        <p>Data: <%out.print(data);%></p>
-                        <p>Autor: <%out.print(autor);%></p>
-                        <p><%out.print(texto);%></p>
+                        <h3><%out.print(noticia.getTitulo());%></h3>
+                        <p>Data: <%out.print(noticia.getData());%></p>
+                        <p>Autor: <%out.print(noticia.getAutor());%></p>
+                        <p><%out.print(noticia.getTexto());%></p>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-11 text-right">
-                        <h3>Assembleia Estatuto</h3>
-                        <p>Nova assembleia para discussão e aprovação do estatuto ocorrerá no dia
-                            12 de dezembro de 2016. É importante a participação de todos.</p>
-                    </div>
-                    <div class="col-md-1">
-                        <img src="/Projeto_DCE/IMAGES/logo dce.png" class="img-responsive">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-1">
-                        <img src="/Projeto_DCE/IMAGES/logo dce.png" class="img-responsive">
-                    </div>
-                    <div class="col-md-11">
-                        <h3>Avaliação Institucional</h3>
-                        <p>Já está disponível no seu Portal Uniplac a Avaliação Institucional. Um
-                            professor mal avaliado terá acompanhamento pedagógico. Se tiver conceito
-                            insatisfatório dois semestres seguidos, o professor não dará aula no semestre
-                            seguinte. É importantíssimo a participação de todos!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-11 text-right">
-                        <h3>Comunicado Oficial FIES</h3>
-                        <p>O DCE Uniplac durante os três últimos meses buscou uma solução para que
-                            os acadêmicos da Uniplac não fossem atingidos com as novas regras do FIES.
-                            Inicialmente,...</p>
-                    </div>
-                    <div class="col-md-1">
-                        <img src="/Projeto_DCE/IMAGES/logo dce.png" class="img-responsive">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-1">
-                        <img src="/Projeto_DCE/IMAGES/logo dce.png" class="img-responsive">
-                    </div>
-                    <div class="col-md-11">
-                        <h3>Esclarecimento: Para que serve o crédito pago pelo acadêmico?</h3>
-                        <p>Todo início de um novo semestre acadêmico, os novos e antigos alunos da
-                            Universidade do Planalto Catarinense são cobrados junto a rematrícula,
-                            a taxa de crédito destinada ao DCE....</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </div><%cont++;if(cont==4){break;}}%>
         <footer class="section section-primary">
             <div class="container">
                 <div class="row">

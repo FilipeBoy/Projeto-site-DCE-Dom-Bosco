@@ -200,6 +200,7 @@
                                     <th><%out.print(campo3);%></th>
                                     <th><%out.print(campo4);%></th>
                                     <th><%out.print(campo5);%></th>
+                                    <th>Marcar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -211,6 +212,7 @@
                                             <td><%=user.getCurso()%></td>
                                             <td><%=user.getEmail()%></td>
                                             <td><%=user.getPassword()%></td>
+                                            <td><input type="checkbox" value ='1'></td>
                                         </tr>
                                     <%}}%>
                                 <%if(opcao.equalsIgnoreCase("armarios")){%>
@@ -221,6 +223,7 @@
                                             <td><%=arm.getNomeUsuario()%></td>
                                             <td><%=arm.getDataInicio()%></td>
                                             <td><%=arm.getDataFim()%></td>
+                                            <td><input type="checkbox" value ='1'></td>
                                         </tr>
                                     <%}}%>
                                     <%if(opcao.equalsIgnoreCase("noticias")){%>
@@ -231,6 +234,7 @@
                                                 <td><%=noticia.getData()%></td>
                                                 <td><%=noticia.getTitulo()%></td>
                                                 <td><%=noticia.getTexto().concat(" ")%></td>
+                                                <td><input type="checkbox" value ='1'></td>
                                             </tr>
                                     <%}}%>
                                     <%if(opcao.equalsIgnoreCase("cursos")){%>
@@ -241,6 +245,7 @@
                                                 <td><%=curso.getHorario()%></td>
                                                 <td><%=curso.getCargaHoraria()%></td>
                                                 <td><%=curso.getDescricao().concat(" ")%></td>
+                                                <td><input type="checkbox" value ='1'></td>
                                             </tr>
                                     <%}}%>
                                     <%if(opcao.equalsIgnoreCase("perdidos")){%>
@@ -251,6 +256,7 @@
                                                 <td><%=perdido.getNomeObjeto()%></td>
                                                 <td><%=perdido.getLocalPerda()%></td>
                                                 <td><%=perdido.getDescricao().concat(" ")%></td>
+                                                <td><input type="checkbox" value ='1'></td>
                                             </tr>
                                     <%}}%>
                                     <%if(opcao.equalsIgnoreCase("sugestoes")){%>
@@ -261,6 +267,7 @@
                                                 <td><%=sugestao.getStatus()%></td>
                                                 <td><%=sugestao.getAssunto()%></td>
                                                 <td><%=sugestao.getDescricao().concat(" ")%></td>
+                                                <td><input type="checkbox" value ='1'></td>
                                             </tr>
                                     <%}}%>
                             </tbody>
@@ -268,12 +275,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div><%}%>
         <div class="section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
-                        <a class="btn btn-primary">Imprimir</a>
+                        <a class="btn btn-primary" onclick="window.print();">Imprimir</a>
                     </div>
                     <div class="col-md-4">
                        <a class="btn btn-primary">Excluir</a>
@@ -288,7 +295,7 @@
                     </div>
                 </div>
             </div>
-        </div><%}%>
+        </div>
         <footer class="section section-primary">
             <div class="container">
                 <div class="row">

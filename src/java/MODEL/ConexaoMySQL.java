@@ -35,12 +35,13 @@ public class ConexaoMySQL {
 
             String mydatabase = "mysql"; //nome do seu banco de dados 
 
-            String url = "jdbc:mysql://intracker.com.br:3306/fdb";
+            //String url = "jdbc:mysql://intracker.com.br:3306/fdb";
+            //String username = "fdb"; //nome de um usuário de seu BD 
+           // String password = "fdb"; //sua senha de acesso 
 
-            String username = "fdb"; //nome de um usuário de seu BD 
-
-            String password = "fdb"; //sua senha de acesso 
-
+            String url = "jdbc:mysql://db4free.net:3306/intracker";
+            String username = "facfdb"; //nome de um usuário de seu BD 
+            String password = "facfdb@2016"; //sua senha de acesso 
             connection = DriverManager.getConnection(url, username, password);
 
             

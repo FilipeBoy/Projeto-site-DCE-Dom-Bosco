@@ -96,7 +96,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <form class="form-horizontal" role="form" action="javamail.jsp" method="post">
+                        <form class="form-horizontal" role="form" action="enviaEmail.jsp"  method="post">
                             <div class="form-group">
                                 <div class="col-sm-2">
                                     <label for="nome" class="control-label">Nome</label>
@@ -118,7 +118,7 @@
                                     <label for="Assunto" class="control-label">Assunto</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="Assunto" placeholder="Assunto">
+                                    <input type="text" class="form-control" name="Assunto" placeholder="Assunto">
                                 </div>
                             </div>
                             <div class="form-group">

@@ -84,49 +84,16 @@
             <div class="carousel-inner">
                 <div class="item active">
                     <img src="/Projeto_DCE/IMAGES/banner1.jpg">
-                    <div class="carousel-caption">
-                        <h2>Title</h2>
-                        <p>Description</p>
-                    </div>
                 </div>
                 <div class="item">
                     <img src="/Projeto_DCE/IMAGES/banner2.jpg">
-                    <div class="carousel-caption">
-                        <h2>Title</h2>
-                        <p>Description</p>
-                    </div>
                 </div>
                 <div class="item">
                     <img src="/Projeto_DCE/IMAGES/banner3.jpg">
-                    <div class="carousel-caption">
-                        <h2>Title</h2>
-                        <p>Description</p>
-                    </div>
                 </div>
             </div>
             <a class="left carousel-control" href="#fullcarousel-example" data-slide="prev"><i class="icon-prev fa fa-angle-left"></i></a>
             <a class="right carousel-control" href="#fullcarousel-example" data-slide="next"><i class="icon-next fa fa-angle-right"></i></a>
-        </div>
-        <div class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <img src="/Projeto_DCE/IMAGES/news.jpg" class="img-responsive">
-                    </div>
-                    <div class="col-md-6">
-                        <div class="col-md-12">
-                            <h1>ÚLTIMAS NOTÍCIAS</h1>
-                            <h3>02 Mar 2016</h3>
-                            <p>Membros da diretoria realizam doação de alimentos.</p>
-                            <h3>19 Jan 2016</h3>
-                            <p>Membros da diretoria do DCE fazem doações de alimentos.</p>
-                            <h3>12 Jan 2016</h3>
-                            <p>A indústria beneficia dos diplomados das universidades. Por isso, também
-                                deve pagar.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <footer class="section section-primary">
             <div class="container">
