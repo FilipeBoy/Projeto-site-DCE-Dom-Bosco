@@ -1,34 +1,35 @@
-
 package MODEL;
 
-
 public class Sugestao {
+
     private int ID_Sugestao;
     private String data;
     private String Status;
     private String Assunto;
     private String Descricao;
 
-     public Sugestao(){}
-     
-     public Sugestao(int ID_Sugestao){
-         this.ID_Sugestao=ID_Sugestao;
-     }
-    
-    public Sugestao(String data,String Status,String Assunto,String Descricao){
-        this.Status=Status;
-        this.data=data;
-        this.Assunto=Assunto;
-        this.Descricao=Descricao;
-}
-     public Sugestao(int ID_Sugestao,String Status,String data,String Assunto,String Descricao){
-        this.Status=Status;
-        this.data=data;
-        this.Assunto=Assunto;
-        this.Descricao=Descricao;
-        this.ID_Sugestao=ID_Sugestao;
-}
-    
+    public Sugestao() {
+    }
+
+    public Sugestao(int ID_Sugestao) {
+        this.ID_Sugestao = ID_Sugestao;
+    }
+
+    public Sugestao(String data, String Status, String Assunto, String Descricao) {
+        this.Status = Status;
+        this.data = data;
+        this.Assunto = Assunto;
+        this.Descricao = Descricao;
+    }
+
+    public Sugestao(int ID_Sugestao, String Status, String data, String Assunto, String Descricao) {
+        this.Status = Status;
+        this.data = data;
+        this.Assunto = Assunto;
+        this.Descricao = Descricao;
+        this.ID_Sugestao = ID_Sugestao;
+    }
+
     public int getID_Sugestao() {
         return ID_Sugestao;
     }

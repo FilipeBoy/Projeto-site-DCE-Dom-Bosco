@@ -1,41 +1,36 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package MODEL;
 
-/**
- *
- * @author filip
- */
 public class Curso {
-    
+
     private int ID_Curso;
     private String Nome_Curso;
     private String Horario;
     private String CargaHoraria;
     private String Descricao;
-    
-    public Curso(){};
-    
-    public Curso(String Nome_Curso){
-        this.Nome_Curso=Nome_Curso;
+
+    public Curso() {
     }
+
+    ;
     
-    public Curso(String Nome_Curso,String Horario,String CargaHoraria,String Descricao){
-        this.Nome_Curso=Nome_Curso;
-        this.Horario=Horario;
-        this.CargaHoraria=CargaHoraria;
-        this.Descricao=Descricao;
-}
-    public Curso(int ID_Curso,String Nome_Curso,String Horario,String CargaHoraria,String Descricao){
-        this.Nome_Curso=Nome_Curso;
-        this.Horario=Horario;
-        this.CargaHoraria=CargaHoraria;
-        this.Descricao=Descricao;
-        this.ID_Curso=ID_Curso;
-}
+    public Curso(String Nome_Curso) {
+        this.Nome_Curso = Nome_Curso;
+    }
+
+    public Curso(String Nome_Curso, String Horario, String CargaHoraria, String Descricao) {
+        this.Nome_Curso = Nome_Curso;
+        this.Horario = Horario;
+        this.CargaHoraria = CargaHoraria;
+        this.Descricao = Descricao;
+    }
+
+    public Curso(int ID_Curso, String Nome_Curso, String Horario, String CargaHoraria, String Descricao) {
+        this.Nome_Curso = Nome_Curso;
+        this.Horario = Horario;
+        this.CargaHoraria = CargaHoraria;
+        this.Descricao = Descricao;
+        this.ID_Curso = ID_Curso;
+    }
 
     public int getID_Curso() {
         return ID_Curso;

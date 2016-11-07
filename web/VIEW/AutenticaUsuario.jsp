@@ -9,42 +9,42 @@
 <%@page import="MODEL.Usuario"%>
 
 <%
-    
-    if(request.getParameter("email") == null || request.getParameter("password")==null || request.getParameter("email") == "" || request.getParameter("password")== ""){
+
+    if (request.getParameter("email") == null || request.getParameter("password") == null || request.getParameter("email") == "" || request.getParameter("password") == "") {
         session.setAttribute("Mensagem", "usuario ou senha nao infomados");
         request.getRequestDispatcher("TelaLogin.jsp").forward(request, response);
-    }else{    
+    } else {
         String emailUsuario = new String(request.getParameter("email"));
         String senhaUsurario = new String(request.getParameter("password"));
         String mensagem = new String("Falha na autenticação!");
-    
+
         ConexaoMySQL.getConexaoMySQL();
         Statement comando = ConexaoMySQL.connection.createStatement();
-        ResultSet rs = comando.executeQuery("select Email,Password,Nome,Matricula from DCE_Usuario where Email='"+emailUsuario+"';");
-        String login= new String("");
-        String senha=new String("");
-        String nome=new String("");
-        int conta= new Integer(0);
+        ResultSet rs = comando.executeQuery("select Email,Password,Nome,Matricula from DCE_Usuario where Email='" + emailUsuario + "';");
+        String login = new String("");
+        String senha = new String("");
+        String nome = new String("");
+        int conta = new Integer(0);
         while (rs.next()) {
-            login= rs.getString("Email");
-            senha= rs.getString("Password");
-            nome=rs.getString("Nome");
-            conta=rs.getInt("Matricula");
+            login = rs.getString("Email");
+            senha = rs.getString("Password");
+            nome = rs.getString("Nome");
+            conta = rs.getInt("Matricula");
         }
-        if(login.equals(emailUsuario) && senha.equals(senhaUsurario)){
+        if (login.equals(emailUsuario) && senha.equals(senhaUsurario)) {
             session.setAttribute("Nome", nome);
             session.setAttribute("Conta", conta);
             session.setAttribute("Mensagem", null);
             request.getRequestDispatcher("DCE.jsp").forward(request, response);
-        }
-        else{
+        } else {
             session.setAttribute("Nome", null);
             session.setAttribute("Mensagem", mensagem);
             request.getRequestDispatcher("TelaLogin.jsp").forward(request, response);
         }
-        ConexaoMySQL.FecharConexao();}
-    
-   
+        ConexaoMySQL.FecharConexao();
+    }
+
+
 %>
 
 

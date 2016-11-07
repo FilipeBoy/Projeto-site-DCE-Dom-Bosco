@@ -1,8 +1,4 @@
-<%-- 
-    Document   : controllerRelatorios
-    Created on : 02/11/2016, 17:11:03
-    Author     : filip
---%>
+
 <%@page import="DAO.UsuarioDAO"%>
 <%@page import="MODEL.Usuario"%>
 <%@page import="DAO.SugestaoDAO"%>
@@ -81,6 +77,5 @@
         request.getRequestDispatcher("TelaRelatorios.jsp").forward(request, response);
     }
     %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+
 
