@@ -162,7 +162,21 @@
                     </div>
                 </div>
             </div>
-        </div>    
+        </div> 
+         <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="http://faculdade.dombosco.net/"><img class="img-responsive"  src="/Projeto_DCE/IMAGES/logo-faculdade.png" ></a>
+                    </div>
+                    <div class="col-md-6"><br><br><br><br>
+                        <a href="http://faculdade.dombosco.net/"><h1 class="text-primary" >Faculdade Dom Bosco Porto Alegre</h1></a>
+                        <p>A Faculdade Dom Bosco de Porto Alegre visa cumprir a missão Salesiana,
+                            acompanhando os jovens durante a etapa em que tomam decisões fundamentais para a carreira e para a vida.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="carousel slide" id="fullcarousel-example" data-interval="false" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="item active">
