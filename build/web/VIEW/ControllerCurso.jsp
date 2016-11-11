@@ -23,8 +23,9 @@
         request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
 
     } else if (botao.equals("excluir")) {
-        int buscaID_Curso = Integer.parseInt(request.getParameter("buscaID_Curso"));
-        Curso curso = new Curso(buscaID_Curso, nome, horario, cargaHoraria, descricao);
+        int busca = Integer.parseInt(request.getParameter("busca").toString());
+        Curso curso = new Curso();
+        curso.setID_Curso(busca);
         CursoDAO cursoDao = new CursoDAO();
         try {
             cursoDao.excluir(curso);
@@ -35,8 +36,8 @@
         request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
 
     } else if (botao.equals("editar")) {
-        int buscaID_Curso = Integer.parseInt(request.getParameter("buscaID_Curso"));
-        Curso curso = new Curso(buscaID_Curso, nome, horario, cargaHoraria, descricao);
+        int busca = Integer.parseInt(request.getParameter("busca").toString());
+        Curso curso = new Curso(busca,nome, horario, cargaHoraria, descricao);
         CursoDAO cursoDao = new CursoDAO();
         try {
             cursoDao.editar(curso);
@@ -47,17 +48,18 @@
         request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
 
     } else if (botao.equals("buscar")) {
-        String busca = request.getParameter("busca");
+        int busca = Integer.parseInt(request.getParameter("busca").toString());
         Curso curso = new Curso();
-        curso.setNome_Curso(busca);
+        curso.setID_Curso(busca);
         CursoDAO cursoDao = new CursoDAO();
-        curso = cursoDao.buscarPorNomeCurso(curso);
+        curso = cursoDao.buscarPorID_Curso(curso);
         if (curso != null) {
             session.setAttribute("Retorno", "sim");
             session.setAttribute("campo1", curso.getNome_Curso());
             session.setAttribute("campo2", curso.getHorario());
             session.setAttribute("campo3", curso.getCargaHoraria());
             session.setAttribute("campo4", curso.getDescricao());
+            session.setAttribute("campo5", curso.getID_Curso());
 
             request.getRequestDispatcher("CadastroCursos.jsp").forward(request, response);
         } else {

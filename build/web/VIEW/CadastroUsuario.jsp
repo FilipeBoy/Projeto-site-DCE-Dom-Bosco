@@ -1,36 +1,78 @@
+<%@page import="DAO.CursoDAO"%>
+<%@page import="MODEL.Curso"%>
+<%@page import="java.util.List"%>
 <%@page import="DAO.UsuarioDAO"%>
 <%@page import="MODEL.Usuario"%>
 <%
-    String usuario=(String)session.getAttribute("Nome");
-      if(usuario!=null){
-        Usuario user= new Usuario();
+    String usuario = (String) session.getAttribute("Nome");
+    if (usuario != null) {
+        Usuario user = new Usuario();
         user.setMatricula(Integer.parseInt(session.getAttribute("Conta").toString()));
-        UsuarioDAO usuarioDao= new UsuarioDAO();
-        user=usuarioDao.buscarPorMatricula(user);
-        
-        if( usuario!=null){
-        session.setAttribute("Retorno", "sim");
-        session.setAttribute("campo1", user.getMatricula());
-        session.setAttribute("campo2", user.getNome());
-        session.setAttribute("campo3", user.getCurso());
-        session.setAttribute("campo4", user.getEmail());
-        session.setAttribute("campo5", user.getPassword()); 
+        UsuarioDAO usuarioDao = new UsuarioDAO();
+        user = usuarioDao.buscarPorMatricula(user);
+
+        if (usuario != null) {
+            session.setAttribute("Retorno", "sim");
+            session.setAttribute("campo1", user.getMatricula());
+            session.setAttribute("campo2", user.getNome());
+            session.setAttribute("campo3", user.getCurso());
+            session.setAttribute("campo4", user.getEmail());
+            session.setAttribute("campo5", user.getPassword());
         }
     }
-    String mensagem=(String)session.getAttribute("Mensagem");
-    String retorno=(String)session.getAttribute("Retorno");
+    String mensagem = (String) session.getAttribute("Mensagem");
+    String retorno = (String) session.getAttribute("Retorno");
+    String opcao = null;
+    if (retorno != null) {
+        opcao = (String) session.getAttribute("campo3");
+    }
+    List<Curso> cursoLista = null;
+    CursoDAO cursoDao = new CursoDAO();
+    cursoLista = cursoDao.listar();
 %>
 <html><head>
-        <meta charset="utf-8">
+        <meta charset="windows-1252">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>DCE Dom Bosco</title>
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+        <style>
+            .navbar
+            {
+                background-color: #1c266d !important;
+                color: #fff;
+                border-color: #1c266d !important;
+            }
+
+            .navbar-default .navbar-nav > li > a 
+            {
+                color: #fff !important;
+                background-color: #1c266d !important;
+            }
+            .navbar-default .navbar-nav > li > a:hover
+            {
+                color: #fff !important;
+                background-color: #ac2925 !important;
+            }
+            .text-primary-inicial{
+                color:#1c266d !important;
+                background-color: rgba(181, 181, 181, 0.46);
+            }
+            .container-footer{
+                background-color: #1c266d !important;
+                color:#fff !important;
+            }.form-control{
+                width: 70% !important;
+            }
+        </style>
     </head><body>
         <div class="navbar navbar-default">
-            <div class="container">
+            <div class="container-header">
+                <div class="navbar-header">
+                    <img class="img-responsive" src="/Projeto_DCE/IMAGES/logo dce.png" width="50" >
+                </div>
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
                         <span class="sr-only">Toggle navigation</span>
@@ -40,18 +82,18 @@
                     </button>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-ex-collapse">
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-left">
                         <li class="active">
                             <a href="DCE.jsp">Home</a>
                         </li>
                         <li class="active">
-                            <a href="TelaSobre DCE.jsp">Sobre DCE<br></a>
+                            <a href="TelaSobreDCE.jsp">Sobre DCE<br></a>
                         </li>
                         <li class="active">
-                            <a href="TelaServicos.jsp">ServiÃ§os</a>
+                            <a href="TelaServicos.jsp">Serviços</a>
                         </li>
                         <li class="active">
-                            <a href="TelaNoticias.jsp">NotÃ­cias</a>
+                            <a href="TelaNoticias.jsp">Notícias</a>
                         </li>
                         <li class="active">
                             <a href="TelaAdministrativo.jsp">Administrativo</a>
@@ -59,71 +101,86 @@
                         <li class="active">
                             <a href="TelaContato.jsp">Contato</a>
                         </li>
-                        <% if (usuario!=null && usuario.equals("admin")) {%>
+                        <% if (usuario != null && usuario.equals("admin")) {%>
                         <li class="active">
-                            <a href="TelaRelatorios.jsp">Relatorios</a>
+                            <a href="TelaRelatorios.jsp">Relatórios</a>
                         </li><%}%>
                     </ul>
-                    <ul class="nav navbar-nav navbar-left">
-                        <% if(usuario!=null){%>
+                    <ul class="nav navbar-nav navbar-right">
+                        <% if (usuario != null) {%>
                         <li class="active">
-                            <a href="Logoff.jsp">Sign out</a>
+                            <a href="Logoff.jsp">Sair</a>
                         </li>
-                        
+
                         <li class="active">
                             <a href="CadastroUsuario.jsp"><%out.print(usuario);%></a>
-                         </li><%}else{%>
-                         <li class="active">
-                            <a href="TelaLogin.jsp">Sign in</a>
+                        </li><%} else {%>
+                        <li class="active">
+                            <a href="TelaLogin.jsp">Entrar</a>
                         </li>  <%}%>
                     </ul>
                 </div>
             </div>
         </div>
-         <% if(usuario==null){%>
+        <% if (usuario == null) {%>
         <div class="section"><div class="container"><div class="row"><div class="col-md-12"><img src="/Projeto_DCE/IMAGES/cadastre-se-agora.png" class="img-responsive"></div></div></div></div>
-        <%}else{%><div class="section"><div class="container"><div class="row"><div class="col-md-12"><h1>InformaÃ§Ã£o sobre Conta</h1></div></div></div></div><%}%>
+        <%} else {%><div class="section"><div class="container"><div class="row"><div class="col-md-12"><h1>Informação sobre Conta</h1></div></div></div></div><%}%>
         <div class="section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <a><% if (mensagem!= null) {out.print(mensagem);}%></a>
+                        <a><% if (mensagem != null) {
+                                out.print(mensagem);
+                            }%></a>
                         <form role="form" action="ControllerUsuario.jsp" method="post">
                             <div class="form-group">
-                                <label class="control-label" for="matricula">MatrÃ­cula</label>
-                                <input class="form-control" name="matricula" placeholder="00000000" type="text" <% if(retorno != null) {%> value=<%out.print(Integer.parseInt(session.getAttribute("campo1").toString()));%><%}%>>
+                                <label class="control-label" for="matricula">Matrícula</label>
+                                <input class="form-control" name="matricula" placeholder="00000000" type="text" <% if (retorno != null) {%> value=<%out.print(Integer.parseInt(session.getAttribute("campo1").toString()));%><%}%>>
                             </div>
-                                <% if(usuario!=null && usuario.equals("admin")){%>
-                                    <div class="form-group">
-                                    <button type="submit" class="btn btn-primary" name="BotaoComando" value="buscar">Buscar</button>
-                                </div><%}%>
+                            <% if (usuario != null && usuario.equals("admin")) {%>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" name="BotaoComando" value="buscar">Buscar</button>
+                            </div><%}%>
                             <div class="form-group">
                                 <label class="control-label" for="nome">Nome</label>
-                                <input class="form-control" name="nome" placeholder="Primeiro Nome" type="text" <% if (retorno != null) {%>value="<%out.print((String)session.getAttribute("campo2"));%>"<%}%>>
+                                <input class="form-control" name="nome" placeholder="Primeiro Nome" type="text" <% if (retorno != null) {%>value="<%out.print((String) session.getAttribute("campo2"));%>"<%}%>>
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="curso">Curso</label>
-                                <input class="form-control" name="curso" placeholder="Curso" type="text" <% if (retorno != null) {%>value="<%out.print((String)session.getAttribute("campo3"));%>"<%}%>>
+                                <label class="control-label" >Curso</label>
+                                <select name="curso" class="form-control" >
+                                    <% if (retorno != null) {%>
+                                    <%for (Curso curso : cursoLista) {
+                                            if (curso.getNome_Curso().equals(opcao)) {%>  
+                                    <option selected value="<%=curso.getNome_Curso()%>"><%=curso.getNome_Curso()%></option>
+                                    <%}else{%>
+                                        <option value="<%=curso.getNome_Curso()%>"><%=curso.getNome_Curso()%></option>
+                                    <%}}} else  if (retorno == null){%>
+                                    <%for (Curso curso : cursoLista) {%>   
+                                    <option value=""></option>
+                                    <option value="<%=curso.getNome_Curso()%>"><%=curso.getNome_Curso()%></option>
+                                    <%}
+                                        }%>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="email">Email</label>
-                                <input class="form-control" name="email" placeholder="Enter email" type="email" <% if (retorno != null) {%>value="<%out.print((String)session.getAttribute("campo4"));%>"<%}%>>
+                                <input class="form-control" name="email" placeholder="Enter email" type="email" <% if (retorno != null) {%>value="<%out.print((String) session.getAttribute("campo4"));%>"<%}%>>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="senha">Password</label>
-                                <input class="form-control" name="senha" placeholder="Password" type="password" <% if (retorno != null) {%>value="<%out.print((String)session.getAttribute("campo5"));%>"<%}%>>
+                                <input class="form-control" name="senha" placeholder="Password" type="password" <% if (retorno != null) {%>value="<%out.print((String) session.getAttribute("campo5"));%>"<%}%>>
                             </div>
                             <div class="section">
                                 <div class="container">
                                     <div class="row">
-                                        <% if (usuario==null || usuario.equals("admin")) {%>
+                                        <% if (usuario == null || usuario.equals("admin")) {%>
                                         <div class="col-md-3">
                                             <button type="submit" class="btn btn-primary"  name="BotaoComando" value="salvar">Enviar</button>
                                         </div><%}%>
                                         <div class="col-md-3">
                                             <button type="reset" class="btn btn-primary">Limpar</button>
                                         </div>
-                                        <% if(usuario!=null){%>
+                                        <% if (usuario != null) {%>
                                         <div class="col-md-3">
                                             <button class="btn btn-primary" name="BotaoComando" value="editar">Atualizar</button>
                                         </div>
@@ -138,9 +195,7 @@
                 </div>
             </div>
         </div>
-    
-
-<footer class="section section-primary">
+        <footer class="container-footer">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6">
@@ -160,7 +215,7 @@
                             <div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
                                 <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
                                 <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
-                                <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
+                                <a href="https://www.facebook.com/domboscodce"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
                                 <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
                             </div>
                         </div>
@@ -168,11 +223,11 @@
                             <div class="col-md-6 hidden-xs text-right">
                                 <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
                                 <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
-                                <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
+                                <a href="https://www.facebook.com/domboscodce"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
                                 <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
                             </div>
                             <div class="col-md-6">
-                                <img class="img-responsive" src="/Projeto_DCE/IMAGES/logo completa.png">
+
                             </div>
                         </div>
                     </div>

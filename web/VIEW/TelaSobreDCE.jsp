@@ -2,16 +2,46 @@
     String usuario=(String)session.getAttribute("Nome");
 %>
 <html><head>
-        <meta charset="utf-8">
+        <meta charset="windows-1252">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>DCE Dom Bosco</title>
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+    <style>
+                .navbar
+                {
+                  background-color: #1c266d !important;
+                  color: #fff;
+                  border-color: #1c266d !important;
+                 }
+
+                  .navbar-default .navbar-nav > li > a 
+                  {
+                      color: #fff !important;
+                      background-color: #1c266d !important;
+                  }
+                  .navbar-default .navbar-nav > li > a:hover
+                  {
+                      color: #fff !important;
+                      background-color: #ac2925 !important;
+                  }
+                  .text-primary-inicial{
+                      color:#1c266d !important;
+                      background-color: rgba(181, 181, 181, 0.46);
+                  }
+                  .container-footer{
+                      background-color: #1c266d !important;
+                      color:#fff !important;
+                  }
+        </style>
     </head><body>
         <div class="navbar navbar-default">
-            <div class="container">
+            <div class="container-header">
+                <div class="navbar-header">
+                    <img class="img-responsive" src="/Projeto_DCE/IMAGES/logo dce.png" width="50" >
+                </div>
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
                         <span class="sr-only">Toggle navigation</span>
@@ -21,18 +51,18 @@
                     </button>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-ex-collapse">
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-left">
                         <li class="active">
                             <a href="DCE.jsp">Home</a>
                         </li>
                         <li class="active">
-                            <a href="TelaSobre DCE.jsp">Sobre DCE<br></a>
+                            <a href="TelaSobreDCE.jsp">Sobre DCE<br></a>
                         </li>
                         <li class="active">
-                            <a href="TelaServicos.jsp">ServiÃ§os</a>
+                            <a href="TelaServicos.jsp">Serviços</a>
                         </li>
                         <li class="active">
-                            <a href="TelaNoticias.jsp">NotÃ­cias</a>
+                            <a href="TelaNoticias.jsp">Notícias</a>
                         </li>
                         <li class="active">
                             <a href="TelaAdministrativo.jsp">Administrativo</a>
@@ -40,22 +70,22 @@
                         <li class="active">
                             <a href="TelaContato.jsp">Contato</a>
                         </li>
-                        <% if (usuario!=null && usuario.equals("admin")) {%>
+                        <% if (usuario != null && usuario.equals("admin")) {%>
                         <li class="active">
-                            <a href="TelaRelatorios.jsp">Relatorios</a>
+                            <a href="TelaRelatorios.jsp">Relatórios</a>
                         </li><%}%>
                     </ul>
-                    <ul class="nav navbar-nav navbar-left">
-                        <% if(usuario!=null){%>
+                    <ul class="nav navbar-nav navbar-right">
+                        <% if (usuario != null) {%>
                         <li class="active">
-                            <a href="Logoff.jsp">Sign out</a>
+                            <a href="Logoff.jsp">Sair</a>
                         </li>
-                        
+
                         <li class="active">
                             <a href="CadastroUsuario.jsp"><%out.print(usuario);%></a>
-                         </li><%}else{%>
-                         <li class="active">
-                            <a href="TelaLogin.jsp">Sign in</a>
+                        </li><%} else {%>
+                        <li class="active">
+                            <a href="TelaLogin.jsp">Entrar</a>
                         </li>  <%}%>
                     </ul>
                 </div>
@@ -65,25 +95,25 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>O QUE Ã‰ UM DCE?</h1>
-                        <p>No final da dÃ©cada de 30 surge no Brasil a UNE (UniÃ£o Nacional dos Estudantes)
-                            e daÃ­ em diante o que podemos chamar de Movimento Estudantil organizado.
-                            A partir de entÃ£o e ao longo de sua histÃ³ria, o Movimento Estudantil atua
-                            de forma marcante na luta pela modificaÃ§Ã£o da realidade social como protagonista,
-                            juntamente com os movimentos populares, nas decisÃµes do contexto econÃ´mico,
-                            polÃ­tico e social nacional.
+                        <h1>O QUE É UM DCE?</h1>
+                        <p>No final da década de 30 surge no Brasil a UNE (União Nacional dos Estudantes)
+                            e daí em diante o que podemos chamar de Movimento Estudantil organizado.
+                            A partir de então e ao longo de sua histíria, o Movimento Estudantil atua
+                            de forma marcante na luta pela modificação da realidade social como protagonista,
+                            juntamente com os movimentos populares, nas decisões do contexto econômico,
+                            político e social nacional.
                             <br>
-                            <br>&nbsp; O DCE (DiretÃ³rio Central dos Estudantes) Ã© uma entidade entre as
-                            muitas previstas na organizaÃ§Ã£o institucional do Movimento Estudantil.
-                            A finalidade principal desta entidade Ã© representar os estudantes dentro
-                            de um espaÃ§o, onde todos os participam, propondo, discutindo e deliberando
-                            sobre as diversas questÃµes de carÃ¡ter coletivo que vÃ£o de encontro aos
+                            <br>&nbsp; O DCE (Diretório Central dos Estudantes) é uma entidade entre as
+                            muitas previstas na organização institucional do Movimento Estudantil.
+                            A finalidade principal desta entidade é representar os estudantes dentro
+                            de um espaço, onde todos os participam, propondo, discutindo e deliberando
+                            sobre as diversas questões de carater coletivo que vão de encontro aos
                             interesses da classe estudantil.
                             <br>
-                            <br>&nbsp; As questÃµes que entram na pauta de todos os DCE variam de acordo
-                            com o que Ã© deliberado pela gestÃ£o eleita em assembleia geral, juntamente
-                            com seus associados nas assembleias e conselhos previstos no estatuto das
-                            entidades. Contudo, essas disposiÃ§Ãµes podem variar de DCE para DCE.</p>
+                            <br>&nbsp; As questões que entram na pauta de todos os DCE variam de acordo
+                            com o que é deliberado pela gestão eleita em assembleia geral, juntamente
+                            com seus associados nas assembléias e conselhos previstos no estatuto das
+                            entidades. Contudo, essas disposições podem variar de DCE para DCE.</p>
                     </div>
                 </div>
             </div>
@@ -96,23 +126,23 @@
                     </div>
                     <div class="col-md-6">
                         <h1>QUEM ?</h1>
-                        <p>A Diretoria Central Ã© composta pelos seguintes membros:&nbsp;
+                        <p>A Diretoria Central é composta pelos seguintes membros:&nbsp;
                             <br>
-                            <br>PRESIDENTE: Paulo VinÃ­cio Santana - CiÃªncias&nbsp;ContÃ¡beis.
+                            <br>PRESIDENTE: Paulo Vinício Santana - Ciências Contábeis.
                             <br>
-                            <br>VICE-PRESIDENTE: Paola Morais - AdministraÃ§Ã£o.
+                            <br>VICE-PRESIDENTE: Paola Morais - Administração.
                             <br>
-                            <br>1Â° SECRETARIO: Thiarles Porta - Eng. Ambiental.
+                            <br>1º SECRETARIO: Thiarles Porta - Eng. Ambiental.
                             <br>
-                            <br>2Â° SECRETARIO: Mariana Varela - CiÃªncias ContÃ¡beis.
+                            <br>2° SECRETARIO: Mariana Varela - Ciências Contábeis.
                             <br>
-                            <br>1Â° TESOUREIRO : Marcos Belmonte - CiÃªncias ContÃ¡beis.
+                            <br>1º TESOUREIRO : Marcos Belmonte - Ciências Contábeis.
                             <br>
-                            <br>2Â° TESOUREIRO: Alexandre Leite - Direito.&nbsp;
+                            <br>2º TESOUREIRO: Alexandre Leite - Direito.
                             <br>
-                            <br>1Â° CONSELHEIRO: Mariana Silvello - Engenharia Ambiental e&nbsp;SanitÃ¡ria.
+                            <br>1º CONSELHEIRO: Mariana Silvello - Engenharia Ambiental e Sanitária.
                             <br>
-                            <br>2Â° CONSELHEIRO - Jonathan Pereira - Sistemas de InformaÃ§Ã£o.</p>
+                            <br>2º CONSELHEIRO - Jonathan Pereira - Sistemas de Informação.</p>
                     </div>
                 </div>
             </div>
@@ -122,13 +152,13 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1>QUANDO?</h1>
-                        <p>Segunda a Sexta-feira das Entrada 18h30 Ã¡s 19h10, Intervalo 20h30 Ã¡s 21h10
-                            SÃ¡bado 09h40 Ã¡s 10h00.&nbsp;</p>
+                        <p>Segunda a Sexta-feira das Entrada 18h30 ás 19h10, Intervalo 20h30 ás 21h10
+                            Sábado 09h40 ás 10h00.</p>
                     </div>
                 </div>
             </div>
         </div>
-        <footer class="section section-primary">
+        <footer class="container-footer">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6">
@@ -148,7 +178,7 @@
                             <div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
                                 <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
                                 <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
-                                <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
+                                <a href="https://www.facebook.com/domboscodce"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
                                 <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
                             </div>
                         </div>
@@ -156,17 +186,16 @@
                             <div class="col-md-6 hidden-xs text-right">
                                 <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
                                 <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
-                                <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
+                                <a href="https://www.facebook.com/domboscodce"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
                                 <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
                             </div>
                             <div class="col-md-6">
-                                <img class="img-responsive" src="/Projeto_DCE/IMAGES/logo completa.png">
+                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </footer>
-    
 
 </body></html>

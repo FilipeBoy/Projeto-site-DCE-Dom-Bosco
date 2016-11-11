@@ -16,9 +16,8 @@
         Usuario usuario = new Usuario(matricula, nome, Nomecurso, email, senha);
         UsuarioDAO usuarioDao = new UsuarioDAO();
         try {
-            usuarioDao.salvar(usuario);
+            usuario =usuarioDao.salvar(usuario);
             if ((String) session.getAttribute("Nome") == null) {
-                usuario = usuarioDao.buscarPorMatricula(usuario);
                 session.setAttribute("Nome", usuario.getNome());
                 session.setAttribute("Conta", usuario.getMatricula());
             }

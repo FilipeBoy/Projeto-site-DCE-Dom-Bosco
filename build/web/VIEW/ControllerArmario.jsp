@@ -53,7 +53,7 @@
     } else if (botao.equals("buscar")) {
         int busca = Integer.parseInt(request.getParameter("busca"));
         Armario armario = new Armario();
-        armario.setMatriculaUsuario(busca);
+        armario.setNroRegistro(busca);
         ArmarioDAO armarioDao = new ArmarioDAO();
         armario = armarioDao.buscarPorNroRegistro(armario);
         if (armario != null) {

@@ -34,7 +34,7 @@
         }
         request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
     } else if (botao.equals("editar")) {
-        int ID_Noticia = Integer.parseInt(request.getParameter("buscaID_Noticia"));
+        int ID_Noticia = Integer.parseInt(request.getParameter("busca"));
         Noticia noticia = new Noticia(ID_Noticia, autor, data, titulo, texto);
         NoticiaDAO noticiaDao = new NoticiaDAO();
         try {

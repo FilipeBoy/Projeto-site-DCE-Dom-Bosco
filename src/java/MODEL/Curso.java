@@ -10,8 +10,6 @@ public class Curso {
 
     public Curso() {
     }
-
-    ;
     
     public Curso(String Nome_Curso) {
         this.Nome_Curso = Nome_Curso;

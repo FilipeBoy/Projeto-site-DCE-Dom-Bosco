@@ -10,12 +10,12 @@ import java.util.List;
 
 public class UsuarioDAO {
 
-    public void salvar(Usuario user) throws SQLException {
+    public Usuario salvar(Usuario user) throws SQLException {
         StringBuilder sql = new StringBuilder();
-        sql.append("INSERT INTO DCE_Usuario(Matricula,Nome,Curso,Email,Password) values(?, ?, ?, ?,?)");
-
-        try {
+        sql.append("INSERT INTO DCE_Usuario(Matricula,Nome,Curso,Email,Password) values(?, ?, ?, ?, ?)");
             ConexaoMySQL.getConexaoMySQL();
+        try {
+            
             java.sql.PreparedStatement comando = ConexaoMySQL.connection.prepareStatement(sql.toString());
             comando.setInt(1, user.getMatricula());
             comando.setString(2, user.getNome());
@@ -27,6 +27,8 @@ public class UsuarioDAO {
             System.out.println("Não foi possivel inserir!");
         }
         ConexaoMySQL.FecharConexao();
+        Usuario retorno=buscarPorMatricula(user);
+        return retorno;
     }
 
     public void editar(Usuario user) throws SQLException {

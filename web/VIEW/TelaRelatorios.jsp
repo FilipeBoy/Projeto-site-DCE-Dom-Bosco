@@ -51,7 +51,7 @@
             campo2 = "Autor";
             campo3 = "Data";
             campo4 = "Titulo";
-            campo5 = "Inicio";
+            campo5 = "Texto";
             NoticiaDAO noticiaDao = new NoticiaDAO();
             noticiaLista = noticiaDao.listar();
 
@@ -60,7 +60,7 @@
             campo2 = "Nome";
             campo3 = "Horario";
             campo4 = "Carga Horaria";
-            campo5 = "Inicio";
+            campo5 = "Descrição";
             CursoDAO cursoDao = new CursoDAO();
             cursoLista = cursoDao.listar();
 
@@ -69,7 +69,7 @@
             campo2 = "Matricula Usuario";
             campo3 = "Nome do Objeto";
             campo4 = "Local Perda";
-            campo5 = "Inicio";
+            campo5 = "Descrição";
             PerdidoDAO perdidoDao = new PerdidoDAO();
             perdidoLista = perdidoDao.listar();
             
@@ -78,56 +78,55 @@
             campo2 = "Data";
             campo3 = "Status";
             campo4 = "Assunto";
-            campo5 = "Inicio";
+            campo5 = "Descrição";
             SugestaoDAO sugestaoDao = new SugestaoDAO();
             sugestaoLista = sugestaoDao.listar();
         }
     }
-    
-/*
-    function valida() {
-var x=document.getElementsByTagName("input");
-var i=0;
-var c=new Array();
-a=0;
-for (i=0;i<=x.length-1;i++) {
-if (x[i].type=="checkbox" && x[i].id=="idT") {
-c[a] = x[i];
-a++;
-}
-}
-i=0;
-var checked = false;
-for (i=0;i<=c.length-1;i++) {
-if (c[i].checked==true) {
-checked = true;
-break;
-}
-}
-if (!checked) {
-alert("Escolha pelo menos um dos checkbox.");
-return false;
-}else if (confirm("Quer continuar?")) {
-return true;
-}else{
-return false;
-}
-}
-    */
+ 
 %>
 
 <html><head>
-        <meta charset="utf-8">
+        <meta charset="windows-1252">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>DCE Dom Bosco</title>
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
-    </head><body>
+    <style>
+                .navbar
+                {
+                  background-color: #1c266d !important;
+                  color: #fff;
+                  border-color: #1c266d !important;
+                 }
 
+                  .navbar-default .navbar-nav > li > a 
+                  {
+                      color: #fff !important;
+                      background-color: #1c266d !important;
+                  }
+                  .navbar-default .navbar-nav > li > a:hover
+                  {
+                      color: #fff !important;
+                      background-color: #ac2925 !important;
+                  }
+                  .text-primary-inicial{
+                      color:#1c266d !important;
+                      background-color: rgba(181, 181, 181, 0.46);
+                  }
+                  .container-footer{
+                      background-color: #1c266d !important;
+                      color:#fff !important;
+                  }
+        </style>
+    </head><body>
         <div class="navbar navbar-default">
-            <div class="container">
+            <div class="container-header">
+                <div class="navbar-header">
+                    <img class="img-responsive" src="/Projeto_DCE/IMAGES/logo dce.png" width="50" >
+                </div>
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
                         <span class="sr-only">Toggle navigation</span>
@@ -137,7 +136,7 @@ return false;
                     </button>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-ex-collapse">
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-left">
                         <li class="active">
                             <a href="DCE.jsp">Home</a>
                         </li>
@@ -145,10 +144,10 @@ return false;
                             <a href="TelaSobreDCE.jsp">Sobre DCE<br></a>
                         </li>
                         <li class="active">
-                            <a href="TelaServicos.jsp">ServiÃ§os</a>
+                            <a href="TelaServicos.jsp">Serviços</a>
                         </li>
                         <li class="active">
-                            <a href="TelaNoticias.jsp">NotÃ­cias</a>
+                            <a href="TelaNoticias.jsp">Notícias</a>
                         </li>
                         <li class="active">
                             <a href="TelaAdministrativo.jsp">Administrativo</a>
@@ -158,20 +157,20 @@ return false;
                         </li>
                         <% if (usuario != null && usuario.equals("admin")) {%>
                         <li class="active">
-                            <a href="TelaRelatorios.jsp">Relatorios</a>
+                            <a href="TelaRelatorios.jsp">Relatórios</a>
                         </li><%}%>
                     </ul>
-                    <ul class="nav navbar-nav navbar-left">
+                    <ul class="nav navbar-nav navbar-right">
                         <% if (usuario != null) {%>
                         <li class="active">
-                            <a href="Logoff.jsp">Sign out</a>
+                            <a href="Logoff.jsp">Sair</a>
                         </li>
 
                         <li class="active">
                             <a href="CadastroUsuario.jsp"><%out.print(usuario);%></a>
                         </li><%} else {%>
                         <li class="active">
-                            <a href="TelaLogin.jsp">Sign in</a>
+                            <a href="TelaLogin.jsp">Entrar</a>
                         </li>  <%}%>
                     </ul>
                 </div>
@@ -199,22 +198,22 @@ return false;
                             <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">O que deseja ver?<br><i class="fa fa-caret-down"></i></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a href="TelaRelatorios.jsp?opcao=Relatorio Usuarios" >Relatorio de Usuarios</a>
+                                    <a href="TelaRelatorios.jsp?opcao=Relatorio Usuarios" >Relatório de Usuários</a>
                                 </li>
                                 <li>
-                                    <a href="TelaRelatorios.jsp?opcao=Relatorio Armarios">Relatorio de Armarios</a>
+                                    <a href="TelaRelatorios.jsp?opcao=Relatorio Armarios">Relatório de Armários</a>
                                 </li>
                                 <li>
-                                    <a href="TelaRelatorios.jsp?opcao=Relatorio Noticias">Relatorio de Noticias</a>
+                                    <a href="TelaRelatorios.jsp?opcao=Relatorio Noticias">Relatório de Notícias</a>
                                 </li>
                                 <li>
-                                    <a href="TelaRelatorios.jsp?opcao=Relatorio Cursos">Relatorio de Cursos</a>
+                                    <a href="TelaRelatorios.jsp?opcao=Relatorio Cursos">Relatório de Cursos</a>
                                 </li>
                                 <li>
-                                    <a href="TelaRelatorios.jsp?opcao=Relatorio Perdidos">Relatorio de Perdidos</a>
+                                    <a href="TelaRelatorios.jsp?opcao=Relatorio Perdidos">Relatório de Perdidos</a>
                                 </li>
                                 <li>
-                                    <a href="TelaRelatorios.jsp?opcao=Relatorio Sugestoes">Relatorio de Sugestoes</a>
+                                    <a href="TelaRelatorios.jsp?opcao=Relatorio Sugestoes">Relatório de Sugestões</a>
                                 </li>
                             </ul>
                         </div>
@@ -327,17 +326,17 @@ return false;
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
-                        <a class="btn btn-primary" href="CadastroUsuario.jsp">Editar Usuario</a>
-                        <a class="btn btn-primary " href="CadastroCursos.jsp">Editar Curso</a>
-                        <a class="btn btn-primary" href="CadastroNoticias.jsp">Editar Noticias</a>
-                        <a class="btn btn-primary" href="CadastroArmario.jsp">Editar Armario</a>
+                        <a class="btn btn-primary" href="CadastroUsuario.jsp">Editar Usuários</a>
+                        <a class="btn btn-primary" href="CadastroArmario.jsp">Editar Armários</a>
+                        <a class="btn btn-primary" href="CadastroNoticias.jsp">Editar Notícias</a>
+                        <a class="btn btn-primary " href="CadastroCursos.jsp">Editar Cursos</a>
                         <a class="btn btn-primary" href="CadastroPerdidos.jsp">Editar Perdidos</a>
-                        <a class="btn btn-primary" href="CadastroSugestoes.jsp">Editar Sugestoes</a>
+                        <a class="btn btn-primary" href="CadastroSugestoes.jsp">Editar Sugestões</a>
                     </div>
                 </div>
             </div>
         </div>
-        <footer class="section section-primary">
+        <footer class="container-footer">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6">
@@ -357,7 +356,7 @@ return false;
                             <div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
                                 <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
                                 <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
-                                <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
+                                <a href="https://www.facebook.com/domboscodce"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
                                 <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
                             </div>
                         </div>
@@ -365,11 +364,11 @@ return false;
                             <div class="col-md-6 hidden-xs text-right">
                                 <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
                                 <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
-                                <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
+                                <a href="https://www.facebook.com/domboscodce"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
                                 <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
                             </div>
                             <div class="col-md-6">
-                                <img class="img-responsive" src="/Projeto_DCE/IMAGES/logo completa.png">
+                                
                             </div>
                         </div>
                     </div>
