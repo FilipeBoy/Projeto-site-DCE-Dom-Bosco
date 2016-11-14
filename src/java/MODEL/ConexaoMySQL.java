@@ -28,9 +28,13 @@ public class ConexaoMySQL {
 //String url = "jdbc:mysql://intracker.com.br:3306/fdb";
             //String username = "fdb"; //nome de um usuário de seu BD 
             // String password = "fdb"; //sua senha de acesso 
-            String url = "jdbc:mysql://db4free.net:3306/intracker";
-            String username = "facfdb"; //nome de um usuário de seu BD 
-            String password = "facfdb@2016"; //sua senha de acesso 
+            //String url = "jdbc:mysql://db4free.net:3306/intracker";
+            //String username = "facfdb"; //nome de um usuário de seu BD 
+            //String password = "facfdb@2016"; //sua senha de acesso 
+           
+            String url = "jdbc:mysql://localhost:3306/intracker";
+            String username = "FilipeBoy"; //nome de um usuário de seu BD 
+            String password = "admin"; //sua senha de acesso 
             connection = DriverManager.getConnection(url, username, password);
 //Testa sua conexão// 
             if (connection != null) {

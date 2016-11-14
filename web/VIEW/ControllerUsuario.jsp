@@ -13,19 +13,33 @@
     session.setAttribute("Mensagem", null);
 
     if (botao.equals("salvar")) {
-        Usuario usuario = new Usuario(matricula, nome, Nomecurso, email, senha);
-        UsuarioDAO usuarioDao = new UsuarioDAO();
-        try {
-            usuario =usuarioDao.salvar(usuario);
-            if ((String) session.getAttribute("Nome") == null) {
-                session.setAttribute("Nome", usuario.getNome());
-                session.setAttribute("Conta", usuario.getMatricula());
+        if (email == null || nome == null || email.equals("") || nome.equals("") || matricula == 0) {
+            session.setAttribute("Mensagem", "Algum campo não foi infomado!");
+            request.getRequestDispatcher("CadastroUsuario.jsp").forward(request, response);
+        } else {
+            Usuario usuario = new Usuario(matricula, nome, Nomecurso, email, senha);
+            Usuario usuarioAux = new Usuario();
+            UsuarioDAO usuarioDao = new UsuarioDAO();
+            usuarioAux = usuarioDao.buscarPorMatricula(usuario);
+            if (usuarioAux != null) {
+                session.setAttribute("Mensagem", "Esta matricula já possui cadastro!");
+                request.getRequestDispatcher("CadastroUsuario.jsp").forward(request, response);
+            } else {
+                try {
+                    
+                    usuarioAux = usuarioDao.salvar(usuario);
+                    if ((String) session.getAttribute("Nome") == null) {
+                        session.setAttribute("Nome", usuario.getNome());
+                        session.setAttribute("Conta", usuario.getMatricula());
+                    }
+                    session.setAttribute("Mensagem", "Cadastrado com sucesso!");
+                } catch (SQLException e) {
+                    session.setAttribute("Mensagem", "Falha ao cadastrar!");
+                }
+                request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
+
             }
-            session.setAttribute("Mensagem", "Cadastrado com sucesso!");
-        } catch (SQLException e) {
-            session.setAttribute("Mensagem", "Falha ao cadastrar!");
         }
-        request.getRequestDispatcher("TelaResposta.jsp").forward(request, response);
 
     } else if (botao.equals("excluir")) {
         Usuario usuario = new Usuario(matricula, nome, Nomecurso, email, senha);
